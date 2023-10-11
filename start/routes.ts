@@ -21,5 +21,9 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+  return view.render('login')
+})
+
+Route.get('/register', async ({ view }) => {
+  return view.render('cadastro')
 })
