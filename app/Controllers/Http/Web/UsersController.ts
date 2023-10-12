@@ -17,7 +17,7 @@ export default class UsersController {
             console.error('EEEEEEEEEEEEEEEEEEEEEEE\N', err)
         }
 
-        return view.render('users/show', { user: user })
+        return view.render('users/view', { user: user })
     }
 
     public async list({ view }: HttpContextContract) {
