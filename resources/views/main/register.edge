@@ -1,20 +1,25 @@
 @layout('main/main')
 @section('content')
 
-<form>
+<form action="/users" method="POST">
     <div>
         <span>E-mail: </span>
         <input
+            name="email"
+            autocomplete="email"
             type="email"
-            
             type="text"
             placeholder="seu-email@exemplo.com">
     </div>
 
     <div >
         <span>Senha:</span>
-        <input autocomplete="current-password"  type="password" placeholder="Senha">
-    </div>          
+        <input 
+            name="password"
+            autocomplete="current-password"
+            type="password"
+            placeholder="Senha">
+    </div>
 
     <div>
         <span>Confirme sua senha:</span>
@@ -22,8 +27,8 @@
     </div> 
 
     <button
-            type="submit">
-            Finalizar
+        type="submit">
+        Finalizar
     </button>
 
     <div>

@@ -37,20 +37,20 @@ Route.get('/dashboard', async ({ view }) => {
 Route.group(() => {
   /** Serviços CRUD Publicaçoes */
   Route.group(() => {
-      Route.get('/', 'PostsController.list'), // GET posts/
-      Route.get('/:id', 'PostsController.show'),  // GET posts/id
-      Route.delete('/:id', 'PostsController.destroy'), // DELETE posts/id
-      Route.patch('/:id', 'PostsController.update'), // PATCH posts/id
-      Route.post('/', 'PostsController.store').as('posts.store') // POST posts/
+      Route.get('/', 'PostsController.list'),
+      Route.get('/:id', 'PostsController.show'),
+      Route.delete('/:id', 'PostsController.destroy'),
+      Route.patch('/:id', 'PostsController.update'),
+      Route.post('/', 'PostsController.store')
   }).prefix('/posts')
 
   /** Serviço CRUD Usuários */
   Route.group(() => {
-      Route.get('/', 'UsersController.index'), // GET users/
-      Route.get('/:id', 'UsersController.show'), // GET users/id
-      Route.delete('/:id', 'UsersController.destroy'), // DELETER users/id
-      Route.patch('/:id', 'UsersController.update'), // PATCH users/id
-      Route.post('/', 'UsersController.store') // POST users/id
+      Route.get('/', 'UsersController.list'), 
+      Route.get('/:id', 'UsersController.show'), 
+      Route.delete('/:id', 'UsersController.destroy'), 
+      Route.patch('/:id', 'UsersController.update'), 
+      Route.post('/', 'UsersController.store')
   }).prefix('/users')
 }).prefix('/api').namespace('App/Controllers/Http/API')
 
@@ -60,16 +60,18 @@ Route.group(() => {
  */
 Route.group(() => {
   Route.group(() => {
-    Route.get('/', 'UsersController.show').as('user.show'), // localhost:3333/user/id
-    Route.get('/list', 'UsersController.list').as('user.list'), // localhost:3333/user/list
-    Route.get('/:id', 'UsersController.show'), // localhost:3333/user/id
-    Route.get('/new', 'UsersController.create').as('user.register'), // localhost:3333/user/new
-    Route.get('/:id/edit', 'UsersController.update').as('user.update') //localhost:3333/user/id/edit
-  }).prefix('/user')
+    Route.post('/', 'UsersController.store'),
+    Route.get('/list', 'UsersController.list').as('users.list'), 
+    Route.get('/new', 'UsersController.create').as('users.register'),
+    Route.get('/:id/edit', 'UsersController.update').as('users.update'), 
+    Route.get('/:id', 'UsersController.show').as('users.show')
+  }).prefix('/users')
 
   Route.group(() => {
-    Route.get('/:id', 'PostsController.show').as('post.show'), // localhost:3333/user/id
-    Route.get('/new', 'PostsController.create').as('post.register'), // localhost:3333/user/new
-    Route.get('/:id/edit', 'PostsController.update').as('post.update') //localhost:3333/user/id/edit
+    Route.get('/:id', 'PostsController.show').as('posts.show'),
+    Route.get('/new', 'PostsController.create').as('posts.register'),
+    Route.get('/:id/edit', 'PostsController.update').as('posts.update')
   }).prefix('/posts')
+
+
 }).namespace('App/Controllers/Http/Web')

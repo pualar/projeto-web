@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import User from 'App/Models/User'
+import UserService from 'App/Services/UserService'
 //import UserService from 'App/Services/UserService'
 
 export default class UsersController {
@@ -32,22 +33,30 @@ export default class UsersController {
         return user
     }
 
-    public async store({ request, response }: HttpContextContract) {
+    public async store({ request, response }: HttpContextContract) { \
+        console.log("request >>>>>>>>> ", request)
+
         const email = request.input('email', undefined)
         const password = request.input('password', undefined)
+
 
         if(!email || !password) {
             response.status(400)
             return response
         }
 
-      /*   const userService = new UserService()
-        const user = await userService.create(email, password) */
+        const userService = new UserService()
+        const user = await userService.create(email, password)
 
-        return null;// user
+        console.log("response >>>>>>>>> ", response)
+        console.log("response >>>>>>>>> user ", user)
+
+        return user
     }
 
     public async show({ params }: HttpContextContract) {
+        console.log("show params >>>>>>>>> ", params)
+
         const user = await User.findOrFail(params.id)
 
         return user
