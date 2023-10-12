@@ -41,10 +41,10 @@ export default class UsersController {
             return response
         }
 
-        const userService = new UserService()
-        const user = await userService.create(email, password)
+      /*   const userService = new UserService()
+        const user = await userService.create(email, password) */
 
-        return user
+        return null;// user
     }
 
     public async show({ params }: HttpContextContract) {
