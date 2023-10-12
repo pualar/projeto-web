@@ -9,12 +9,12 @@ export default class UsersController {
     }
 
     public async show({ params, view }: HttpContextContract) {
-        let user: any = {emai: ''};
+        let user: any = {emaiL: ''};
 
         try{
             user = await User.findOrFail(params.id)
         } catch(err) {
-            console.error(err)
+            console.error('EEEEEEEEEEEEEEEEEEEEEEE\N', err)
         }
 
         return view.render('users/show', { user: user })

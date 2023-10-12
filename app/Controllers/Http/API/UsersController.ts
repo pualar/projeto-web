@@ -33,8 +33,9 @@ export default class UsersController {
         return user
     }
 
-    public async store({ request, response }: HttpContextContract) { \
-        console.log("request >>>>>>>>> ", request)
+    public async store({ request, response }: HttpContextContract) {
+        console.log("## [CONTROLLER][API][request] >>>>>>>>> ", request)
+        console.log("## [CONTROLLER][API][response] >>>>>>>>> ", response)
 
         const email = request.input('email', undefined)
         const password = request.input('password', undefined)
