@@ -22,11 +22,11 @@ import Route from '@ioc:Adonis/Core/Route'
 import UsersController from 'App/Controllers/Http/API/UsersController'
 
 Route.get('/', async ({ view }) => {
-  return view.render('login')
+  return view.render('main/login')
 })
 
 Route.get('/login', async ({ view }) => {
-  return view.render('login')
+  return view.render('main/login')
 })
 
 /**
