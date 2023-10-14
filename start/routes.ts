@@ -23,34 +23,44 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async ({ view }) => {
   return view.render('main/login')
 })
-
+/* 
 Route.get('/login', async ({ view }) => {
   return view.render('main/login')
-})
+}) */
+
 
 Route.get('/dashboard', async ({ view }) => {
   return view.render('posts/list')
 })
+
+Route.group(() => {
+  Route.post('/login', 'AuthController.login').as('api.auth.login')
+}).namespace('App/Controllers/Http/API')
+
+Route.group(() => {
+  Route.get('/login', 'AuthController.login').as('web.auth.login')
+}).namespace('App/Controllers/Http/Web')
+
 /**
  * Rotas dos Serviços
  */
 Route.group(() => {
   /** Serviços CRUD Publicaçoes */
   Route.group(() => {
-      Route.get('/', 'PostsController.list'),
-      Route.get('/:id', 'PostsController.show'),
-      Route.delete('/:id', 'PostsController.destroy'),
-      Route.patch('/:id', 'PostsController.update'),
-      Route.post('/', 'PostsController.store')
+      Route.get('/', 'PostsController.list').as('api.post.fetchAll'),
+      Route.get('/:id', 'PostsController.show').as('api.post.fetch'),
+      Route.delete('/:id', 'PostsController.destroy').as('api.post.delete'),
+      Route.patch('/:id', 'PostsController.update').as('api.post.update'),
+      Route.post('/', 'PostsController.store').as('api.post.create')
   }).prefix('/posts')
 
   /** Serviço CRUD Usuários */
   Route.group(() => {
-      Route.get('/', 'UsersController.list'), 
-      Route.get('/:id', 'UsersController.show'), 
-      Route.delete('/:id', 'UsersController.destroy'), 
-      Route.patch('/:id', 'UsersController.update'), 
-      Route.post('/', 'UsersController.store')
+      Route.get('/', 'UsersController.list').as("api.usser.fetchAll"), 
+      Route.get('/:id', 'UsersController.show').as('api.user.fetch'), 
+      Route.delete('/:id', 'UsersController.destroy').as('api.user.delete'), 
+      Route.patch('/:id', 'UsersController.update').as('api.user.patch'), 
+      Route.post('/', 'UsersController.store').as('api.user.create')
   }).prefix('/users')
 }).prefix('/api').namespace('App/Controllers/Http/API')
 

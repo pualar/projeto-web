@@ -14,7 +14,7 @@ export default class UsersController {
         try{
             user = await User.findOrFail(params.id)
         } catch(err) {
-            console.error('EEEEEEEEEEEEEEEEEEEEEEE\N', err)
+            console.error('\n [error] [onShow]:', err)
         }
 
         return view.render('users/view', { user: user })
@@ -29,7 +29,6 @@ export default class UsersController {
     }
 
     public async store({ request, response }: HttpContextContract) {
-        console.log('STORE', request);
         const email = request.input('email', undefined)
         const password = request.input('password', undefined)
 

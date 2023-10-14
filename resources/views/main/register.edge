@@ -1,7 +1,7 @@
 @layout('main/main')
 @section('content')
 
-<form action="/users" method="POST">
+<form action="{{ route('api.user.create') }}" method="POST">
     <div>
         <span>E-mail: </span>
         <input
