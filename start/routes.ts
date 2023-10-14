@@ -31,7 +31,7 @@ Route.get('/login', async ({ view }) => {
 
 Route.get('/dashboard', async ({ view }) => {
   return view.render('posts/list')
-})
+}).as('dashboard')
 
 Route.group(() => {
   Route.post('/login', 'AuthController.login').as('api.auth.login')
@@ -70,17 +70,19 @@ Route.group(() => {
  */
 Route.group(() => {
   Route.group(() => {
+    Route.get('/:id/posts', 'UsersController.posts_user').as('web.users.posts')
     Route.post('/', 'UsersController.store'),
-    Route.get('/list', 'UsersController.list').as('users.list'), 
-    Route.get('/new', 'UsersController.create').as('users.register'),
-    Route.get('/:id/edit', 'UsersController.update').as('users.update'), 
-    Route.get('/:id', 'UsersController.show').as('users.show')
+    Route.get('/list', 'UsersController.list').as('web.users.list'), 
+    Route.get('/new', 'UsersController.create').as('web.users.register'),
+    Route.get('/:id/edit', 'UsersController.update').as('web.users.update'), 
+    Route.get('/:id', 'UsersController.show').as('web.users.show')
   }).prefix('/users')
 
   Route.group(() => {
-    Route.get('/:id', 'PostsController.show').as('posts.show'),
-    Route.get('/new', 'PostsController.create').as('posts.register'),
-    Route.get('/:id/edit', 'PostsController.update').as('posts.update')
+    Route.get('/favorites', 'PostsController.favorites').as('web.posts.favorites'),
+    Route.get('/:id', 'PostsController.show').as('web.posts.show'),
+    Route.get('/new', 'PostsController.create').as('web.posts.create'),
+    Route.get('/:id/edit', 'PostsController.update').as('web.posts.update')
   }).prefix('/posts')
 
 

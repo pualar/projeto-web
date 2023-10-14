@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+    <script src="../js/dashboard/dashboard.js"></script>
+
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Projeto WEB | Medium </title>
+    <title>WEB 2023.2| Medium </title>
 
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <meta name="author" content=""/>
     
-    @entryPointStyles('app')   
+    @entryPointStyles('app')
     @entryPointScripts('app')
 </head>
 
 <body>
-    <nav>
-        <div class="m-10">
-            <label>
-                Titulo
-            </label>
+    @include('topnav')
+    @include('sidebar')
 
-            <label class="float-right">
-                nome_usuario
-            </label>            
-        </div>        
-    </nav>
-    <main>
+    <main class="ml-25-100">
         @!section('content')
     </main>
 </body>

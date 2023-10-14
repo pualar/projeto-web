@@ -3,6 +3,9 @@ import User from 'App/Models/User';
 import UserService from 'App/Services/UserService';
 
 export default class UsersController {
+    posts_user({ view }: HttpContextContract) {
+        return view.render('users/posts');
+    }
 
     public async create({ view }: HttpContextContract) {
         return view.render('main/register');

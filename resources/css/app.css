@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import './topnav.css';
+@import './sidebar.css';
+@import './util.css';
 
 html, body {
   background-color: #F7F8FA;
@@ -85,4 +88,14 @@ main code {
 
 .float-left {
   float: left;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pointer {
+  cursor: pointer;
 }

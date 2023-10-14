@@ -1,0 +1,22 @@
+.sidebar {
+    display: flex;
+    flex-flow: column;
+    right: 0px;
+    position: absolute;
+    width: 25%;
+    display: flex;
+}
+
+a {
+    text-align: end;
+    padding: 0px 10px 0px 0px;
+    margin: 5px 10px 5px 0px;
+    cursor: pointer;
+    color: darkslateblue;
+}
+
+a:hover {
+    background-color: darkslateblue;
+    color: azure;
+    border-radius: 7px;
+}

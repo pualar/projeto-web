@@ -1,6 +1,13 @@
-<p> users view  ok </p>
 
-<div>
-    <label>Email: </label>
-    <span>{{user.email}}</span>
-</div>
+@layout('dashboard')
+@section('content')
+
+    <div>
+        <p> users view  ok </p>
+    </div>
+
+    <div>
+        <label>Email: </label>
+        <span>{{user.email}}</span>
+    </div>
+@endsection
