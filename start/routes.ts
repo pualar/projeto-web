@@ -70,19 +70,19 @@ Route.group(() => {
  */
 Route.group(() => {
   Route.group(() => {
-    Route.get('/:id/posts', 'UsersController.posts_user').as('web.users.posts')
-    Route.post('/', 'UsersController.store'),
-    Route.get('/list', 'UsersController.list').as('web.users.list'), 
-    Route.get('/new', 'UsersController.create').as('web.users.register'),
-    Route.get('/:id/edit', 'UsersController.update').as('web.users.update'), 
-    Route.get('/:id', 'UsersController.show').as('web.users.show')
+    Route.get('/:id/posts', 'UsersController.posts_user').as('web.user.posts')
+    Route.post('/', 'UsersController.store').as('web.user.create'),
+    Route.get('/list', 'UsersController.list').as('web.user.list'), 
+    Route.get('/new', 'UsersController.create').as('web.user.register'),
+    Route.get('/:id/edit', 'UsersController.update').as('web.user.update'), 
+    Route.get('/:id', 'UsersController.show').as('web.user.show')
   }).prefix('/users')
 
   Route.group(() => {
-    Route.get('/favorites', 'PostsController.favorites').as('web.posts.favorites'),
-    Route.get('/:id', 'PostsController.show').as('web.posts.show'),
-    Route.get('/new', 'PostsController.create').as('web.posts.create'),
-    Route.get('/:id/edit', 'PostsController.update').as('web.posts.update')
+    Route.get('/favorites', 'PostsController.favorites').as('web.post.favorites'),
+    Route.get('/:id', 'PostsController.show').as('web.post.show'),
+    Route.get('/new', 'PostsController.create').as('web.post.create'),
+    Route.get('/:id/edit', 'PostsController.update').as('web.post.update')
   }).prefix('/posts')
 
 
