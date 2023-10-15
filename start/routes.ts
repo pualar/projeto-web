@@ -26,7 +26,7 @@ Route.get('/', async ({ view }) => {
 
 Route.get('/dashboard', async ({ view }) => {
   return view.render('posts/list')
-}).as('dashboard')
+}).as('dashboard').middleware('auth')
 
 
 /*
