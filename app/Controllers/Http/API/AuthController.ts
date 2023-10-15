@@ -8,11 +8,11 @@ export default class AuthController {
             await auth.attempt(email, password)
         } catch(err) {
             console.log(err)
-            session.flash('form', 'E-mail ou senha incorretos')
-            return response.redirect('/login')
+            session.flash('form', err.message)
+            return response.redirect().toRoute('web.auth.login')
         }
 
-        return response.redirect('/dashboard')
+        return response.redirect().toRoute('dashboard')
     }
 
     public async logout({ response, auth }: HttpContextContract) {

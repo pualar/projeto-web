@@ -31,7 +31,7 @@ export default class UsersController {
         return view.render('users/update');
     }
 
-    public async store({ request, response }: HttpContextContract) {
+    /* public async store({ request, response }: HttpContextContract) {
         const email = request.input('email', undefined)
         const password = request.input('password', undefined)
 
@@ -44,5 +44,5 @@ export default class UsersController {
         const user = await userService.create(email, password)
 
         return response.redirect().toRoute('users.show', { id: user.id })
-    }
+    } */
 }

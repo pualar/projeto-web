@@ -35,8 +35,8 @@ Route.get('/dashboard', async ({ view }) => {
  ********************************
 */
 Route.group(() => {
-  Route.post('/login', 'AuthController.login').as('api.auth.login'),
-  Route.get('/logout', 'AuthController.logout').as('api.auth.logout'),
+  Route.post('/login', 'AuthController.login').as('api.auth.login')
+  Route.get('/logout', 'AuthController.logout').as('api.auth.logout')
 
   Route.group(() => {
       Route.get('/', 'PostsController.list').as('api.post.fetchAll'),
@@ -44,10 +44,10 @@ Route.group(() => {
       Route.delete('/:id', 'PostsController.destroy').as('api.post.delete'),
       Route.patch('/:id', 'PostsController.update').as('api.post.update'),
       Route.post('/', 'PostsController.store').as('api.post.create')
-  }).prefix('/posts')/* .middleware('auth'), */
+  }).prefix('/posts')
 
   Route.group(() => {
-      Route.get('/', 'UsersController.list').as("api.usser.fetchAll"), 
+      Route.get('/', 'UsersController.list').as('api.usser.fetchAll'), 
       Route.get('/:id', 'UsersController.show').as('api.user.fetch'), 
       Route.delete('/:id', 'UsersController.destroy').as('api.user.delete'), 
       Route.patch('/:id', 'UsersController.update').as('api.user.patch'), 
@@ -66,12 +66,11 @@ Route.group(() => {
 
   Route.group(() => {
     Route.get('/:id/posts', 'UsersController.posts_user').as('web.user.posts')
-    Route.post('/', 'UsersController.store').as('web.user.create'),
     Route.get('/list', 'UsersController.list').as('web.user.list'), 
     Route.get('/new', 'UsersController.create').as('web.user.register'),
     Route.get('/:id/edit', 'UsersController.update').as('web.user.update'), 
     Route.get('/:id', 'UsersController.show').as('web.user.show')
-  }).prefix('/users'),
+  }).prefix('/users')
 
   Route.group(() => {
     Route.get('/favorites', 'PostsController.favorites').as('web.post.favorites'),
