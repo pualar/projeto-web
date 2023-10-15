@@ -1,6 +1,6 @@
 import User from 'App/Models/User'
 
-export default class UsersController {
+export default class UserService {
     constructor() { }
 
     public async create(email: string, password: string) {

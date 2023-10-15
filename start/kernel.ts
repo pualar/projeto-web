@@ -21,7 +21,7 @@ import Server from '@ioc:Adonis/Core/Server'
 |
 */
 Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
-//Server.middleware.register([() => import('App/Middleware/SilentAuth')])
+// Server.middleware.register([() => import('App/Middleware/SilentAuth')])
 /*
 |--------------------------------------------------------------------------
 | Named middleware
@@ -38,7 +38,6 @@ Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
 | Route.get('dashboard', 'UserController.dashboard').middleware('auth')
 |
 */
-Server.middleware.registerNamed({})
 Server.middleware.registerNamed({
     auth: () => import('App/Middleware/Auth')
 })
