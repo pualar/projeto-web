@@ -31,10 +31,11 @@ Route.get('/login', async ({ view }) => {
 
 Route.get('/dashboard', async ({ view }) => {
   return view.render('posts/list')
-})
+}).as('dashboard').middleware('auth')
 
 Route.group(() => {
   Route.post('/login', 'AuthController.login').as('api.auth.login')
+  Route.get('/logout', 'AuthController.logout').as('api.auth.logout')
 }).namespace('App/Controllers/Http/API')
 
 Route.group(() => {

@@ -23,7 +23,12 @@
 
             <label class="float-right">
                 nome_usuario
-            </label>            
+            </label>
+
+            @if(auth.user)
+                <div> <a href=" {{ route('api.auth.logout') }}">Logout</a>
+                </div>
+            @endif       
         </div>        
     </nav>
     <main>
