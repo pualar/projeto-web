@@ -38,4 +38,6 @@ Server.middleware.register([() => import('App/Middleware/SilentAuth')])
 | Route.get('dashboard', 'UserController.dashboard').middleware('auth')
 |
 */
-Server.middleware.registerNamed({})
+Server.middleware.registerNamed({
+    auth: () => import('App/Middleware/Auth')
+})

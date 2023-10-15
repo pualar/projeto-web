@@ -23,38 +23,29 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async ({ view }) => {
   return view.render('main/login')
 })
-/* 
-Route.get('/login', async ({ view }) => {
-  return view.render('main/login')
-}) */
-
 
 Route.get('/dashboard', async ({ view }) => {
   return view.render('posts/list')
 }).as('dashboard')
 
-Route.group(() => {
-  Route.post('/login', 'AuthController.login').as('api.auth.login')
-}).namespace('App/Controllers/Http/API')
 
+/*
+ *********************************
+ ********************************* API
+ ********************************
+*/
 Route.group(() => {
-  Route.get('/login', 'AuthController.login').as('web.auth.login')
-}).namespace('App/Controllers/Http/Web')
+  Route.post('/login', 'AuthController.login').as('api.auth.login'),
+  Route.get('/logout', 'AuthController.logout').as('api.auth.logout'),
 
-/**
- * Rotas dos Serviços
- */
-Route.group(() => {
-  /** Serviços CRUD Publicaçoes */
   Route.group(() => {
       Route.get('/', 'PostsController.list').as('api.post.fetchAll'),
       Route.get('/:id', 'PostsController.show').as('api.post.fetch'),
       Route.delete('/:id', 'PostsController.destroy').as('api.post.delete'),
       Route.patch('/:id', 'PostsController.update').as('api.post.update'),
       Route.post('/', 'PostsController.store').as('api.post.create')
-  }).prefix('/posts')
+  }).prefix('/posts')/* .middleware('auth'), */
 
-  /** Serviço CRUD Usuários */
   Route.group(() => {
       Route.get('/', 'UsersController.list').as("api.usser.fetchAll"), 
       Route.get('/:id', 'UsersController.show').as('api.user.fetch'), 
@@ -65,10 +56,14 @@ Route.group(() => {
 }).prefix('/api').namespace('App/Controllers/Http/API')
 
 
-/**
- * Rotas das Telas
- */
+/*
+ *********************************
+ ********************************* WEB
+ ********************************
+*/
 Route.group(() => {
+  Route.get('/login', 'AuthController.login').as('web.auth.login')
+
   Route.group(() => {
     Route.get('/:id/posts', 'UsersController.posts_user').as('web.user.posts')
     Route.post('/', 'UsersController.store').as('web.user.create'),
@@ -76,7 +71,7 @@ Route.group(() => {
     Route.get('/new', 'UsersController.create').as('web.user.register'),
     Route.get('/:id/edit', 'UsersController.update').as('web.user.update'), 
     Route.get('/:id', 'UsersController.show').as('web.user.show')
-  }).prefix('/users')
+  }).prefix('/users'),
 
   Route.group(() => {
     Route.get('/favorites', 'PostsController.favorites').as('web.post.favorites'),
@@ -84,6 +79,4 @@ Route.group(() => {
     Route.get('/new', 'PostsController.create').as('web.post.create'),
     Route.get('/:id/edit', 'PostsController.update').as('web.post.update')
   }).prefix('/posts')
-
-
 }).namespace('App/Controllers/Http/Web')

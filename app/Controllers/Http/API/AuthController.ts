@@ -14,4 +14,10 @@ export default class AuthController {
 
         return response.redirect('/dashboard')
     }
+
+    public async logout({ response, auth }: HttpContextContract) {
+        await auth.logout()
+        
+        return response.redirect().toRoute("web.auth.login")
+    }
 }

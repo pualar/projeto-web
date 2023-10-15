@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <script src="../js/dashboard/dashboard.js"></script>
-
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
@@ -17,11 +15,19 @@
 </head>
 
 <body>
-    @include('topnav')
-    @include('sidebar')
+    @if(!auth.isLoggedIn)
+        <main>
+            @include('errors/unauthorized')
+        </main>
+    @endif
 
-    <main class="ml-25-100">
-        @!section('content')
-    </main>
+    @if(auth.isLoggedIn) 
+        @include('topnav')
+        @include('sidebar')
+
+        <main class="ml-25-100">
+            @!section('content')
+        </main>
+    @endif    
 </body>
 </html>
