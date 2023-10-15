@@ -7,7 +7,7 @@
     display: flex;
 }
 
-a {
+.sidebar a {
     text-align: end;
     padding: 0px 10px 0px 0px;
     margin: 5px 10px 5px 0px;
@@ -15,7 +15,7 @@ a {
     color: darkslateblue;
 }
 
-a:hover {
+.sidebar a:hover {
     background-color: darkslateblue;
     color: azure;
     border-radius: 7px;
