@@ -3,6 +3,10 @@
 @import './sidebar.css';
 @import './util.css';
 
+.bg-blue {
+  background-color: #5A45FF;
+}
+
 html, body {
   background-color: #F7F8FA;
   font-family: 'Poppins', sans-serif;

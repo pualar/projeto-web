@@ -15,19 +15,17 @@
 </head>
 
 <body>
-    @if(!auth.isLoggedIn)
+    @if(!auth.user)
         <main>
             @include('errors/unauthorized')
         </main>
-    @endif
+    @else
+        @include('dashboard/topnav')
+        @include('dashboard/sidebar')
 
-    @if(auth.isLoggedIn) 
-        @include('topnav')
-        @include('sidebar')
-
-        <main class="ml-25-100">
+        <main>
             @!section('content')
         </main>
-    @endif    
+    @end        
 </body>
 </html>

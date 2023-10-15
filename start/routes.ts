@@ -20,14 +20,6 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
-  return view.render('main/login')
-})
-
-Route.get('/dashboard', async ({ view }) => {
-  return view.render('posts/list')
-}).as('dashboard').middleware('auth')
-
 
 /*
  *********************************
@@ -39,7 +31,7 @@ Route.group(() => {
   Route.get('/logout', 'AuthController.logout').as('api.auth.logout')
 
   Route.group(() => {
-      Route.get('/', 'PostsController.list').as('api.post.fetchAll'),
+      //Route.get('/', 'PostsController.list').as('api.post.fetchAll'),
       Route.get('/:id', 'PostsController.show').as('api.post.fetch'),
       Route.delete('/:id', 'PostsController.destroy').as('api.post.delete'),
       Route.patch('/:id', 'PostsController.update').as('api.post.update'),
@@ -62,14 +54,16 @@ Route.group(() => {
  ********************************
 */
 Route.group(() => {
-  Route.get('/login', 'AuthController.login').as('web.auth.login')
+  Route.get('/', 'AuthController.login').middleware('auth')
+  Route.get('/login', 'AuthController.login').as('web.auth.login').middleware('auth')
+  Route.get('/dashboard', 'PostsController.list').as('dashboard').middleware('auth')
 
   Route.group(() => {
-    Route.get('/:id/posts', 'UsersController.posts_user').as('web.user.posts')
-    Route.get('/list', 'UsersController.list').as('web.user.list'), 
+    Route.get('/:id/posts', 'UsersController.posts_user').as('web.user.posts').middleware('auth')
+    Route.get('/list', 'UsersController.list').as('web.user.list').middleware('auth'), 
     Route.get('/new', 'UsersController.create').as('web.user.register'),
-    Route.get('/:id/edit', 'UsersController.update').as('web.user.update'), 
-    Route.get('/:id', 'UsersController.show').as('web.user.show')
+    Route.get('/:id/edit', 'UsersController.update').as('web.user.update').middleware('auth'), 
+    Route.get('/:id', 'UsersController.show').as('web.user.show').middleware('auth')
   }).prefix('/users')
 
   Route.group(() => {
