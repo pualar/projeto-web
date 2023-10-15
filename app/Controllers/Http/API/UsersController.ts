@@ -62,9 +62,6 @@ export default class UsersController {
 
         await auth.login(user)
 
-        console.log("response >>>>>>>>> ", response)
-        console.log("response >>>>>>>>> user ", user)
-
         return response.redirect('/dashboard')
     }
 

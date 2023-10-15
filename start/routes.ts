@@ -77,5 +77,5 @@ Route.group(() => {
     Route.get('/:id', 'PostsController.show').as('web.post.show'),
     Route.get('/new', 'PostsController.create').as('web.post.create'),
     Route.get('/:id/edit', 'PostsController.update').as('web.post.update')
-  }).prefix('/posts')
+  }).prefix('/posts').middleware('auth')
 }).namespace('App/Controllers/Http/Web')
