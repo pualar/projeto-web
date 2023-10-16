@@ -1,40 +1,43 @@
 @layout('main/main')
 @section('content')
-    
-<form action="{{ route('api.auth.login') }}" method="POST">
-    @if(flashMessages.has('form'))
-        <div role="alert">
-        {{flashMessages.get('form')}}
+    <div class="block form">
+        <form action="{{ route('api.auth.login') }}" method="POST">
+        @if(flashMessages.has('form'))
+            <div role="alert">
+            {{flashMessages.get('form')}}
+            </div>
+        @endif
+
+        <div>
+            <span>E-mail: </span>
+            <input
+                name="email"
+                autocomplete="email"
+                type="email"
+                placeholder="seu-email@exemplo.com">
         </div>
-    @endif
 
-    <div>
-        <span>E-mail: </span>
-        <input
-            name="email"
-            autocomplete="email"
-            type="email"
-            type="text" placeholder="seu-email@exemplo.com">
-    </div>
+        <div>
+            <span>Senha:</span>
+            <input
+                name="password"
+                autocomplete="current-password"
+                type="password"
+                placeholder="Senha">
+        </div>
 
-    <div>
-        <span>Senha:</span>
-        <input
-            name="password"
-            autocomplete="current-password"
-            type="password"
-            type="email" placeholder="Senha">
-    </div>
-
+        <div>
+            <button
+                type="submit">
+                    Entrar
+            </button>  
+        </div>
         
-    <button
-        type="submit">
-        Entrar
-    </button>  
-</form>
+    </form>
 
-    
-<div>
-    <span> Não possui uma conta? <a href=" {{ route('web.user.register') }}"> Cadastre-se </a></span>
-</div>
+    <div>
+        <span> Não possui uma conta? <a href=" {{ route('web.user.register') }}"> Cadastre-se </a></span>
+    </div>
+</block>
+
 @endsection

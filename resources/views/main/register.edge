@@ -1,38 +1,54 @@
 @layout('main/main')
 @section('content')
+    <div class="block form">    
+        <form action="{{ route('api.user.create') }}" method="POST">
+            <div>
+                <span>Nome completo: </span>
+                <input
+                    name="nome"
+                    autocomplete="name"
+                    type="text"
+                    placeholder="Ex: Maria da Silva">
+            </div>
 
-    <form action="{{ route('api.user.create') }}" method="POST">
-        <div>
-            <span>E-mail: </span>
-            <input
-                name="email"
-                autocomplete="email"
-                type="email"
-                placeholder="seu-email@exemplo.com">
-        </div>
+            <div>
+                <span>E-mail: </span>
+                <input
+                    name="email"
+                    autocomplete="email"
+                    type="email"
+                    placeholder="Ex: seu-email@exemplo.com">
+            </div>
 
-        <div >
-            <span>Senha: </span>
-            <input 
-                name="password"
-                autocomplete="current-password"
-                type="password"
-                placeholder="Senha">
-        </div>
+            <div >
+                <span>Senha: </span>
+                <input 
+                    name="password"
+                    autocomplete="new-passwordword"
+                    type="password"
+                    placeholder="Senha">
+            </div>
 
-        <div>
-            <span>Confirme sua senha:</span>
-            <input type="password" autocomplete="current-password" placeholder="Confirme sua senha">
-        </div> 
+            <div>
+                <span>Confirme sua senha:</span>
+                <input type="password" autocomplete="current-password" placeholder="Confirme sua senha">
+            </div> 
 
-        <button type="submit">
-            Finalizar
-        </button>
+            <button
+                id="sbmt" 
+                type="submit">
+                Finalizar
+            </button>
 
-        <div>
-            <a href="/">
-                Voltar
-            </a>
-        </div>
-    </form>
+            <script>
+                const btn = document.getElementById('sbmt')
+
+            </script>
+            <div class="w-100 text-center">
+                <a href="/">
+                    Voltar
+                </a>
+            </div>
+        </form>
+    </div>
 @endsection

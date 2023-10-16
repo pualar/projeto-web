@@ -7,6 +7,31 @@
   background-color: #5A45FF;
 }
 
+.form {
+  padding: 20px;
+  border-radius: 10px;
+  border: #5A45FF solid 1px;
+}
+
+.form button {
+  padding: 5px;
+  margin: 15px 0px 10px 0px;
+  width: 100%;
+}
+
+.form input {
+  padding: 2px 0px 2px 0px;
+  width: 100%;
+}
+
+.block {
+  display: block;
+}
+
+input {
+  margin: 5px 0px 5px 0px;
+}
+
 html, body {
   background-color: #F7F8FA;
   font-family: 'Poppins', sans-serif;

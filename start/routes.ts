@@ -54,9 +54,10 @@ Route.group(() => {
  ********************************
 */
 Route.group(() => {
-  Route.get('/', 'AuthController.login').middleware('auth')
-  Route.get('/login', 'AuthController.login').as('web.auth.login').middleware('auth')
+  Route.get('/', 'AuthController.login')
+  Route.get('/login', 'AuthController.login').as('web.auth.login')
   Route.get('/dashboard', 'PostsController.list').as('dashboard').middleware('auth')
+  Route.get('/me', 'UsersController.myProfile').as('myProfile').middleware('auth')
 
   Route.group(() => {
     Route.get('/:id/posts', 'UsersController.posts_user').as('web.user.posts').middleware('auth')

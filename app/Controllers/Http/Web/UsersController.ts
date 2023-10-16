@@ -31,6 +31,16 @@ export default class UsersController {
         return view.render('users/update');
     }
 
+    public async myProfile({ view, auth }: HttpContextContract) {
+        let user: any = {emaiL: ''};
+
+        if(auth.user) {
+            user = await User.findOrFail(auth.user.id)
+        }
+
+        return view.render('users/view', { user: user })
+    }
+
     /* public async store({ request, response }: HttpContextContract) {
         const email = request.input('email', undefined)
         const password = request.input('password', undefined)
