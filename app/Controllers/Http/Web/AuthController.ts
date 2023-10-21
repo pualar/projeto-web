@@ -5,7 +5,11 @@ export default class AuthController {
         return view.render('main/register')
     }
 
-    public async login({ view }: HttpContextContract) {
+    public async login({ view, auth, response }: HttpContextContract) {
+        if(await auth.check()) {
+            return response.redirect('dashboard')
+        }
+        
         return view.render('main/login')
     }
 }

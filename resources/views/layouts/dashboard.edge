@@ -19,13 +19,14 @@
         <main>
             @include('errors/unauthorized')
         </main>
-    @else
-        @include('dashboard/topnav')
-        @include('dashboard/sidebar')
+    @elseif(auth.user)
+        @include('layouts/topnav')
+        @include('layouts/sidebar')
 
-        <main>
-            @!section('content')
-        </main>
-    @end        
+    @endif
+
+
+    @!section('content')
+
 </body>
 </html>
