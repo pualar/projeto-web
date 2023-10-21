@@ -2,6 +2,8 @@
 @import './topnav.css';
 @import './sidebar.css';
 @import './util.css';
+@import './colors.css';
+@import './view.css';
 
 .bg-blue {
   background-color: #5A45FF;
@@ -33,7 +35,7 @@ input {
 }
 
 html, body {
-  background-color: #F7F8FA;
+  background-color: thistle;
   font-family: 'Poppins', sans-serif;
   height: 100vh;
   color: #46444c;

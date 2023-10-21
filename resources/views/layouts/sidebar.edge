@@ -1,18 +1,33 @@
 <div id="my-sidenav" class="sidebar" style="display: none">
-  <a href="{{ route('web.post.create') }}">Nova publicação</a>
+  <a href="{{
+    route('web.post.create')
+  }}">Nova publicação</a>
+  
   <a 
     href="{{ 
       route(
-        'myProfile',
+        'web.user.profile',
         { id: auth.user.id }
       )
-    }}">Meu perfil</a>
+  }}">Meu perfil</a>
 
   <a
-    href="{{ route('web.user.posts', {id: auth.user.id}) }}"
-    href="#">Minhas postagens</a>
+    href="{{
+      route(
+        'web.user.posts',
+        { id: auth.user.id }
+      )
+  }}">Minhas postagens</a>
+  
   <a
-    href="#">Meus favoritos</a>
+    href="{{
+      route(
+        'web.post.favorites'
+      )
+  }}">Favoritos</a>
+
   <a
-    href="{{ route('api.auth.logout') }}">Sair</a>
+    href="{{
+      route('api.auth.logout')
+  }}">Sair</a>
 </div>

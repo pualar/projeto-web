@@ -1,16 +1,17 @@
 .sidebar {
+    background-color: black;
     display: flex;
     flex-flow: column;
     right: 0px;
     position: absolute;
     width: 25%;
     display: flex;
+    border-radius: 8px 0px 8px 8px;
 }
 
 .sidebar a {
     text-align: end;
-    padding: 0px 10px 0px 0px;
-    margin: 5px 10px 5px 0px;
+    padding: 5px;
     cursor: pointer;
     color: darkslateblue;
 }

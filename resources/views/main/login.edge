@@ -4,7 +4,7 @@
         <form action="{{ route('api.auth.login') }}" method="POST">
         @if(flashMessages.has('form'))
             <div role="alert">
-            {{flashMessages.get('form')}}
+                {{flashMessages.get('form')}}
             </div>
         @endif
 

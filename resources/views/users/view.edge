@@ -1,13 +1,13 @@
 
 @include('layouts/dashboard')
+@set('titulo', 'Meu perfil')
+
 @section('content')
-
-    <div>
-        <p> users view  ok </p>
-    </div>
-
-    <div>
-        <label>Email: </label>
-        <span>{{user.email}}</span>
+    <div class="m-5">
+        <div>
+            <label>Email: </label>
+            <span>{{user.email}}</span>
+        </div>
+       
     </div>
 @endsection

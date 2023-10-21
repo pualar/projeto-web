@@ -1,13 +1,16 @@
 .navbar {
+    padding: 10px;
+    background: black;
+    color: antiquewhite;
     overflow: hidden;
     font-family: Arial;
   }
-  
+
   /* Links inside the navbar */
   .navbar a {
     float: left;
     font-size: 16px;
-    color: black;
+    color: thistle;
     text-align: center;
     text-decoration: none;
   }

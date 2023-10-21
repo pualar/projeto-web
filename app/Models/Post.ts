@@ -17,6 +17,9 @@ export default class Post extends BaseModel {
 
   @column()
   public title: string
+  
+  @column()
+  public favorite: boolean;
 
   @column()
   public user_id: number
