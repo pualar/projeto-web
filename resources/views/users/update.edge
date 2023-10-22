@@ -1,1 +1,45 @@
-<p> users uopdate ok </p>
+
+@include('layouts/dashboard')
+@set('abc', 'Editar meus dados')
+@section('content')
+    <head>
+        @entryPointScripts('profile')
+    </head>
+    <div class="form m-5">
+        <div>
+            <label>Nome: </label>
+            <span> {{user.name}} </span>
+        </div>
+
+         <div>
+            <label>Email: </label>
+            <span> {{user.email}} </span>
+        </div>
+
+        <div>
+            <a href="{{ route('web.user.profile.edit') }}">Salvar</a>
+        </div>
+
+        <a href="{{ route('web.user.profile') }}">Voltar</a>
+    </div>
+    {{--  <div class="block form">
+        <div>
+            <span>Senha: </span>
+            <input 
+                id="password"
+                name="password"
+                autocomplete="new-passwordword"
+                type="password"
+                placeholder="Senha">
+        </div>
+
+        <div>
+            <span>Confirme sua senha:</span>
+            <input
+                id="confirm"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Confirme sua senha">
+        </div> 
+    </div>  --}}
+@endsection

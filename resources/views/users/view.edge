@@ -1,13 +1,51 @@
 
 @include('layouts/dashboard')
-@set('titulo', 'Meu perfil')
-
+@set('abc', 'Meu perfil')
 @section('content')
-    <div class="m-5">
+    <head>
+        @entryPointScripts('profile')
+    </head>
+    <div class="form m-5">
         <div>
-            <label>Email: </label>
-            <span>{{user.email}}</span>
+            <label>Nome: </label>
+            <span> {{user.name}} </span>
         </div>
-       
+
+         <div>
+            <label>Email: </label>
+            <span> {{user.email}} </span>
+        </div>
+
+        <div>
+            <button id="btn_alterar_senha">Alterar senha</button>
+        </div>
+
+        <div>
+            <a href="{{ route('web.user.profile.edit') }}">Editar dados</a>
+        </div>
     </div>
+
+    <div id="view_alterar_senha">
+        @include('partials/form-senha')
+    </div>
+    {{--  <div class="block form">
+        <div>
+            <span>Senha: </span>
+            <input 
+                id="password"
+                name="password"
+                autocomplete="new-passwordword"
+                type="password"
+                placeholder="Senha">
+        </div>
+
+        <div>
+            <span>Confirme sua senha:</span>
+            <input
+                id="confirm"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Confirme sua senha">
+        </div> 
+    </div>  --}}
 @endsection

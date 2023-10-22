@@ -1,5 +1,10 @@
 @layout('layouts/main')
+@set('titulo', 'Cadastre-se')
 @section('content')
+    <head>
+        @entryPointScripts('register')
+    </head>
+    
     <div class="block form">    
         <form action="{{ route('api.user.create') }}" method="POST">
             <div>
@@ -8,7 +13,7 @@
                     name="nome"
                     autocomplete="name"
                     type="text"
-                    placeholder="Ex: Maria da Silva">
+                    placeholder="Maria da Silva">
             </div>
 
             <div>
@@ -17,12 +22,13 @@
                     name="email"
                     autocomplete="email"
                     type="email"
-                    placeholder="Ex: seu-email@exemplo.com">
+                    placeholder="seuemail@exemplo.com">
             </div>
 
             <div >
                 <span>Senha: </span>
                 <input 
+                    id="password"
                     name="password"
                     autocomplete="new-passwordword"
                     type="password"
@@ -31,19 +37,20 @@
 
             <div>
                 <span>Confirme sua senha:</span>
-                <input type="password" autocomplete="current-password" placeholder="Confirme sua senha">
+                <input
+                    id="confirm"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Confirme sua senha">
             </div> 
 
             <button
+                disabled
                 id="sbmt" 
                 type="submit">
                 Finalizar
             </button>
 
-            <script>
-                const btn = document.getElementById('sbmt')
-
-            </script>
             <div class="w-100 text-center">
                 <a href="/">
                     Voltar

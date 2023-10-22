@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>WEB 2023.2| Medium </title>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>WEB 2023.2| Medium </title>
 
-    <meta name="description" content=""/>
-    <meta name="keywords" content=""/>
-    <meta name="author" content=""/>
-    
-    @entryPointStyles('app')
-    @entryPointScripts('app')
-</head>
+        <meta name="description" content=""/>
+        <meta name="keywords" content=""/>
+        <meta name="author" content=""/>
+        
+        @entryPointStyles('app')
+        @entryPointScripts('app')
+    </head>
 
-<body>
-    @if(!auth.user)
-        <main>
-            @include('errors/unauthorized')
-        </main>
-    @elseif(auth.user)
-        @include('layouts/topnav')
-        @include('layouts/sidebar')
+    <body>
+        @if(!auth.user)
+            <main>
+                @include('errors/unauthorized')
+            </main>
+        @elseif(auth.user)
+            @include('partials/topnav')
+            @include('partials/sidebar')
+        @endif
 
-    @endif
+        <h2> {{ abc }} </h2>
+        @!section('content')
 
-    @if(titulo) 
-        <h2> {{ titulo }} </h2>
-    @endif
-
-    @!section('content')
-
-</body>
+    </body>
 </html>

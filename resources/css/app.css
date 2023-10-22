@@ -10,9 +10,14 @@
 }
 
 .form {
+  display: flex;
   padding: 20px;
   border-radius: 10px;
   border: #5A45FF solid 1px;
+}
+
+.form div {
+  width: 100%;
 }
 
 .form button {
@@ -21,9 +26,9 @@
   width: 100%;
 }
 
-.form input {
-  padding: 2px 0px 2px 0px;
+input {
   width: 100%;
+  padding: 2px 0px 2px 0px;
 }
 
 .block {

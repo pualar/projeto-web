@@ -1,38 +1,36 @@
 @layout('layouts/main')
+@set('titulo', 'Login')
 @section('content')
     <div class="block form">
         <form action="{{ route('api.auth.login') }}" method="POST">
-        @if(flashMessages.has('form'))
-            <div role="alert">
-                {{flashMessages.get('form')}}
+            @if(flashMessages.has('form'))
+                <div role="alert">
+                    {{flashMessages.get('form')}}
+                </div>
+            @endif
+
+            <div>
+                <span>E-mail: </span>
+                <input
+                    name="email"
+                    autocomplete="email"
+                    type="email"
+                    placeholder="seu-email@exemplo.com">
             </div>
-        @endif
 
-        <div>
-            <span>E-mail: </span>
-            <input
-                name="email"
-                autocomplete="email"
-                type="email"
-                placeholder="seu-email@exemplo.com">
-        </div>
+            <div>
+                <span>Senha:</span>
+                <input
+                    name="password"
+                    autocomplete="current-password"
+                    type="password"
+                    placeholder="Senha">
+            </div>
 
-        <div>
-            <span>Senha:</span>
-            <input
-                name="password"
-                autocomplete="current-password"
-                type="password"
-                placeholder="Senha">
-        </div>
-
-        <div>
             <button
-                type="submit">
-                    Entrar
+                    type="submit">
+                        Entrar
             </button>  
-        </div>
-        
     </form>
 
     <div>

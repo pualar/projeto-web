@@ -14,9 +14,12 @@
     @entryPointScripts('app')
 </head>
 
-<body>
+<body>    
     <main>
-        @!section('content')
+        <div>
+            <h2 class="mb-5"> {{titulo}} </h2>    
+            @!section('content')
+        </div>
     </main>
 </body>
 </html>

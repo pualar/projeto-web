@@ -31,19 +31,19 @@ Route.group(() => {
   Route.get('/logout', 'AuthController.logout').as('api.auth.logout')
 
   Route.group(() => {
-      //Route.get('/', 'PostsController.list').as('api.post.fetchAll'),
-      Route.get('/:id', 'PostsController.show').as('api.post.fetch'),
-      Route.delete('/:id', 'PostsController.destroy').as('api.post.delete')
-      Route.patch('/:id', 'PostsController.update').as('api.post.update')
+      Route.get('/:id', 'PostsController.show').where('id', /^[0-9]+$/).as('api.post.fetch')
+      Route.delete('/:id', 'PostsController.destroy').where('id', /^[0-9]+$/).as('api.post.delete')
+      Route.patch('/:id', 'PostsController.update').where('id', /^[0-9]+$/).as('api.post.update')
       Route.post('/', 'PostsController.store').as('api.post.create')
   }).prefix('/posts')
 
   Route.group(() => {
-      Route.get('/', 'UsersController.list').as('api.usser.fetchAll')
-      Route.get('/:id', 'UsersController.show').as('api.user.fetch') 
-      Route.delete('/:id', 'UsersController.destroy').as('api.user.delete') 
-      Route.patch('/:id', 'UsersController.update').as('api.user.patch')
-      Route.post('/', 'UsersController.store').as('api.user.create')
+      Route.patch('/password', 'UsersController.changePassword').as('api.user.change_password')
+      Route.get('/list', 'UsersController.list').as('api.usser.fetchAll')
+      Route.get('/:id', 'UsersController.show').where('id', /^[0-9]+$/).as('api.user.fetch')
+      Route.delete('/:id', 'UsersController.destroy').where('id', /^[0-9]+$/).as('api.user.delete') 
+      Route.patch('/:id', 'UsersController.update').where('id', /^[0-9]+$/).as('api.user.patch')
+      Route.post('/create', 'UsersController.store').as('api.user.create')
   }).prefix('/users')
 }).prefix('/api').namespace('App/Controllers/Http/API')
 
@@ -60,6 +60,7 @@ Route.group(() => {
   Route.group(() => {
     Route.get('/dashboard', 'PostsController.list').as('dashboard')
     Route.get('/me', 'UsersController.myProfile').as('web.user.profile')
+    Route.get('/me/edit', 'UsersController.myProfileEdit').as('web.user.profile.edit')
   }).middleware('auth');
   
 
@@ -67,18 +68,17 @@ Route.group(() => {
     Route.get('/new', 'UsersController.create').as('web.user.register')
 
     Route.group(() => {
-      Route.get('/:id/posts', 'UsersController.posts_user').as('web.user.posts')
-      Route.get('/list', 'UsersController.list').as('web.user.list')
-      Route.get('/:id/edit', 'UsersController.update').as('web.user.update')
-      Route.get('/:id', 'UsersController.show').as('web.user.show')
+      Route.get('/:id/posts', 'UsersController.posts_user').where('id', /^[0-9]+$/).as('web.user.posts')
+      Route.get('/list', 'UsersController.list').where('id', /^[0-9]+$/).as('web.user.list')
+      Route.get('/:id/edit', 'UsersController.update').where('id', /^[0-9]+$/).as('web.user.update')
+      Route.get('/:id', 'UsersController.show').where('id', /^[0-9]+$/).as('web.user.show')
     }).middleware('auth')
   }).prefix('/users')
 
   Route.group(() => {
     Route.get('/new', 'PostsController.novo').as('web.post.create')
-
     Route.get('/favorites', 'PostsController.favorites').as('web.post.favorites')
-    Route.get('/:id', 'PostsController.show').as('web.post.show')
-    Route.get('/:id/edit', 'PostsController.update').as('web.post.update')
+    Route.get('/:id', 'PostsController.show').where('id', /^[0-9]+$/).as('web.post.show')
+    Route.get('/:id/edit', 'PostsController.update').where('id', /^[0-9]+$/).as('web.post.update')
   }).prefix('/posts').middleware('auth')
 }).namespace('App/Controllers/Http/Web')

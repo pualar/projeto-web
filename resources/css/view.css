@@ -7,3 +7,7 @@ div span {
     font-weight: bold;
     padding: 3px;
 }
+
+div {
+    width: fit-content;
+}

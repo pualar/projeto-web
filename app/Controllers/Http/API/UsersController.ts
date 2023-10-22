@@ -72,4 +72,17 @@ export default class UsersController {
 
         return user
     }
+
+    public async changePassword( { request, auth }: HttpContextContract) {
+        console.log("passowrd params >>>>>>>>> ", auth.user)
+
+        const user = await User.findOrFail(auth.user?.id)
+
+        console.log(user)
+
+        const password = request.input('password', undefined)
+        user.password = password;
+
+        await user.save()
+    }
 }
