@@ -21,31 +21,38 @@ export default class UsersController {
     }
 
 
-    public async update({ request, params }: HttpContextContract) {
-        const user = await User.findOrFail(params.id)
-
+    public async update({ params, request, response }: HttpContextContract) {
+        const name = request.input('name', undefined)
         const email = request.input('email', undefined)
-        const password = request.input('password', undefined)
+        
+        const user = await User.findOrFail(params.id)
+        if(!user) {
+            response.status(400)
+        }
 
-        user.email = email ? email : user.email
-        user.password = password ? password : user.password
+        if(name) user.name = name;
+        if(email) user.email = email;
 
         await user.save()
-
-        return user
+        
+        return response.redirect('/me')
     }
 
     /** create, register */
-    public async store({ request, response, auth }: HttpContextContract) {        
+    public async store({ request, response, auth }: HttpContextContract) {
+        const name = request.input('name', undefined)
         const email = request.input('email', undefined)
         const password = request.input('password', undefined)
         
-        if(!email || !password) {
+        if(!email || !password || !name) {
             response.status(400)
             return response
         }
 
         const userSchema = schema.create({
+            name: schema.string(
+                {}, [rules.minLength(3)]
+            ),
             email: schema.string([
                 rules.email(),
                 rules.unique(
@@ -56,9 +63,7 @@ export default class UsersController {
         })
 
         const data = await request.validate({schema: userSchema })    
-
-        const userService = new UserService()
-        const user = await userService.create(email, password)
+        const user = await User.create(data);//.create(email, password)
 
         await auth.login(user)
 
