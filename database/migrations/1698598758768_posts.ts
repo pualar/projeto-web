@@ -16,11 +16,12 @@ export default class extends BaseSchema {
       table.string('title', 255).notNullable()
       table.string('content').notNullable()
       table.string('preview', 255).notNullable()
-      table.integer('author_id').notNullable()
+      table.integer('author_id').notNullable().references('users.id')
       table.integer('read_time').notNullable()
       table.binary('favorite').nullable()
     })
   }
+
 
   public async down () {
     this.schema.dropTable(this.tableName)

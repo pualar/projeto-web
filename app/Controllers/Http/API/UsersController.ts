@@ -7,6 +7,8 @@ import UserService from 'App/Services/UserService'
 //import UserService from 'App/Services/UserService'
 
 export default class UsersController {
+    private table: string = 'users';
+
     public async list({ }: HttpContextContract) {
         const users = await User.all()
 
@@ -40,9 +42,11 @@ export default class UsersController {
 
     /** create, register */
     public async store({ request, response, auth }: HttpContextContract) {
-        const name = request.input('name', undefined)
-        const email = request.input('email', undefined)
-        const password = request.input('password', undefined)
+        //const name = request.input('name', undefined)
+        //const email = request.input('email', undefined)
+        //const password = request.input('password', undefined)
+        const {name, username, email, password } =
+            request.only(['name', 'username', 'email', 'password'])
         
         if(!email || !password || !name) {
             response.status(400)
@@ -50,20 +54,31 @@ export default class UsersController {
         }
 
         const userSchema = schema.create({
-            name: schema.string(
-                {}, [rules.minLength(3)]
+            name: schema.string({}, 
+                [rules.minLength(3)]
             ),
-            email: schema.string([
-                rules.email(),
-                rules.unique(
-                    { table: 'users', column: 'email', caseInsensitive: true }
-                )
-            ]),
+            username: schema.string({}, 
+                [
+                    rules.unique(
+                        { table: this.table, column: 'username', caseInsensitive: true }
+                    ),
+                    rules.minLength(3)
+                ]
+            ),
+            email: schema.string(
+                {},
+                [
+                    rules.email(),
+                    rules.unique(
+                        { table: 'users', column: 'email', caseInsensitive: true }
+                    )
+                ]
+            ),
             password: schema.string({}, [rules.minLength(8)])
         })
 
-        const data = await request.validate({schema: userSchema })    
-        const user = await User.create(data);//.create(email, password)
+        const data = await request.validate({ schema: userSchema })    
+        const user = await User.create(data);
 
         await auth.login(user)
 
