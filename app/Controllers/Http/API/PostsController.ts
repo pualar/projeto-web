@@ -54,7 +54,14 @@ export default class PostsController {
 
         })
 
-        return post
+        if(post) {
+            return response
+                .redirect()
+                .toRoute(
+                    'web.user.posts',
+                    { id: auth.user!.id }
+                )
+        } else return response
     }
 
     public async show({ params }: HttpContextContract) {
@@ -62,4 +69,5 @@ export default class PostsController {
 
         return post
     }
+
 }

@@ -1,10 +1,15 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Post from 'App/Models/Post';
 import User from 'App/Models/User';
-import UserService from 'App/Services/UserService';
 
 export default class UsersController {
-    posts_user({ view }: HttpContextContract) {
-        return view.render('users/posts');
+    async posts_user({ view, auth }: HttpContextContract) {
+        const posts: any[] = await Post
+        .query()
+        .where('author_id', '=', auth.user!.id)
+        .orderBy('id', 'desc')
+
+        return view.render('users/posts', {posts: posts});
     }
 
     public async create({ view }: HttpContextContract) {

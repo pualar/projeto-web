@@ -1,9 +1,10 @@
-@include('layouts/dashboard')
-@set('abc', 'Posts do usuário {{ user.name }}')
-
+@layout('layouts/dashboard')
+@set('abc', 'Posts do usuario')
 @section('content')
 
-<div>
-    <p> Aqui vc vai ser os posts do usuário x</p>
+<div class="block">
+    @each(post in posts)
+        @include('partials/post')
+    @end
 </div>
 @endsection
