@@ -5,20 +5,36 @@
     <head>
         @entryPointScripts('profile')
     </head>
-    <div class="form m-5">
-        <div>
-            <label>Nome: </label>
-            <span> {{user.name}} </span>
-        </div>
 
-         <div>
-            <label>Email: </label>
-            <span> {{user.email}} </span>
-        </div>
+    <div class="block form m-5">
+        <form action="{{ 
+            route(
+                'api.user.update',
+                { id: auth.user.id })
+            }}?_method=PUT"
+            method="POST">
+            <div>
+                <label>Nome: </label>
+                <input
+                    name="name"
+                    type="text"
+                    placeholder="{{ user.name }}">
+                </input>
+            </div>
 
-        <div>
-            <a href="{{ route('web.user.profile.edit') }}">Salvar</a>
-        </div>
+            <div>
+                <label>Email: </label>
+                <input
+                    name="email"
+                    type="email"
+                    placeholder="{{ user.email }}">
+                </input>
+            </div>
+
+            <button type="submit">
+                Salvar
+            </button>
+        </form>     
 
         <a href="{{ route('web.user.profile') }}">Voltar</a>
     </div>

@@ -40,11 +40,11 @@ Route.group(() => {
   Route.group(() => {
       Route.patch('/password', 'UsersController.changePassword').as('api.user.change_password')
       Route.get('/list', 'UsersController.list').as('api.usser.fetchAll')
-      Route.get('/:id', 'UsersController.show').where('id', /^[0-9]+$/).as('api.user.fetch')
+      //Route.get('/:id', 'UsersController.show').where('id', /^[0-9]+$/).as('api.user.fetch')
       Route.delete('/:id', 'UsersController.destroy').where('id', /^[0-9]+$/).as('api.user.delete') 
-      Route.patch('/:id', 'UsersController.update').where('id', /^[0-9]+$/).as('api.user.patch')
+      Route.put('/:id/update_method=put', 'UsersController.update').as('api.user.update')
       Route.post('/create', 'UsersController.store').as('api.user.create')
-  }).prefix('/users')
+  }).prefix('/users').middleware('auth')
 }).prefix('/api').namespace('App/Controllers/Http/API')
 
 
