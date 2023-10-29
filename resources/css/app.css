@@ -33,7 +33,7 @@ input {
 }
 
 .textarea-big {
-  width: 770px;
+  width: 100vh;
   height: 400px;
   padding: 3px;
   margin: 5px 0px 5px 0px;

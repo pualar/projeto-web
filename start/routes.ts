@@ -19,8 +19,6 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import AuthController from 'App/Controllers/Http/API/AuthController'
-
 
 /*
  *********************************
@@ -36,7 +34,7 @@ Route.group(() => {
       Route.delete('/:id', 'PostsController.destroy').where('id', /^[0-9]+$/).as('api.post.delete')
       Route.patch('/:id', 'PostsController.update').where('id', /^[0-9]+$/).as('api.post.update')
       Route.post('/', 'PostsController.store').as('api.post.create')
-  }).prefix('/posts')
+  }).prefix('/posts').middleware('auth')
 
   Route.group(() => {
       Route.patch('/password', 'UsersController.changePassword').as('api.user.change_password')

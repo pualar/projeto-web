@@ -16,15 +16,20 @@ export default class Post extends BaseModel {
   public content: string
 
   @column()
+  public preview: string
+
+  @column()
   public title: string
   
   @column()
   public favorite: boolean;
 
   @column()
-  public user_id: number
+  public read_time: number;
+
+  @column()
+  public author_id: number
 
   @belongsTo(() => User)
-  public user: BelongsTo<typeof User> 
-
+  public author: BelongsTo<typeof User> 
 }

@@ -28,20 +28,30 @@ export default class PostsController {
         return post
     }
 
-    public async store({ request, response }: HttpContextContract) {
-        const title = request.input('title', undefined)
-        const content = request.input('content', undefined)
-        const user_id = request.input('userId', undefined)
+    public async store({ auth, request, response }: HttpContextContract) {
+        const { title, preview, content } = request.only([
+            'title',
+            'preview',
+            'content'
+        ])
+        
+        const author_id = auth.user ? auth.user.id : undefined;
 
-        if(!title || !content || !user_id) {
+        if(!title || !content || !author_id) {
+            console.error("DADOS INVALIDOS!!! >> title", title)
+            console.error("DADOS INVALIDOS!!! >> content", content)
+            console.error("DADOS INVALIDOS!!! >> author_id", author_id)
+          
             response.status(400)
             return response
         }
 
         const post = await Post.create({
-            content,
             title,
-            user_id
+            preview,
+            content,
+            author_id,
+
         })
 
         return post
