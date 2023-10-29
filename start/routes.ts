@@ -37,13 +37,13 @@ Route.group(() => {
   }).prefix('/posts').middleware('auth')
 
   Route.group(() => {
-      Route.patch('/password', 'UsersController.changePassword').as('api.user.change_password')
-      Route.get('/list', 'UsersController.list').as('api.usser.fetchAll')
+      Route.patch('/password', 'UsersController.changePassword').as('api.user.change_password').middleware('auth')
+      Route.get('/list', 'UsersController.list').as('api.usser.fetchAll').middleware('auth')
       //Route.get('/:id', 'UsersController.show').where('id', /^[0-9]+$/).as('api.user.fetch')
-      Route.delete('/:id', 'UsersController.destroy').where('id', /^[0-9]+$/).as('api.user.delete') 
-      Route.put('/:id/update_method=put', 'UsersController.update').as('api.user.update')
+      Route.delete('/:id', 'UsersController.destroy').where('id', /^[0-9]+$/).as('api.user.delete').middleware('auth')
+      Route.put('/:id/update_method=put', 'UsersController.update').as('api.user.update').middleware('auth')
       Route.post('/create', 'UsersController.store').as('api.user.create')
-  }).prefix('/users').middleware('auth')
+  }).prefix('/users')
 }).prefix('/api').namespace('App/Controllers/Http/API')
 
 
