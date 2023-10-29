@@ -12,4 +12,8 @@ export default class AuthController {
         
         return view.render('main/login')
     }
+
+    public async unauthorized({ view }: HttpContextContract) {
+        return view.render('errors/unauthorized')
+    }
 }

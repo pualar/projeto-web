@@ -19,6 +19,7 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import AuthController from 'App/Controllers/Http/API/AuthController'
 
 
 /*
@@ -54,6 +55,7 @@ Route.group(() => {
  ********************************
 */
 Route.group(() => {
+  Route.get('/error/403', 'AuthController.unauthorized').as('web.auth.unauthorized')
   Route.get('/', 'AuthController.login')
   Route.get('/login', 'AuthController.login').as('web.auth.login')
   
