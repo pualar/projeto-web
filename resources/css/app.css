@@ -28,16 +28,21 @@
 
 input {
   width: 100%;
-  padding: 2px 0px 2px 0px;
+  padding: 3px;
+  margin: 5px 0px 5px 0px;
+}
+
+.textarea-big {
+  width: 770px;
+  height: 400px;
+  padding: 3px;
+  margin: 5px 0px 5px 0px;
 }
 
 .block {
   display: block;
 }
 
-input {
-  margin: 5px 0px 5px 0px;
-}
 
 html, body {
   background-color: thistle;

@@ -5,7 +5,7 @@ export default class PostsController {
 
     public async novo({ view }: HttpContextContract) {
 
-        return view.render('posts/novo');
+        return view.render('posts/create');
     }
 
     public async show({ view }: HttpContextContract) {

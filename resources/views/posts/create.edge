@@ -1,10 +1,8 @@
 @layout('layouts/dashboard')
-@set('titulo', 'Criar post')
+@set('abc', 'Nova publição')
 @section('content')
-    {{--  <div>
-        <p> posts create ok </p>
-    </div>  --}}
 
+<div class="block form">
     <form action="{{ route('api.post.create') }}" method="POST">
         @if(flashMessages.has('form'))
             <div role="alert">
@@ -13,7 +11,7 @@
         @endif
 
         <div>
-            <span>Título </span>
+            <span>Título</span>
             <input
                 name="titullo"
                 autocomplete="off"
@@ -22,12 +20,19 @@
         </div>
 
         <div>
-            <span>Descrição:</span>
+            <span>Resumo</span>
             <input
-                name="password"
-                autocomplete="current-password"
-                type="password"
-                placeholder="Senha">
+                name="preview"
+                type="text"
+                placeholder="Aqui vai um resumo do seu texto">
+        </div>
+
+        <div>
+            <span>Descrição</span>
+            <textarea class="textarea-big"
+                name="description"
+                type="text"
+                placeholder="Escreva sua texto"></textarea>
         </div>
 
         <div>
@@ -38,4 +43,5 @@
         </div>
         
     </form>
+</div>    
 @endsection

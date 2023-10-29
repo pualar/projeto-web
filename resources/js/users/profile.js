@@ -1,30 +1,11 @@
-/* document.getElementById(
-    'alterar-senha'
-).style.display = 'none' */
-
-document
-/* .getElementById('alterar-senha')
-    .addEventListener('click', () => {
-
-    }) */
-
-/* function showAlterarSenha(show) {
-    if(show == true) {
-        document.getElementById(
-            'alterar-senha'
-        ).style.removeProperty('display')
-    } else {
-        document.getElementById(
-            'alterar-senha'
-        ).style.display = 'none'
-    }
-} */
+let abc = 'Meu perfil';
 
 document.addEventListener(
     'DOMContentLoaded', function() {
         let show = false;
         const button = document.getElementById('btn_alterar_senha');
         const view = document.getElementById('view_alterar_senha');
+
         
         const show_form = (show) => {
             if(show === true) {
@@ -42,8 +23,4 @@ document.addEventListener(
                 show_form(show)
             })
         }
-
-    /* meuBotao.addEventListener('click', function() {
-      alert('Você clicou no botão!');
-    }); */
   });

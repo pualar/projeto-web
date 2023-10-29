@@ -24,8 +24,11 @@
             @include('partials/sidebar')
         @endif
 
-        <h2> {{ abc }} </h2>
-        @!section('content')
-
+        <main>
+            <div>
+                <h2 class="mb-5"> {{abc}} </h2>
+                @!section('content')
+            </div>
+        </main>
     </body>
 </html>
