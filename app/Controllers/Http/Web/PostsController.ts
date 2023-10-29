@@ -13,8 +13,9 @@ export default class PostsController {
     }
 
     public async list({ view }: HttpContextContract) {
+        const posts = await Post.all()
 
-        return view.render('posts/list');
+        return view.render('posts/list', {posts: posts});
     }
 
     public async favorites({ view }: HttpContextContract) {

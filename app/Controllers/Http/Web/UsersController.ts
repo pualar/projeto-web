@@ -3,10 +3,10 @@ import Post from 'App/Models/Post';
 import User from 'App/Models/User';
 
 export default class UsersController {
-    async posts_user({ view, auth }: HttpContextContract) {
+    async posts_user({ view, params }: HttpContextContract) {
         const posts: any[] = await Post
         .query()
-        .where('author_id', '=', auth.user!.id)
+        .where('author_id', '=', params.id)
         .orderBy('id', 'desc')
 
         return view.render('users/posts', {posts: posts});

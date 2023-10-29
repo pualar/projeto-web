@@ -68,7 +68,7 @@ Route.group(() => {
     Route.get('/new', 'UsersController.create').as('web.user.register')
 
     Route.group(() => {
-      Route.get('/:id/posts', 'UsersController.posts_user').where('id', /^[0-9]+$/).as('web.user.posts')
+      Route.get('/:id/posts', 'UsersController.posts_user').as('web.user.posts')
       Route.get('/list', 'UsersController.list').where('id', /^[0-9]+$/).as('web.user.list')
       Route.get('/:id/edit', 'UsersController.update').where('id', /^[0-9]+$/).as('web.user.update')
       Route.get('/:id', 'UsersController.show').where('id', /^[0-9]+$/).as('web.user.show')
