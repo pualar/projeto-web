@@ -28,6 +28,12 @@ export default class PostsController {
         return post
     }
 
+    private calculate_time(content: string) {
+        const wpm = 225;
+        const words = content.trim().split(/\s+/).length;
+        return Math.ceil(words / wpm);
+    }
+
     public async store({ auth, request, response }: HttpContextContract) {
         const { title, preview, content } = request.only([
             'title',
@@ -35,6 +41,7 @@ export default class PostsController {
             'content'
         ])
         
+        let read_time = 0;
         const author_id = auth.user ? auth.user.id : undefined;
 
         if(!title || !content || !author_id) {
@@ -46,12 +53,13 @@ export default class PostsController {
             return response
         }
 
+        read_time = this.calculate_time(content);
         const post = await Post.create({
             title,
             preview,
             content,
             author_id,
-
+            read_time
         })
 
         if(post) {

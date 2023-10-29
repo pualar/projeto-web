@@ -4,6 +4,7 @@
 @import './util.css';
 @import './colors.css';
 @import './view.css';
+@import './posts-template.css';
 
 .bg-blue {
   background-color: #5A45FF;
@@ -43,6 +44,11 @@ input {
   display: block;
 }
 
+.content {
+  margin: 15px 0px 15px 0px;
+  display: flex;
+  flex-direction: column;
+}
 
 html, body {
   background-color: thistle;
@@ -82,7 +88,7 @@ main {
   justify-content: center;
 }
 
-.title {
+/* .title {
   font-size: 50px;
   line-height: 50px;
   margin-bottom: 10px;
@@ -92,7 +98,7 @@ main {
 .subtitle {
   font-size: 26px;
   margin-bottom: 40px;
-}
+} */
 
 p {
   margin-bottom: 20px;

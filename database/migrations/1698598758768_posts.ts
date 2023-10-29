@@ -17,6 +17,7 @@ export default class extends BaseSchema {
       table.string('content').notNullable()
       table.string('preview', 255).notNullable()
       table.integer('author_id').notNullable()
+      table.integer('read_time').notNullable()
       table.binary('favorite').nullable()
     })
   }

@@ -1,5 +1,41 @@
-<div>
-    <label> {{ post.title }} </label>
-    <label> {{ post.preview }} </label>
+<head>
+    @entryPointScripts('posts')
+</head>
 
+<div class="content">
+    <label class="title">
+        {{ post.title }} </label>
+    <label class="preview">
+        {{ post.preview }} </label>
+    
+    <label class="author">
+       Autor: {{ post.author_id }}
+    </label>
+
+    <div>
+        <label class="created_at">
+          {{post.createdAt}}
+        </label>
+        |
+        <label class="read_time">
+            {{ post.read_time }}
+        </label>
+    </div>
+
+    <div>
+        <a 
+            href="{{ route('web.post.show', {id: post.id}) }}"
+            class="ver_mais">
+                Ver mais...
+        </a>
+
+        @if(post.author_id == auth.user.id)
+        |
+        <a 
+            href="{{ route('web.post.update', {id: post.id}) }}"
+            class="ver_mais">
+                Editar
+        </a>
+        @endif
+    </div>
 </div>

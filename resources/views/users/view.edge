@@ -1,10 +1,10 @@
+@layout('layouts/dashboard')
+@set('abc', 'Meu perfil')
+@section('content')
 <head>
         @entryPointScripts('profile')
 </head>
 
-@include('layouts/dashboard')
-@set('abc', 'Meu perfil')
-@section('content')
     <div class="block form m-5">
         <div>
             <label>Nome: </label>

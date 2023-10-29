@@ -17,6 +17,11 @@
       "js": [
         "http://localhost:8080/assets/profile.js"
       ]
+    },
+    "posts": {
+      "js": [
+        "http://localhost:8080/assets/posts.js"
+      ]
     }
   }
 }

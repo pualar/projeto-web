@@ -2,39 +2,35 @@
 @include('layouts/dashboard')
 @set('abc', 'Editar meus dados')
 @section('content')
-    <head>
-        @entryPointScripts('profile')
-    </head>
+<div class="block form m-5">
+    <form 
+        method="POST"
+        action="{{ 
+            route('api.user.update', { id: auth.user.id })
+            }}?_method=PUT">
+        <div>
+            <label>Nome: </label>
+            <input
+                name="name"
+                type="text"
+                placeholder="{{ user.name }}">
+            </input>
+        </div>
 
-    <div class="block form m-5">
-        <form 
-            method="POST"
-            action="{{ 
-                route('api.user.update', { id: auth.user.id })
-                }}?_method=PUT">
-            <div>
-                <label>Nome: </label>
-                <input
-                    name="name"
-                    type="text"
-                    placeholder="{{ user.name }}">
-                </input>
-            </div>
+        <div>
+            <label>Email: </label>
+            <input
+                name="email"
+                type="email"
+                placeholder="{{ user.email }}">
+            </input>
+        </div>
 
-            <div>
-                <label>Email: </label>
-                <input
-                    name="email"
-                    type="email"
-                    placeholder="{{ user.email }}">
-                </input>
-            </div>
+        <button type="submit">
+            Salvar
+        </button>
+    </form>     
 
-            <button type="submit">
-                Salvar
-            </button>
-        </form>     
-
-        <a href="{{ route('web.user.profile') }}">Voltar</a>
-    </div>
+    <a href="{{ route('web.user.profile') }}">Voltar</a>
+</div>
 @endsection
