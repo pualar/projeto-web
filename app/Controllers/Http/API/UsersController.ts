@@ -24,9 +24,8 @@ export default class UsersController {
 
 
     public async update({ params, request, response }: HttpContextContract) {
-        const name = request.input('name', undefined)
-        const email = request.input('email', undefined)
-        
+        const {name, username, email} = request.only(['name', 'username', 'email'])
+            
         const user = await User.findOrFail(params.id)
         if(!user) {
             response.status(400)
@@ -34,6 +33,7 @@ export default class UsersController {
 
         if(name) user.name = name;
         if(email) user.email = email;
+        if(username) user.username = username;
 
         await user.save()
         

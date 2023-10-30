@@ -40,6 +40,13 @@ input {
   margin: 5px 0px 5px 0px;
 }
 
+.textarea-mid {
+  width: 100vh;
+  height: 100px;
+  padding: 3px;
+  margin: 5px 0px 5px 0px;
+}
+
 .block {
   display: block;
 }

@@ -1,6 +1,9 @@
 @layout('layouts/dashboard')
 @set('abc', 'Nova publição')
 @section('content')
+<head>
+    @entryPointScripts('posts/create')
+</head>
 
 <div class="block form">
     <form action="{{ route('api.post.create') }}" method="POST">
@@ -21,10 +24,13 @@
 
         <div>
             <span>Resumo</span>
-            <input
+            <textarea
+                class="textarea-mid"
                 name="preview"
                 type="text"
-                placeholder="Aqui vai um resumo do seu texto">
+                maxlength="255"
+                placeholder="Aqui vai um resumo do seu texto"></textarea>
+            <span class="count float-right" id="count_prev">0/255</span>
         </div>
 
         <div>
@@ -33,6 +39,7 @@
                 name="content"
                 type="text"
                 placeholder="Escreva sua texto"></textarea>
+                <span class="count float-right" id="count_content">-</span>
         </div>
 
         <div>

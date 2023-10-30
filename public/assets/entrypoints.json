@@ -22,6 +22,11 @@
       "js": [
         "http://localhost:8080/assets/posts.js"
       ]
+    },
+    "posts/create": {
+      "js": [
+        "http://localhost:8080/assets/posts/create.js"
+      ]
     }
   }
 }

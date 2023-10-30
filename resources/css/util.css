@@ -2,12 +2,18 @@
     float: right;
 }
 
-.w-100 {
-    width: 100%;
-}
-
 .float-left {
     float: left;
+}
+
+.count {
+    font-size: 13px;
+    font-weight: lighter;
+    margin-top: -10px;
+}
+
+.w-100 {
+    width: 100%;
 }
 
 .ml-25-100 {
