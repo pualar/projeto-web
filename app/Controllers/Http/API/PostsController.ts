@@ -73,9 +73,10 @@ export default class PostsController {
     }
 
     public async show({ params }: HttpContextContract) {
-        const post = await Post.findOrFail(params.id)
+        const post = await Post.query()
+            .where('id', '=', params.id)
+            .preload('author')
 
         return post
     }
-
 }

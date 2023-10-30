@@ -4,8 +4,8 @@ import User from 'App/Models/User';
 
 export default class UsersController {
     async posts_user({ view, params }: HttpContextContract) {
-        const posts: any[] = await Post
-        .query()
+        const posts: any[] = await Post.query()
+        .preload('author')
         .where('author_id', '=', params.id)
         .orderBy('id', 'desc')
 

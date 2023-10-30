@@ -8,8 +8,25 @@ export default class PostsController {
         return view.render('posts/create');
     }
 
-    public async show({ view }: HttpContextContract) {
-        return view.render('posts/view');
+    public async show({ params, view }: HttpContextContract) {
+        let post: any = null;
+        console.log(params)
+
+        try {
+            post = await Post.query()
+                .preload('author')
+                .where('id', '=', params.id)
+                .orderBy('id', 'desc')
+                .first()
+
+                console.log(JSON.stringify(post))
+        } catch(err) {
+            console.log(err)
+        }
+    
+        if(post) {
+            return view.render('posts/view', {post: post});
+        } else return view.render('errors/not-found')
     }
 
     public async list({ view }: HttpContextContract) {

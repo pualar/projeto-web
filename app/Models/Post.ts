@@ -30,6 +30,8 @@ export default class Post extends BaseModel {
   @column()
   public author_id: number
 
-  @belongsTo(() => User)
+  @belongsTo(() => User, {
+    foreignKey: 'author_id'
+  })
   public author: BelongsTo<typeof User> 
 }

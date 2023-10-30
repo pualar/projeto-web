@@ -1,9 +1,20 @@
 @layout('layouts/dashboard')
-@set('abc', 'Visualizar post')
-
+@set('abc', post.title)
 @section('content')
-
 <div>
-    <p> posts view ok </p>
+    <div>
+        <p> 
+            <label>
+                {{ post.author.name }}
+            </label> |
+            <label>
+                Tempo de leitura: 
+                {{ post.read_time < 1 ? 'Menos de 1 minuto' : post.read_time + " min." }}
+            </label>
+             </p>
+    
+    </div>
+    <p> {{ post.preview }} </p>
+    <p> {{post.content}} </p>
 </div>
 @endsection
