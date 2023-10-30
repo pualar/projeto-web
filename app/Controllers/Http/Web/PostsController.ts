@@ -30,7 +30,9 @@ export default class PostsController {
     }
 
     public async list({ view }: HttpContextContract) {
-        const posts = await Post.all()
+        const posts = await Post.query()
+            .preload('author')
+
 
         return view.render('posts/list', {posts: posts});
     }
