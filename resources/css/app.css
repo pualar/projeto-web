@@ -52,6 +52,7 @@ input {
 }
 
 .content {
+  padding: 0px 0px 10px 0px;
   margin: 15px 0px 15px 0px;
   display: flex;
   flex-direction: column;
@@ -86,9 +87,13 @@ a {
 }
 
 main {
+  position: relative;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   max-width: 620px;
   margin: auto;
-  height: 100vh;
   padding: 0 30px;
   align-items: center;
   display: flex;

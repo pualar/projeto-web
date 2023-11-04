@@ -14,18 +14,18 @@ export default class PostsController {
         return null;
     }
 
-    public async update({ request, params }: HttpContextContract) {
+    public async update({ request, params, response }: HttpContextContract) {
         const post = await Post.findOrFail(params.id)
-
-        const title = request.input('title', undefined)
-        const content = request.input('content', undefined)
-
-        post.title = title ? title : post.title
-        post.content = content ? content : post.content
+        if(!post) response.status(400)
+    
+        const {title, preview, content} = request.only(['title', 'preview', 'content'])
+        if(title) post.title = title;
+        if(preview) post.preview = preview;
+        if(content) post.content = content;
 
         await post.save()
 
-        return post
+        return response.redirect().toRoute('web.post.show', {id: params.id})
     }
 
     private calculate_time(content: string) {

@@ -32,7 +32,7 @@ Route.group(() => {
   Route.group(() => {
       Route.get('/:id', 'PostsController.show').where('id', /^[0-9]+$/).as('api.post.fetch')
       Route.delete('/:id', 'PostsController.destroy').where('id', /^[0-9]+$/).as('api.post.delete')
-      Route.patch('/:id', 'PostsController.update').where('id', /^[0-9]+$/).as('api.post.update')
+      Route.patch('/:id/update', 'PostsController.update').where('id', /^[0-9]+$/).as('api.post.update')
       Route.post('/', 'PostsController.store').as('api.post.create')
   }).prefix('/posts').middleware('auth')
 
@@ -41,7 +41,7 @@ Route.group(() => {
       Route.get('/list', 'UsersController.list').as('api.usser.fetchAll').middleware('auth')
       //Route.get('/:id', 'UsersController.show').where('id', /^[0-9]+$/).as('api.user.fetch')
       Route.delete('/:id', 'UsersController.destroy').where('id', /^[0-9]+$/).as('api.user.delete').middleware('auth')
-      Route.put('/:id/update_method=put', 'UsersController.update').as('api.user.update').middleware('auth')
+      Route.put('/:id/update', 'UsersController.update').as('api.user.update').middleware('auth')
       Route.post('/create', 'UsersController.store').as('api.user.create')
   }).prefix('/users')
 }).prefix('/api').namespace('App/Controllers/Http/API')

@@ -6,6 +6,12 @@
     float: left;
 }
 
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .count {
     font-size: 13px;
     font-weight: lighter;

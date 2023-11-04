@@ -6,7 +6,7 @@
 </head>
 
 <div class="block form">
-    <form action="{{ route('api.post.create') }}" method="POST">
+    <form action="{{ post != null ? route('api.post.update', {id: post.id}) : route('api.post.create') }}{{ post != null ? '?_method=PATCH' : ''}}" method="POST">
         @if(flashMessages.has('form'))
             <div role="alert">
                 {{flashMessages.get('form')}}
@@ -19,7 +19,9 @@
                 name="title"
                 autocomplete="off"
                 type="text"
+                value="{{ post != null ? post.title : "" }}"
                 placeholder="Título">
+                
         </div>
 
         <div>
@@ -29,7 +31,9 @@
                 name="preview"
                 type="text"
                 maxlength="255"
-                placeholder="Aqui vai um resumo do seu texto"></textarea>
+                placeholder="Aqui vai um resumo do seu texto"
+            >{{ post != null ? post.preview : "" }}</textarea>
+
             <span class="count float-right" id="count_prev">0/255</span>
         </div>
 
@@ -38,8 +42,10 @@
             <textarea class="textarea-big"
                 name="content"
                 type="text"
-                placeholder="Escreva sua texto"></textarea>
-                <span class="count float-right" id="count_content">-</span>
+                placeholder="Escreva sua texto"
+            >{{ post != null ? post.content : "" }}</textarea>
+
+            <span class="count float-right" id="count_content">-</span>
         </div>
 
         <div>

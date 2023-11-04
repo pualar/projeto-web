@@ -1,10 +1,6 @@
-
 @layout('layouts/dashboard')
 @set('abc', 'Editar post')
-
 @section('content')
+@include('posts/create', {post: post})
 
-<div>
-    <p> posts update ok </p>
-</div>
-@endsection>
+@endsection

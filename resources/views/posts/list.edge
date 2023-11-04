@@ -12,8 +12,10 @@
     </div>
     @endif
 
-    @each(post in posts)
-        @include('partials/post')
-    @end
+    <div class="container">
+        @each(post in posts)
+            @include('partials/post')
+        @end
+    </div>
 </div>
 @endsection

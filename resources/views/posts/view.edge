@@ -2,7 +2,7 @@
 @set('abc', post.title)
 @section('content')
 <div>
-    <div>
+    <div class="post">
         <p> 
             <label>
                 {{ post.author.name }}
@@ -15,6 +15,6 @@
     
     </div>
     <p> {{ post.preview }} </p>
-    <p> {{post.content}} </p>
+    <p> {{ post.content }} </p>
 </div>
 @endsection

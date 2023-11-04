@@ -11,3 +11,7 @@ div span {
 div {
     width: fit-content;
 }
+
+.content {
+    line-break: anywhere;
+}
