@@ -15,7 +15,6 @@ export default class UserService {
             console.error('\n[error] [onCreate] [user]: ', err)
         }
         
-
         return user
     }
 }

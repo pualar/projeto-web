@@ -2,6 +2,10 @@ document.addEventListener(
     'DOMContentLoaded', function() {
         const el_tempo_leitura = document.getElementsByClassName('read_time');
         const el_data = document.getElementsByClassName('created_at');
+        const el_favorite = document.getElementsByClassName('material-symbols-outlined')[0];
+
+        // ################################### Favorito
+        
 
         // ################################### Tempo de leitura
         if(el_tempo_leitura) {

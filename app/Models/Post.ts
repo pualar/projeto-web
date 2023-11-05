@@ -1,8 +1,43 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, afterFetch, afterFind, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
+import PostService from 'App/Services/PostService'
+import { HttpContext } from '@adonisjs/http-server/build/src/HttpContext'
+import FavoriteService from 'App/Services/FavoriteService'
 
-export default class Post extends BaseModel {
+
+export default class Post extends BaseModel {f
+  @afterFind()
+  public static async afterFindHook (post: Post) {    
+    let auth: any = null
+
+    try {
+      auth = HttpContext.get()!.auth
+    } catch(err) {
+      console.log(err)
+    }
+
+    const postService = new PostService()    
+    const fav = postService.isFavorite(auth.user.id, post.id)
+    
+    post.fav = fav != null
+  }
+
+  @afterFetch()
+  public static async afterFetchHook (posts: Post[]) {
+    const ctx = HttpContext.get()!
+    const auth = ctx.auth
+
+ // const favService = new FavoriteService();
+    const postService = new PostService()
+
+    for(let post of posts) {
+      const fav = await postService.isFavorite(auth.user!.id, post.id)
+     // console.log('favvvvvv', fav)
+      post.fav = fav
+    }
+  }
+
   @column({ isPrimary: true }) 
   public id: number
 
@@ -21,8 +56,7 @@ export default class Post extends BaseModel {
   @column()
   public title: string
   
-  @column()
-  public favorite: boolean;
+  public fav: boolean;
 
   @column()
   public read_time: number;

@@ -1,5 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Favorite from 'App/Models/Favorite';
 import Post from 'App/Models/Post';
+import User from 'App/Models/User';
 import PostService from 'App/Services/PostService';
 
 export default class PostsController {
@@ -23,21 +25,28 @@ export default class PostsController {
         const posts = await Post.query()
             .preload('author')
 
+        console.log(JSON.stringify(posts))
 
         return view.render('posts/list', {posts: posts});
     }
 
-    public async favorites({ view }: HttpContextContract) {
-        let favs: Post[] | null = null;
-        const postService = new PostService()
+    public async favorites({ view, auth }: HttpContextContract) {
+        let user: User | null = null;
 
         try {
-            favs = await postService.query('favorite', true, false);
+            user = await User
+                .query()
+                .where("id", "=", auth.user!.id)
+                .preload('favorites', (favsQuery) => {
+                    favsQuery.preload('author')
+                })
+                .first()
         } catch(err) {
             console.error(err)
         }
 
-        return view.render('posts/list', { favs: favs });
+        console.log("\n\n", JSON.stringify(user))
+        return view.render('posts/list', { posts: user!.favorites });
     }
 
     public async update({ params, view }: HttpContextContract) {

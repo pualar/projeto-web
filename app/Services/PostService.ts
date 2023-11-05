@@ -1,4 +1,7 @@
+import AuthMiddleware from 'App/Middleware/Auth';
+import Favorite from 'App/Models/Favorite';
 import Post from 'App/Models/Post'
+import FavoriteService from './FavoriteService';
 
 export default class PostService {
     constructor() { }
@@ -31,5 +34,12 @@ export default class PostService {
 
         console.log(JSON.stringify(post))
         return post;
+    }
+
+    public async isFavorite(user_id, post_id) {
+        const favService = new FavoriteService()
+        const fav = await favService.fetch(user_id, post_id)
+
+        return fav != null  
     }
 }
