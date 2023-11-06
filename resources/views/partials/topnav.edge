@@ -8,27 +8,29 @@
             WEB 2023.2 | Medium
     </a>
 
-    <div id="toggle" class="float-right pointer mx-5 my-5">
-    <script>
-        document.getElementById('toggle').addEventListener('click', function() {
-            const sidenav = document.getElementById('my-sidenav')
-            const visible = sidenav.style.display !== 'none'
+    @if(auth.user)
+        <div id="toggle" class="float-right pointer mx-5 my-5">
+        <script>
+            document.getElementById('toggle').addEventListener('click', function() {
+                const sidenav = document.getElementById('my-sidenav')
+                const visible = sidenav.style.display !== 'none'
 
-            if(visible) {
-                document.getElementById('my-sidenav').style.display='none'
-            } else {
-                document.getElementById('my-sidenav').style.display='flex'
-            }
-        })
-    </script>
+                if(visible) {
+                    document.getElementById('my-sidenav').style.display='none'
+                } else {
+                    document.getElementById('my-sidenav').style.display='flex'
+                }
+            })
+        </script>
 
-        <i class="gg-menu-right-alt"></i>
-    </div>
+            <i class="gg-menu-right-alt"></i>
+        </div>
 
-
-
-    <label class="float-right">
-        {{ auth.user.name }}
-    </label>
+        <label class="float-right">
+            {{ auth.user.name }}
+        </label>
+    @else
+        <a class="float-right" href="{{ route('web.auth.login') }}">Entrar</a>
+    @endif
 
 </nav>

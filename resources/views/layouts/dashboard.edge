@@ -15,20 +15,19 @@
     </head>
 
     <body>
-        @if(!auth.user)
-            <main>
-                @include('errors/unauthorized')
-            </main>
-        @elseif(auth.user)
-            @include('partials/topnav')
+        @include('partials/topnav')
+
+        @if(auth.user)
             @include('partials/sidebar')
         @endif
 
         <main>
             <div>
                 <h2 class="mb-5"> {{abc}} </h2>
-                <a href="{{route('/')}}">< Voltar</a>
-
+                @if(caminho)
+                    <a href="{{ caminho }}">< Voltar</a>
+                @endif
+                
                 @!section('content')
             </div>
         </main>

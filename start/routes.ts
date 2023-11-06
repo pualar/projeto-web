@@ -32,18 +32,21 @@ Route.group(() => {
     .as('api.auth.logout')
 
   Route.group(() => {
-    Route.post('/remove_favorite', 'PostsController.removeFavorite')
-      .where('id', /^[0-9]+$/).as('api.post.remove_favorite')
-    Route.post('/favorite', 'PostsController.addFavorite')
-      .where('id', /^[0-9]+$/).as('api.post.add_favorite')
+    Route.group(() => {
+      Route.delete('/:id', 'PostsController.destroy')
+        .where('id', /^[0-9]+$/).as('api.post.delete')
+      Route.patch('/:id/update', 'PostsController.update')
+        .where('id', /^[0-9]+$/).as('api.post.update')
+      Route.post('/', 'PostsController.store')
+        .as('api.post.create')
+      Route.post('/remove_favorite', 'PostsController.removeFavorite')
+        .where('id', /^[0-9]+$/).as('api.post.remove_favorite')
+      Route.post('/favorite', 'PostsController.addFavorite')
+        .where('id', /^[0-9]+$/).as('api.post.add_favorite')
+    }).middleware('auth')
+    
     Route.get('/:id', 'PostsController.show')
       .where('id', /^[0-9]+$/).as('api.post.fetch')
-    Route.delete('/:id', 'PostsController.destroy')
-      .where('id', /^[0-9]+$/).as('api.post.delete')
-    Route.patch('/:id/update', 'PostsController.update')
-      .where('id', /^[0-9]+$/).as('api.post.update')
-    Route.post('/', 'PostsController.store')
-      .as('api.post.create')
   }).prefix('/posts').middleware('auth')
 
   Route.group(() => {
@@ -76,10 +79,10 @@ Route.group(() => {
   Route.get('/', 'AuthController.login')
   Route.get('/login', 'AuthController.login')
     .as('web.auth.login')
-  
-  Route.group(() => {
-    Route.get('/dashboard', 'PostsController.list')
-      .as('dashboard')
+  Route.get('/dashboard', 'PostsController.list')
+  .as('dashboard')
+
+  Route.group(() => {  
     Route.get('/me', 'UsersController.myProfile')
       .as('web.user.profile')
     Route.get('/me/edit', 'UsersController.myProfileEdit')

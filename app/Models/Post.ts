@@ -31,6 +31,8 @@ export default class Post extends BaseModel {f
  // const favService = new FavoriteService();
     const postService = new PostService()
 
+    if(!auth.user) return false 
+
     for(let post of posts) {
       const fav = await postService.isFavorite(auth.user!.id, post.id)
      // console.log('favvvvvv', fav)

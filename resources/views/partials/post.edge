@@ -50,7 +50,7 @@
                 Ver mais...
         </a>
 
-        @if(post.author_id == auth.user.id) 
+        @if(auth.user && auth.user.id == post.author_id) 
           | <a 
                 href="{{ route('web.post.update', {id: post.id}) }}"
                 class="ver_mais">
