@@ -15,11 +15,15 @@
     </head>
 
     <body>
-        @include('partials/header')
-
         @if(auth.user)
+            @include('partials/header')
             @include('partials/sidebar')
-        @endif
+        @else
+            <div class="fixed p-35">
+                <a href="{{ route('web.auth.login') }}"> Faça login para começar! </a>
+            </div>
+        @endif 
+
 
         <main>
             <div>

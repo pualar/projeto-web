@@ -79,10 +79,10 @@ Route.group(() => {
   Route.get('/', 'AuthController.login')
   Route.get('/login', 'AuthController.login')
     .as('web.auth.login')
-  Route.get('/dashboard', 'PostsController.list')
-  .as('dashboard')
 
   Route.group(() => {  
+    Route.get('/dashboard', 'PostsController.list')
+      .as('dashboard')
     Route.get('/me', 'UsersController.myProfile')
       .as('web.user.profile')
     Route.get('/me/edit', 'UsersController.myProfileEdit')

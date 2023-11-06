@@ -33,3 +33,7 @@ div {
 .not-favorite {
     color: black;
 }
+
+.d-inline {
+    display: -webkit-inline-box;
+}

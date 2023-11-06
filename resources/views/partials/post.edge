@@ -4,25 +4,9 @@
 </head>
 
 <div class="content">
-    @if(post.fav)
-        <form
-            method="POST"
-            action="{{ route('api.post.add_favorite') }}">
-            <input type="hidden" name="post_id" value="{{ post.id }}">
-            <button type="submit" class="favorite material-symbols-outlined">
-            star
-            </button>
-        </form>
-    @else
-         <form
-            method="POST"
-            action="{{ route('api.post.add_favorite') }}">
-            <input type="hidden" name="post_id" value="{{ post.id }}">
-            <button type="submit" class="not-favorite material-symbols-outlined">
-            star
-            </button>
-        </form>
-    @endif
+   {{--   @if(auth.user)
+          
+    @endif  --}}
    
     <label class="title">
         {{ post.title }} </label>
@@ -43,19 +27,41 @@
         </label>
     </div>
 
-    <div>
+    <div class="d-inline">
         <a 
             href="{{ route('web.post.show', {id: post.id}) }}"
-            class="ver_mais">
+            class="ver_mais mr-10">
                 Ver mais...
         </a>
 
-        @if(auth.user && auth.user.id == post.author_id) 
-          | <a 
-                href="{{ route('web.post.update', {id: post.id}) }}"
-                class="ver_mais">
-                    Editar
-            </a>
+        @if(auth.user)
+            @if(auth.user.id == post.author_id) 
+                |<a 
+                    href="{{ route('web.post.update', {id: post.id}) }}"
+                    class="ver_mais m-5">
+                        Editar
+                </a>
+            @endif
+
+            @if(post.fav)
+                <form
+                    method="POST"
+                    action="{{ route('api.post.add_favorite') }}">
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <button type="submit" class="favorite material-symbols-outlined">
+                    star
+                    </button>
+                </form>
+            @else
+                <form
+                    method="POST"
+                    action="{{ route('api.post.add_favorite') }}">
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <button type="submit" class="not-favorite material-symbols-outlined">
+                    star
+                    </button>
+                </form>
+            @endif     
         @endif
     </div>
 </div>

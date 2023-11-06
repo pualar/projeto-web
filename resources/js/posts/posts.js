@@ -3,8 +3,6 @@ document.addEventListener(
         const el_tempo_leitura = document.getElementsByClassName('read_time');
         const el_data = document.getElementsByClassName('created_at');
         const el_favorite = document.getElementsByClassName('material-symbols-outlined')[0];
-
-        // ################################### Favorito
         
 
         // ################################### Tempo de leitura
@@ -12,10 +10,10 @@ document.addEventListener(
             for(let i = 0; i < el_tempo_leitura.length; i++ ) {
                 const element = el_tempo_leitura[i]
                 const tempo_leitura_original = element.innerText.trim();
-                if(tempo_leitura_original < 1) {
+                if(tempo_leitura_original <= 1) {
                     element.innerText = "Leitura rápida! Menos de 1 minuto"
-                } else if(tempo_leitura_original >= 1) {
-                    element.innerText = `Tempo de leitura: ${tempo_leitura_original} d${tempo_leitura_original === 1 ? 'minuto' : 'minutos'}`
+                } else if(tempo_leitura_original > 1) {
+                    element.innerText = `Tempo de leitura: ${tempo_leitura_original} ${tempo_leitura_original == 1 ? 'minuto' : 'minutos'}`
                 }
             }
         }

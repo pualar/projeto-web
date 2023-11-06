@@ -1,3 +1,11 @@
+.fixed {
+    position: fixed;
+}
+
+.p-35 {
+    padding: 35px;
+}
+
 .float-right {
     float: right;
 }
