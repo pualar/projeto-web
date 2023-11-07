@@ -14,7 +14,7 @@
         {{ post.preview }} </label>
     
     <label class="author">
-       Autor: {{ post.author.name }}
+       Autor: <a href="{{ route('web.user.posts', { id: post.author_id }) }}"> {{ post.author.name }} </a>
     </label>
 
     <div>

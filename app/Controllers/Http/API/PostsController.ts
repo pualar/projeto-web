@@ -7,7 +7,6 @@ export default class PostsController {
     public async list({}: HttpContextContract) {
         const posts = await Post.all()
 
-        console.log("......................", JSON.stringify(posts))
         return posts;
     }
 

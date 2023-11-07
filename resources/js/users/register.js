@@ -3,7 +3,6 @@ document.getElementById('confirm').addEventListener('input', (val) => {
     const submit = document.getElementById('sbmt');
     const value = val.target.value;
 
-    console.log(value)
     const differ = (s1, s2) => {
         if(s1.length == 0 || s2.length == 0) return false
         return s1 !== s2
@@ -21,7 +20,6 @@ document.getElementById('password').addEventListener('input', (val) => {
     const submit = document.getElementById('sbmt');
     const value = val.target.value;
 
-    console.log(value)
     const differ = (s1, s2) => {
         if(s1.length == 0 || s2.length == 0) return false
         return s1 !== s2

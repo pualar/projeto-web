@@ -1,5 +1,5 @@
 @layout('layouts/dashboard')
-@set('abc', 'Publicações')
+@set('title', user!= null && user.id != auth.user.id ? 'Publicações de @' + user.username : 'Minhas publicações')
 @section('content')
 <div class="block">
     @if(posts.length == 0)

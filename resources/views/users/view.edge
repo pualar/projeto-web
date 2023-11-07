@@ -1,5 +1,5 @@
 @layout('layouts/dashboard')
-@set('abc', 'Meu perfil')
+@set('title', 'Meu perfil')
 @section('content')
 <head>
         @entryPointScripts('profile')
@@ -21,12 +21,14 @@
             <span> {{user.email}} </span>
         </div>
 
-        <div>
+        {{--  <div>
             <button id="btn_alterar_senha">Alterar senha</button>
-        </div>
+        </div>  --}}
 
-        <div>
-            <a href="{{ route('web.user.profile.edit') }}">Editar dados</a>
+        <div class="text-center mt-15">
+            <a class="my-5" href="{{ route('web.user.profile.edit') }}">Editar dados</a>
+            <br>
+            <a href="{{ route('/') }}">Voltar</a>
         </div>
     </div>
 

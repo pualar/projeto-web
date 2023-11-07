@@ -1,5 +1,5 @@
 @layout('layouts/dashboard')
-@set('abc', 'Editar meus dados')
+@set('title', 'Editar meus dados')
 @section('content')
 <div class="block form m-5">
     <form 
@@ -39,6 +39,9 @@
         </button>
     </form>     
 
-    <a href="{{ route('web.user.profile') }}">Voltar</a>
+    <div class="text-center">
+        <a href="{{ route('web.user.profile') }}">Voltar</a>
+    </div>
+
 </div>
 @endsection

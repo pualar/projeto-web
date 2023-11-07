@@ -85,19 +85,13 @@ export default class UsersController {
     }
 
     public async show({ params }: HttpContextContract) {
-        console.log("show params >>>>>>>>> ", params)
-
         const user = await User.findOrFail(params.id)
 
         return user
     }
 
     public async changePassword( { request, auth }: HttpContextContract) {
-        console.log("passowrd params >>>>>>>>> ", auth.user)
-
         const user = await User.findOrFail(auth.user?.id)
-
-        console.log(user)
 
         const password = request.input('password', undefined)
         user.password = password;

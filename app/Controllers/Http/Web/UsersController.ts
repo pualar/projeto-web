@@ -9,7 +9,10 @@ export default class UsersController {
         .where('author_id', '=', params.id)
         .orderBy('id', 'desc')
 
-        return view.render('users/posts', {posts: posts});
+        const author = await User.query()
+            .where('id', '=', params.id).first()
+
+        return view.render('users/posts', {posts: posts, user: author});
     }
 
     public async create({ view }: HttpContextContract) {

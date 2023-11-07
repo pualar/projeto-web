@@ -25,8 +25,6 @@ export default class PostsController {
         const posts = await Post.query()
             .preload('author')
 
-        console.log(JSON.stringify(posts))
-
         return view.render('posts/list', {posts: posts});
     }
 
@@ -45,7 +43,6 @@ export default class PostsController {
             console.error(err)
         }
 
-        console.log("\n\n", JSON.stringify(user))
         return view.render('posts/list', { posts: user!.favorites });
     }
 

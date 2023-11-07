@@ -1,5 +1,5 @@
 @layout('layouts/dashboard')
-@set('abc', 'Nova publição')
+@set('title', 'Nova publição')
 @section('content')
 <head>
     @entryPointScripts('posts/create')
@@ -53,6 +53,10 @@
                 type="submit">
                     Enviar
             </button>  
+        </div>
+
+         <div class="text-center">
+           <a href="{{ route("/") }}">Voltar</a>
         </div>
         
     </form>

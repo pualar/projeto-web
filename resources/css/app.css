@@ -51,6 +51,9 @@ input {
   display: block;
 }
 
+.center {
+  height: 100vh !important;
+}
 .content {
   padding: 0px 0px 10px 0px;
   margin: 15px 0px 15px 0px;
@@ -106,7 +109,6 @@ button {
 main {
   max-width: 620px;
   margin: auto;
-  height: 100vh;
   padding: 0 30px;
   align-items: center;
   display: flex;

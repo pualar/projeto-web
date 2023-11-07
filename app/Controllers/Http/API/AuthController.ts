@@ -7,7 +7,6 @@ export default class AuthController {
         try {
             await auth.attempt(email, password)
         } catch(err) {
-            console.log(err)
             session.flash('form', err.message)
             return response.redirect().toRoute('web.auth.login')
         }

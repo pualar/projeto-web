@@ -32,7 +32,6 @@ export default class PostService {
             console.log(err)
         }
 
-        console.log(JSON.stringify(post))
         return post;
     }
 
