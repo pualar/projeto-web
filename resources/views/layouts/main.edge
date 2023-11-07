@@ -2,9 +2,11 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="icon" type="image/x-icon" href="./../../../rural_logo03.png">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Projeto WEB | Medium </title>
+    <title>WEB 2023.2 | Medium </title>
 
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
@@ -14,20 +16,14 @@
     @entryPointScripts('app')
 </head>
 
-<body>
-    <nav>
-        <div class="m-10">
-            <label>
-                Titulo
-            </label>
-
-            <label class="float-right">
-                nome_usuario
-            </label>            
-        </div>        
-    </nav>
-    <main>
-        @!section('content')
+<body>    
+    <main class="center">
+        <div>
+            <h2 class="mb-5"> {{titulo}} </h2>    
+            @!section('content')
+        </div>
     </main>
+
+    @include('partials/footer')
 </body>
 </html>

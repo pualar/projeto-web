@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>WEB 2023.2| Medium </title>
+
+        <meta name="description" content=""/>
+        <meta name="keywords" content=""/>
+        <meta name="author" content=""/>
+        
+        @entryPointStyles('app')
+        @entryPointScripts('app')
+    </head>
+
+    <body>
+        @if(auth.user)
+            @include('partials/header')
+            @include('partials/sidebar')
+        @else
+            <div class="fixed p-35">
+                <a href="{{ route('web.auth.login') }}"> Faça login para começar! </a>
+            </div>
+        @endif 
+
+
+        <main>
+            <div class="mt-20">
+                @if(caminho)
+                    <a href="{{ caminho }}">Voltar</a>
+                @endif
+                <h2 class="mb-5"> {{title}} </h2>
+                
+                @!section('content')
+            </div>
+        </main>
+
+        @include('partials/footer')
+    </body>
+</html>

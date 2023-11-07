@@ -1,1 +1,64 @@
-<p> posts create ok </p>
+@layout('layouts/dashboard')
+@set('title', 'Nova publição')
+@section('content')
+<head>
+    @entryPointScripts('posts/create')
+</head>
+
+<div class="block form">
+    <form action="{{ post != null ? route('api.post.update', {id: post.id}) : route('api.post.create') }}{{ post != null ? '?_method=PATCH' : ''}}" method="POST">
+        @if(flashMessages.has('form'))
+            <div role="alert">
+                {{flashMessages.get('form')}}
+            </div>
+        @endif
+
+        <div>
+            <span>Título</span>
+            <input
+                name="title"
+                autocomplete="off"
+                type="text"
+                value="{{ post != null ? post.title : "" }}"
+                placeholder="Título">
+                
+        </div>
+
+        <div>
+            <span>Resumo</span>
+            <textarea
+                class="textarea-mid"
+                name="preview"
+                type="text"
+                maxlength="255"
+                placeholder="Aqui vai um resumo do seu texto"
+            >{{ post != null ? post.preview : "" }}</textarea>
+
+            <span class="count float-right" id="count_prev">0/255</span>
+        </div>
+
+        <div>
+            <span>Descrição</span>
+            <textarea class="textarea-big"
+                name="content"
+                type="text"
+                placeholder="Escreva sua texto"
+            >{{ post != null ? post.content : "" }}</textarea>
+
+            <span class="count float-right" id="count_content">-</span>
+        </div>
+
+        <div>
+            <button
+                type="submit">
+                    Enviar
+            </button>  
+        </div>
+
+         <div class="text-center">
+           <a href="{{ route("/") }}">Voltar</a>
+        </div>
+        
+    </form>
+</div>    
+@endsection

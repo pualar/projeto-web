@@ -1,0 +1,19 @@
+@layout('layouts/dashboard')
+@set('title', user!= null && user.id != auth.user.id ? 'Publicações de @' + user.username : 'Minhas publicações')
+@section('content')
+<div class="block">
+    @if(posts.length == 0)
+        <div> 
+            Ainda não há nada por aqui :(
+            <br>
+            <a href="{{ route('web.post.create') }}">
+                Que tal começar e escrever sua primeira publicação?
+            </a>
+        </div>
+    @endif
+
+    @each(post in posts)
+        @include('partials/post')
+    @end
+</div>
+@endsection

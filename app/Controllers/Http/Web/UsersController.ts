@@ -1,8 +1,19 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Post from 'App/Models/Post';
 import User from 'App/Models/User';
-import UserService from 'App/Services/UserService';
 
 export default class UsersController {
+    async posts_user({ view, params }: HttpContextContract) {
+        const posts: any[] = await Post.query()
+        .preload('author')
+        .where('author_id', '=', params.id)
+        .orderBy('id', 'desc')
+
+        const author = await User.query()
+            .where('id', '=', params.id).first()
+
+        return view.render('users/posts', {posts: posts, user: author});
+    }
 
     public async create({ view }: HttpContextContract) {
         return view.render('main/register');
@@ -14,7 +25,7 @@ export default class UsersController {
         try{
             user = await User.findOrFail(params.id)
         } catch(err) {
-            console.error('EEEEEEEEEEEEEEEEEEEEEEE\N', err)
+            console.error('\n [error] [onShow]:', err)
         }
 
         return view.render('users/view', { user: user })
@@ -28,8 +39,28 @@ export default class UsersController {
         return view.render('users/update');
     }
 
-    public async store({ request, response }: HttpContextContract) {
-        console.log('STORE', request);
+    public async myProfile({ view, auth }: HttpContextContract) {
+        let user: any = {emaiL: ''};
+
+        if(auth.user) {
+            user = await User.findOrFail(auth.user.id)
+        }
+
+        return view.render('users/view', { user: user })
+    }
+
+    
+    public async myProfileEdit({ view, auth }: HttpContextContract) {
+        let user: any = {emaiL: ''};
+
+        if(auth.user) {
+            user = await User.findOrFail(auth.user.id)
+        }
+
+        return view.render('users/update', { user: user })
+    }
+
+    /* public async store({ request, response }: HttpContextContract) {
         const email = request.input('email', undefined)
         const password = request.input('password', undefined)
 
@@ -42,5 +73,5 @@ export default class UsersController {
         const user = await userService.create(email, password)
 
         return response.redirect().toRoute('users.show', { id: user.id })
-    }
+    } */
 }

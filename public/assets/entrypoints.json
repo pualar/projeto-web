@@ -7,6 +7,31 @@
       "js": [
         "http://localhost:8080/assets/app.js"
       ]
+    },
+    "register": {
+      "js": [
+        "http://localhost:8080/assets/register.js"
+      ]
+    },
+    "profile": {
+      "js": [
+        "http://localhost:8080/assets/profile.js"
+      ]
+    },
+    "posts": {
+      "js": [
+        "http://localhost:8080/assets/posts.js"
+      ]
+    },
+    "posts/create": {
+      "js": [
+        "http://localhost:8080/assets/posts/create.js"
+      ]
+    },
+    "dashboard": {
+      "js": [
+        "http://localhost:8080/assets/dashboard.js"
+      ]
     }
   }
 }

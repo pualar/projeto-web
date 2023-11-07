@@ -46,6 +46,13 @@ Encore.setPublicPath('/assets')
 |
 */
 Encore.addEntry('app', './resources/js/app.js')
+Encore.addEntry('register', './resources/js/users/register.js')
+Encore.addEntry('profile', './resources/js/users/profile.js')
+Encore.addEntry('posts', './resources/js/posts/posts.js')
+Encore.addEntry('posts/create', './resources/js/posts/create.js')
+Encore.addEntry('dashboard', './resources/js/dashboard/dashboard.js')
+
+
 
 /*
 |--------------------------------------------------------------------------

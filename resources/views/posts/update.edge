@@ -1,1 +1,6 @@
-<p> posts update ok </p>
+@layout('layouts/dashboard')
+@set('title', 'Editar post')
+@section('content')
+@include('posts/create', {post: post})
+
+@endsection

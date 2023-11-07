@@ -1,32 +1,41 @@
-@layout('main/main')
+@layout('layouts/main')
+@set('titulo', 'Login')
 @section('content')
-    
-<form>
-    <div>
-        <span>E-mail: </span>
-        <input 
-            autocomplete="email"
-            type="email"
-            type="text" placeholder="seu-email@exemplo.com">
-    </div>
+    <div class="block form">
+        <form action="{{ route('api.auth.login') }}" method="POST">
+            @if(flashMessages.has('form'))
+                <div role="alert">
+                    {{flashMessages.get('form')}}
+                </div>
+            @endif
+
+            <div>
+                <span>E-mail: </span>
+                <input
+                    name="email"
+                    autocomplete="email"
+                    type="email"
+                    placeholder="seu-email@exemplo.com">
+            </div>
+
+            <div>
+                <span>Senha:</span>
+                <input
+                    name="password"
+                    autocomplete="current-password"
+                    type="password"
+                    placeholder="Senha">
+            </div>
+
+            <button
+                    type="submit">
+                        Entrar
+            </button>  
+    </form>
 
     <div>
-        <span>Senha:</span>
-        <input
-            autocomplete="current-password"
-            type="password"
-            type="email" placeholder="Senha">
+        <span> Não possui uma conta? <a href=" {{ route('web.user.register') }}"> Cadastre-se </a></span>
     </div>
+</block>
 
-        
-    <button
-        type="submit">
-        Entrar
-    </button>  
-</form>
-
-    
-<div>
-    <span> Não possui uma conta? <a href=" {{ route('users.register') }}"> Cadastre-se </a></span>
-</div>
 @endsection

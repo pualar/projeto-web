@@ -1,24 +1,60 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Post from 'App/Models/Post'
+import Favorite from 'App/Models/Favorite';
+import Post from 'App/Models/Post';
+import User from 'App/Models/User';
+import PostService from 'App/Services/PostService';
 
 export default class PostsController {
-
-    public async create({ view }: HttpContextContract) {
+    public async novo({ view }: HttpContextContract) {
         return view.render('posts/create');
     }
 
-    public async show({ view }: HttpContextContract) {
-        return view.render('posts/view');
+    public async show({ params, view }: HttpContextContract) {
+        const postService = new PostService();
+
+        const post = await postService.query('id', params.id, true)
+    
+        if(post) {
+            return view.render('posts/view', {post: post});
+        } 
+        
+        return view.render('errors/not-found')
     }
 
     public async list({ view }: HttpContextContract) {
-        return view.render('posts/list');
+        const posts = await Post.query()
+            .preload('author')
+
+        return view.render('posts/list', {posts: posts});
     }
 
-    public async update({ view }: HttpContextContract) {
-        return view.render('posts/update');
+    public async favorites({ view, auth }: HttpContextContract) {
+        let user: User | null = null;
+
+        try {
+            user = await User
+                .query()
+                .where("id", "=", auth.user!.id)
+                .preload('favorites', (favsQuery) => {
+                    favsQuery.preload('author')
+                })
+                .first()
+        } catch(err) {
+            console.error(err)
+        }
+
+        return view.render('posts/list', { posts: user!.favorites });
     }
 
+    public async update({ params, view }: HttpContextContract) {
+        const postService = new PostService();
 
-
+        const post = await postService.query('id', params.id, true)
+    
+        if(post) {
+            return view.render('posts/create', {post: post});
+        } 
+        
+        return view.render('errors/not-found')
+    }
 }

@@ -39,6 +39,8 @@ export const appKey: string = Env.get('APP_KEY')
 |
 */
 export const http: ServerConfig = {
+
+  useAsyncLocalStorage: true,
   /*
   |--------------------------------------------------------------------------
   | Allow method spoofing
@@ -50,7 +52,7 @@ export const http: ServerConfig = {
   | so on.
   |
   */
-  allowMethodSpoofing: false,
+  allowMethodSpoofing: true,
 
   /*
   |--------------------------------------------------------------------------

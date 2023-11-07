@@ -1,7 +1,21 @@
-@layout('dashboard')
+@layout('layouts/dashboard')
+@set('title', '')
 @section('content')
+    <div class="block">
+    @if(posts.length == 0)
+    <div> 
+        Ainda não há nada por aqui :(
+        <br>
+        <a href="{{ route('web.post.create') }}">
+            Que tal começar e escrever sua primeira publicação?
+        </a>
+    </div>
+    @endif
 
-<div>
-    <p> posts list ok </p>
+    <div class="container">
+        @each(post in posts)
+            @include('partials/post')
+        @end
+    </div>
 </div>
 @endsection

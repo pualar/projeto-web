@@ -1,0 +1,23 @@
+.sidebar {
+    background-color: rgba(0, 0, 0, 0.569);
+    display: flex;
+    flex-flow: column;
+    right: 0px;
+    position: absolute;
+    width: 25%;
+    display: flex;
+    border-radius: 8px 0px 8px 8px;
+}
+
+.sidebar a {
+    text-align: end;
+    padding: 5px;
+    cursor: pointer;
+    color: thistle;
+}
+
+.sidebar a:hover {
+    background-color: thistle;
+    color: purple;
+    border-radius: 2px;
+}

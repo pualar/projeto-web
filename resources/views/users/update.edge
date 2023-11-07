@@ -1,1 +1,47 @@
-<p> users uopdate ok </p>
+@layout('layouts/dashboard')
+@set('title', 'Editar meus dados')
+@section('content')
+<div class="block form m-5">
+    <form 
+        method="POST"
+        action="{{ 
+            route('api.user.update', { id: auth.user.id })
+            }}?_method=PUT">
+        <div>
+            <label>Nome: </label>
+            <input
+                name="name"
+                type="text"
+                placeholder="{{ user.name }}">
+            </input>
+        </div>
+
+        <div>
+            <label>Username: </label>
+            <input
+                name="username"
+                type="text"
+                placeholder="{{ user.username }}">
+            </input>
+        </div>
+
+        <div>
+            <label>Email: </label>
+            <input
+                name="email"
+                type="email"
+                placeholder="{{ user.email }}">
+            </input>
+        </div>
+
+        <button type="submit">
+            Salvar
+        </button>
+    </form>     
+
+    <div class="text-center">
+        <a href="{{ route('web.user.profile') }}">Voltar</a>
+    </div>
+
+</div>
+@endsection

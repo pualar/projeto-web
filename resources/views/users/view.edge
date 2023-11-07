@@ -1,6 +1,38 @@
-<p> users view  ok </p>
+@layout('layouts/dashboard')
+@set('title', 'Meu perfil')
+@section('content')
+<head>
+        @entryPointScripts('profile')
+</head>
 
-<div>
-    <label>Email: </label>
-    <span>{{user.email}}</span>
-</div>
+    <div class="block form m-5">
+        <div>
+            <label>Nome: </label>
+            <span> {{user.name}} </span>
+        </div>
+
+         <div>
+            <label>Username: </label>
+            <span> {{user.username}} </span>
+        </div>
+
+         <div>
+            <label>Email: </label>
+            <span> {{user.email}} </span>
+        </div>
+
+        {{--  <div>
+            <button id="btn_alterar_senha">Alterar senha</button>
+        </div>  --}}
+
+        <div class="text-center mt-15">
+            <a class="my-5" href="{{ route('web.user.profile.edit') }}">Editar dados</a>
+            <br>
+            <a href="{{ route('/') }}">Voltar</a>
+        </div>
+    </div>
+
+    <div id="view_alterar_senha">
+        @include('partials/form-senha')
+    </div>
+@endsection

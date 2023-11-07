@@ -20,58 +20,100 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
-  return view.render('main/login')
-})
-
-Route.get('/login', async ({ view }) => {
-  return view.render('main/login')
-})
-
-Route.get('/dashboard', async ({ view }) => {
-  return view.render('posts/list')
-})
-/**
- * Rotas dos Serviços
- */
+/*
+ *********************************
+ ********************************* API
+ ********************************
+*/
 Route.group(() => {
-  /** Serviços CRUD Publicaçoes */
-  Route.group(() => {
-      Route.get('/', 'PostsController.list'),
-      Route.get('/:id', 'PostsController.show'),
-      Route.delete('/:id', 'PostsController.destroy'),
-      Route.patch('/:id', 'PostsController.update'),
-      Route.post('/', 'PostsController.store')
-  }).prefix('/posts')
+  Route.post('/login', 'AuthController.login')
+    .as('api.auth.login')
+  Route.get('/logout', 'AuthController.logout')
+    .as('api.auth.logout')
 
-  /** Serviço CRUD Usuários */
   Route.group(() => {
-      Route.get('/', 'UsersController.list'), 
-      Route.get('/:id', 'UsersController.show'), 
-      Route.delete('/:id', 'UsersController.destroy'), 
-      Route.patch('/:id', 'UsersController.update'), 
-      Route.post('/', 'UsersController.store')
+    Route.group(() => {
+      Route.delete('/:id', 'PostsController.destroy')
+        .where('id', /^[0-9]+$/).as('api.post.delete')
+      Route.patch('/:id/update', 'PostsController.update')
+        .where('id', /^[0-9]+$/).as('api.post.update')
+      Route.post('/', 'PostsController.store')
+        .as('api.post.create')
+      Route.post('/remove_favorite', 'PostsController.removeFavorite')
+        .where('id', /^[0-9]+$/).as('api.post.remove_favorite')
+      Route.post('/favorite', 'PostsController.addFavorite')
+        .where('id', /^[0-9]+$/).as('api.post.add_favorite')
+    }).middleware('auth')
+    
+    Route.get('/:id', 'PostsController.show')
+      .where('id', /^[0-9]+$/).as('api.post.fetch')
+  }).prefix('/posts').middleware('auth')
+
+  Route.group(() => {
+    Route.post('/create', 'UsersController.store')
+    .as('api.user.create')
+
+    Route.group(() => {
+      Route.patch('/password', 'UsersController.changePassword')
+      .as('api.user.change_password')
+      Route.get('/list', 'UsersController.list')
+        .as('api.usser.fetchAll')
+      Route.delete('/:id', 'UsersController.destroy')
+        .where('id', /^[0-9]+$/).as('api.user.delete')
+      Route.put('/:id/update', 'UsersController.update')
+        .as('api.user.update')
+    }).middleware('auth')
+
   }).prefix('/users')
 }).prefix('/api').namespace('App/Controllers/Http/API')
 
 
-/**
- * Rotas das Telas
- */
+/*
+ *********************************
+ ********************************* WEB
+ ********************************
+*/
 Route.group(() => {
+  Route.get('/error/403', 'AuthController.unauthorized')
+    .as('web.auth.unauthorized')
+  Route.get('/', 'AuthController.login')
+  Route.get('/login', 'AuthController.login')
+    .as('web.auth.login')
+
+  Route.group(() => {  
+    Route.get('/dashboard', 'PostsController.list')
+      .as('dashboard')
+    Route.get('/me', 'UsersController.myProfile')
+      .as('web.user.profile')
+    Route.get('/me/edit', 'UsersController.myProfileEdit')
+      .as('web.user.profile.edit')
+  }).middleware('auth');
+  
+
   Route.group(() => {
-    Route.post('/', 'UsersController.store'),
-    Route.get('/list', 'UsersController.list').as('users.list'), 
-    Route.get('/new', 'UsersController.create').as('users.register'),
-    Route.get('/:id/edit', 'UsersController.update').as('users.update'), 
-    Route.get('/:id', 'UsersController.show').as('users.show')
+    Route.get('/new', 'UsersController.create')
+      .as('web.user.register')
+
+    Route.group(() => {
+      Route.get('/:id/posts', 'UsersController.posts_user')
+        .as('web.user.posts')
+      Route.get('/list', 'UsersController.list')
+        .where('id', /^[0-9]+$/).as('web.user.list')
+      Route.get('/:id/edit', 'UsersController.update')
+        .where('id', /^[0-9]+$/).as('web.user.update')
+      Route.get('/:id', 'UsersController.show')
+        .where('id', /^[0-9]+$/).as('web.user.show')
+    }).middleware('auth')
   }).prefix('/users')
 
   Route.group(() => {
-    Route.get('/:id', 'PostsController.show').as('posts.show'),
-    Route.get('/new', 'PostsController.create').as('posts.register'),
-    Route.get('/:id/edit', 'PostsController.update').as('posts.update')
-  }).prefix('/posts')
-
-
+    Route.get('/new', 'PostsController.novo')
+      .as('web.post.create')
+    Route.get('/favorites', 'PostsController.favorites')
+      .as('web.post.favorites')
+    Route.get('/:id', 'PostsController.show')
+      .where('id', /^[0-9]+$/).as('web.post.show')
+    Route.get('/:id/edit', 'PostsController.update')
+      .where('id', /^[0-9]+$/).as('web.post.update')
+  }).prefix('/posts').middleware('auth')
 }).namespace('App/Controllers/Http/Web')

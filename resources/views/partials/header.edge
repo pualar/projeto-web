@@ -1,0 +1,27 @@
+
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/menu-right-alt.css' rel='stylesheet'>
+
+<head>
+    @entryPointScripts('dashboard')
+</head>
+
+<nav class="navbar">
+    <a 
+        class="float-left pointer" 
+        href="{{ route('dashboard') }}">
+            WEB 2023.2 | Medium
+    </a>
+
+    @if(auth.user)
+        <div id="toggle" class="float-right pointer mx-5 my-5">
+            <i class="gg-menu-right-alt"></i>
+        </div>
+
+        <label class="float-right">
+            {{ auth.user.name }}
+        </label>
+    @else
+        <a class="float-right" href="{{ route('web.auth.login') }}">Entrar</a>
+    @endif
+
+</nav>

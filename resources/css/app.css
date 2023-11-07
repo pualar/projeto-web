@@ -1,7 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import './topnav.css';
+@import './sidebar.css';
+@import './util.css';
+@import './colors.css';
+@import './view.css';
+@import './posts-template.css';
+
+.bg-blue {
+  background-color: purple;
+}
+
+.form {
+  display: flex;
+  padding: 20px;
+  border-radius: 10px;
+  border: purple solid 1px;
+}
+
+.form div {
+  width: 100%;
+}
+
+.form button {
+  padding: 5px;
+  margin: 15px 0px 10px 0px;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 3px;
+  margin: 5px 0px 5px 0px;
+}
+
+.textarea-big {
+  width: 100vh;
+  height: 400px;
+  padding: 3px;
+  margin: 5px 0px 5px 0px;
+}
+
+.textarea-mid {
+  width: 100vh;
+  height: 100px;
+  padding: 3px;
+  margin: 5px 0px 5px 0px;
+}
+
+.block {
+  display: block;
+}
+
+.center {
+  height: 100vh !important;
+}
+.content {
+  padding: 0px 0px 10px 0px;
+  margin: 15px 0px 15px 0px;
+  display: flex;
+  flex-direction: column;
+}
 
 html, body {
-  background-color: #F7F8FA;
+  background-color: thistle;
   font-family: 'Poppins', sans-serif;
   height: 100vh;
   color: #46444c;
@@ -10,7 +71,7 @@ html, body {
 
 /* body:before {
   content: '';
-  background: #5A45FF;
+  background: purple;
   top: 0;
   left: 0;
   right: 0;
@@ -23,22 +84,38 @@ html, body {
   padding: 0;
 }
 
-a {
-  color: #5A45FF;
+a, 
+.link {
+  background: none;
+  color: purple;
   text-decoration: none;
+}
+
+button:hover {
+  border: 1px solid purple;
+  background: thistle;
+  border-radius: 5px;
+  color: purple;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: purple;
+  border-radius: 5px;
+  color: thistle;
 }
 
 main {
   max-width: 620px;
   margin: auto;
-  height: 100vh;
   padding: 0 30px;
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.title {
+/* .title {
   font-size: 50px;
   line-height: 50px;
   margin-bottom: 10px;
@@ -48,7 +125,7 @@ main {
 .subtitle {
   font-size: 26px;
   margin-bottom: 40px;
-}
+} */
 
 p {
   margin-bottom: 20px;
@@ -80,9 +157,19 @@ main code {
 }
 
 .float-right {
-  float: right;
+  float: right !important;
 }
 
 .float-left {
   float: left;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pointer {
+  cursor: pointer;
 }

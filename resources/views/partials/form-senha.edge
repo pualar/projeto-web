@@ -1,0 +1,24 @@
+<div class="block form">
+    <form action="{{ route('api.user.change_password') }}" method="PATCH">
+        <div>
+            <span>Senha: </span>
+            <input 
+                id="password"
+                name="password"
+                autocomplete="new-password"
+                type="password"
+                placeholder="Nova senha">
+        </div>
+
+        <div>
+            <span>Confirme sua senha:</span>
+            <input
+                id="confirm"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Confirme sua senha">
+        </div> 
+
+        <button type="submit"> Salvar </button>
+    </form>
+</div>
