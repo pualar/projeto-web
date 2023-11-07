@@ -7,14 +7,14 @@
 @import './posts-template.css';
 
 .bg-blue {
-  background-color: #5A45FF;
+  background-color: purple;
 }
 
 .form {
   display: flex;
   padding: 20px;
   border-radius: 10px;
-  border: #5A45FF solid 1px;
+  border: purple solid 1px;
 }
 
 .form div {
@@ -68,7 +68,7 @@ html, body {
 
 /* body:before {
   content: '';
-  background: #5A45FF;
+  background: purple;
   top: 0;
   left: 0;
   right: 0;
@@ -81,9 +81,26 @@ html, body {
   padding: 0;
 }
 
-a {
-  color: #5A45FF;
+a, 
+.link {
+  background: none;
+  color: purple;
   text-decoration: none;
+}
+
+button:hover {
+  border: 1px solid purple;
+  background: thistle;
+  border-radius: 5px;
+  color: purple;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: purple;
+  border-radius: 5px;
+  color: thistle;
 }
 
 main {

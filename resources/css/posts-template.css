@@ -17,5 +17,9 @@
 .ver_mais {
     font-size: 14px;
     font-weight: bold;
-    color: darkslateblue;
+    color: purple;
+}
+
+.ver_mais:hover {
+    color: palevioletred;
 }
