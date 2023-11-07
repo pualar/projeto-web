@@ -27,6 +27,11 @@
       "js": [
         "http://localhost:8080/assets/posts/create.js"
       ]
+    },
+    "dashboard": {
+      "js": [
+        "http://localhost:8080/assets/dashboard.js"
+      ]
     }
   }
 }

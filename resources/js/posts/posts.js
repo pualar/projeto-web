@@ -28,12 +28,8 @@ document.addEventListener(
 
             for(let i = 0; i < el_data.length; i++) {
                 const element = el_data[i];
-                console.log("element", element)
-                console.log("innerText", element.innerText)
-
                 if(!element.innerText.includes(" de ")) {
                     const data_original = new Date(element.innerText.trim());
-                    console.log("data_original", data_original)
                    
                     const dia = data_original.getDate()
                     const mes = nomes_meses[data_original.getMonth()]
