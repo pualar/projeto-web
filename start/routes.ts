@@ -33,7 +33,7 @@ Route.group(() => {
 
   Route.group(() => {
     Route.group(() => {
-      Route.delete('/:id', 'PostsController.destroy')
+      Route.delete('/:id/delete', 'PostsController.destroy')
         .where('id', /^[0-9]+$/).as('api.post.delete')
       Route.patch('/:id/update', 'PostsController.update')
         .where('id', /^[0-9]+$/).as('api.post.update')

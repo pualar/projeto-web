@@ -10,11 +10,11 @@ export default class PostsController {
         return posts;
     }
 
-    public async destroy({ params }: HttpContextContract) {
+    public async destroy({ params, response }: HttpContextContract) {
         const post = await Post.findOrFail(params.id)
         await post.delete()
 
-        return null;
+        return response.redirect().toRoute('dashboard');
     }
 
     public async update({ request, params, response }: HttpContextContract) {
