@@ -4,31 +4,30 @@
 
 @component('components/modal')
     @slot('main')
-    <form action="{{ route('api.auth.login') }}" method="POST">
-        @!component('components/input', {
-            name: 'email',
-            placeholder: 'seu-email@exemplo.com',
-            type: 'email',
-            span: 'E-mail',
-            autocomplete:'email'
+        <form action="{{ route('api.auth.login') }}" method="POST">
+            @!component('components/input', {
+                name: 'email',
+                placeholder: 'seu-email@exemplo.com',
+                type: 'email',
+                span: 'E-mail',
+                autocomplete:'email'
 
-        })
+            })
 
-        @!component('components/input', {
-            name: 'password',
-            type: 'password',
-            placeholder: 'Senha',
-            span: 'Senha',
-            autocomplete:'current-password'
-        })
+            @!component('components/input', {
+                name: 'password',
+                type: 'password',
+                placeholder: 'Senha',
+                span: 'Senha',
+                autocomplete:'current-password'
+            })
 
-    
-
-        <button
-                type="submit">
-                    Entrar
-        </button>  
-    </form>
+        
+            @!component('components/button', {
+                type: 'submit',
+                content: 'Entrar'
+            })
+        </form>
     @end
 
     @slot('actions')
