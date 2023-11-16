@@ -1,0 +1,14 @@
+<div class="bg-gray-200 rounded py-2 px-6 focus-within:bg-white focus-within:shadow flex-1">
+    <span> {{ span }} </span>
+    <input
+        autocomplete="{{ autocomplete }}"
+        type="{{ type }}"
+        name="{{ name }}"
+        id="{{ name }}"
+        value="{{ flashMessages.get(name) || value || '' }}"
+        placeholder="{{ placeholder }}"
+        class="bg-transparent w-full outline-none placeholder-gray-600"/>
+    @if(flashMessages.has(`errors.${name}`))
+        <p class="text-sm">{{ flashMessages.get(`errors.${name}`) }}</p>
+    @endif
+</div>
