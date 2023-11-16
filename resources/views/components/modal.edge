@@ -3,6 +3,9 @@
      {{{ await $slots.main() }}}
     </main>
 
-    <div>
-     {{{ await $slots.actions() }}}</div>
+    @if($slots.actions)
+        <div>
+            {{{ await $slots.actions() }}}
+        </div>
+    @endif
 </div>

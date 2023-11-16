@@ -1,5 +1,12 @@
-<div>
-    <button
-        type="{{ type }}">{{ content }}
-    </button>
+<div class="text-center">
+    @if( type == 'link')
+        <a class="pointer" href="{{route}}">
+            {{ content }}
+        </a>
+    @else
+        <button
+            type="{{ type }}">
+            {{ content }}
+        </button>
+    @end
 </div>
