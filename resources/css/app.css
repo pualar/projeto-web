@@ -14,7 +14,7 @@
   display: flex;
   padding: 20px;
   border-radius: 10px;
-  border: purple solid 1px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
 }
 
 .form div {
@@ -31,6 +31,8 @@ input {
   width: 100%;
   padding: 3px;
   margin: 5px 0px 5px 0px;
+  border: 1px solid white;
+  border-radius: 6px;
 }
 
 .textarea-big {
@@ -107,6 +109,7 @@ button {
 }
 
 main {
+  height: 100%;
   max-width: 620px;
   margin: auto;
   padding: 0 30px;
@@ -129,6 +132,11 @@ main {
 
 p {
   margin-bottom: 20px;
+}
+
+i {
+  cursor: pointer;
+  margin: 5px;
 }
 
 main ul {
