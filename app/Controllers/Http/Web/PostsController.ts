@@ -5,14 +5,14 @@ import User from 'App/Models/User';
 import PostService from 'App/Services/PostService';
 
 export default class PostsController {
+    private postService = new PostService();
+
     public async novo({ view }: HttpContextContract) {
         return view.render('posts/create');
     }
 
     public async show({ params, view }: HttpContextContract) {
-        const postService = new PostService();
-
-        const post = await postService.query('id', params.id, true)
+        const post = await this.postService.query('id', params.id, true)
     
         if(post) {
             return view.render('posts/view', {post: post});
@@ -47,9 +47,7 @@ export default class PostsController {
     }
 
     public async update({ params, view }: HttpContextContract) {
-        const postService = new PostService();
-
-        const post = await postService.query('id', params.id, true)
+        const post = await this.postService.query('id', params.id, true)
     
         if(post) {
             return view.render('posts/create', {post: post});
@@ -57,4 +55,5 @@ export default class PostsController {
         
         return view.render('errors/not-found')
     }
+
 }

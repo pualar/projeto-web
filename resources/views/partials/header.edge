@@ -1,6 +1,7 @@
 
 <link href='https://unpkg.com/css.gg@2.0.0/icons/css/menu-right-alt.css' rel='stylesheet'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <head>
     @entryPointScripts('dashboard')
@@ -13,8 +14,20 @@
             WEB 2023.2
     </a>
 
+    <div class="float-left ml-10">
+        <form action="{{ route('api.post.search')}}" method="GET">
+            @!component('components/input', {
+                name: 'query',
+                placeholder: 'Pesquisar publicação',
+                type: 'text',
+                icon: 'search',
+                icon_class: 'material-symbols-outlined'
+            })
+        </form>
+    </div> 
+
     @if(auth.user)
-        <div id="toggle" class="float-right pointer mx-5 my-5">
+        <div id="toggle" class="float-right pointer m-10">
             <i class="gg-menu-right-alt"></i>
         </div>
 

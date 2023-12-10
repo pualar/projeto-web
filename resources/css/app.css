@@ -10,6 +10,16 @@
   background-color: purple;
 }
 
+.input-container {
+    display: flex;
+    width: 100%;
+}
+
+.icon {
+  text-align: center;
+  cursor: pointer;
+}
+
 .form {
   display: flex;
   padding: 20px;
@@ -118,6 +128,13 @@ main {
   justify-content: center;
 }
 
+.main-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
 /* .title {
   font-size: 50px;
   line-height: 50px;
@@ -136,7 +153,6 @@ p {
 
 i {
   cursor: pointer;
-  margin: 5px;
 }
 
 main ul {

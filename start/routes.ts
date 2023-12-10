@@ -43,6 +43,7 @@ Route.group(() => {
         .where('id', /^[0-9]+$/).as('api.post.remove_favorite')
       Route.post('/favorite', 'PostsController.addFavorite')
         .where('id', /^[0-9]+$/).as('api.post.add_favorite')
+      Route.get('/search', 'PostsController.postsSearch').as('api.post.search')
     }).middleware('auth')
     
     Route.get('/:id', 'PostsController.show')

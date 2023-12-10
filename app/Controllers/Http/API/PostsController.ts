@@ -2,8 +2,11 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Favorite from 'App/Models/Favorite';
 import Post from 'App/Models/Post'
 import FavoriteService from 'App/Services/FavoriteService';
+import PostService from 'App/Services/PostService';
 
 export default class PostsController {
+    private postService = new PostService()
+
     public async list({}: HttpContextContract) {
         const posts = await Post.all()
 
@@ -111,5 +114,19 @@ export default class PostsController {
         }
  
         return response.redirect().toRoute('dashboard')
+    }
+
+    public async postsSearch({ request, view }: HttpContextContract) {        
+        const query = request.requestData.query;
+        let posts: Post[] | null = [];
+    
+        console.log('queryyyyyyyyyyy', query)
+        posts = await this.postService.querySearch(
+            query
+        )
+
+        console.log('postsssssssssss', posts)
+
+        return view.render('posts/list', {posts: posts} )
     }
 }

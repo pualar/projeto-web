@@ -4,11 +4,16 @@
     color: thistle;
     overflow: hidden;
     font-family: Arial;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
   }
 
   /* Links inside the navbar */
   .navbar a {
-    float: left;
+    margin: 5px;
     font-size: 16px;
     color: thistle;
     text-align: center;
