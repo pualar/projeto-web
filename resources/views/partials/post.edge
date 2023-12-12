@@ -10,7 +10,12 @@
         {{ post.preview }} </label>
     
     <label class="author">
-       Autor: <a href="{{ route('web.user.posts', { id: post.author_id }) }}"> {{ post.author.name }} </a>
+       Autor:
+       @!component('components/link', {
+            route: route('web.user.posts', { id: post.author_id }),
+            label: post.author.name,
+            tooltip: `Escrito por ${post.author.name}`
+       })
     </label>
 
     <div>
@@ -24,19 +29,19 @@
     </div>
 
     <div class="d-inline">
-        <a 
-            href="{{ route('web.post.show', {id: post.id}) }}"
-            class="ver_mais mr-10">
-                Ver mais...
-        </a>
-
+      @!component('components/link', {
+            route: route('web.post.show', {id: post.id}),
+            label: 'Ver mais...',
+            tooltip: 'Ler post completo'
+       })
+    
         @if(auth.user)
-            @if(auth.user.id == post.author_id) 
-                |<a 
-                    href="{{ route('web.post.update', {id: post.id}) }}"
-                    class="ver_mais m-5">
-                        Editar
-                </a>
+            @if(auth.user.id == post.author_id)
+                @!component('components/link', {
+                    route: route('web.post.update', {id: post.id}),
+                    label: 'Editar'
+            })
+               
                 |<form
                     method="POST"
                     action="{{ route('api.post.delete', {id: post.id}) }}?_method=DELETE">
@@ -47,13 +52,22 @@
                 </form>
             @endif
 
-            @if(post.fav)
+            @!component('components/button', {
+                type: 'icon',
+                icon: 'star',
+                action: route('api.post.add_favorite'),
+                input_name: 'post_id',
+                input_value: post.id,
+                icon_button_type: 'submit',
+                classe: 'favorite material-symbols-outlined' 
+            })
+           {{--   @if(post.fav)
                 <form
                     method="POST"
                     action="{{ route('api.post.add_favorite') }}">
                     <input type="hidden" name="post_id" value="{{ post.id }}">
                     <button type="submit" class="favorite material-symbols-outlined">
-                    star
+                        star
                     </button>
                 </form>
             @else
@@ -65,7 +79,7 @@
                     star
                     </button>
                 </form>
-            @endif     
+            @endif      --}} 
         @endif
     </div>
 </div>

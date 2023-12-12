@@ -1,4 +1,5 @@
-<div class="bg-gray-200 rounded px-6 input-container">
+{{--  <div class="bg-gray-200 rounded px-6 form-g">  --}}
+<div class="form-group">
     @if(span)
         <span> {{ span }} </span>
     @endif
@@ -16,7 +17,7 @@
         id="{{ name }}"
         value="{{ flashMessages.get(name) || value || '' }}"
         placeholder="{{ placeholder }}"
-        class="bg-transparent w-full outline-none placeholder-gray-600"/>
+        class="form-field"{{--  bg-transparent w-full outline-none placeholder-gray-600"/  --}}>
     
     @if(flashMessages.has(`errors.${name}`))
         <p class="text-sm">{{ flashMessages.get(`errors.${name}`) }}</p>

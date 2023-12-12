@@ -1,3 +1,13 @@
-<div class="text-center">
-    <a href="{{route}}"> {{label}}</a>
+<div class="tooltip">
+    @if(center)
+        <div class="text-center">
+            <a href="{{route}}"> {{label}}</a>
+        </div>  
+    @else
+        <a href="{{route}}"> {{label}}</a>
+    @endif
+
+    @if(tooltip)
+        <span class="tooltiptext"> {{tooltip}}</span>
+    @endif
 </div>

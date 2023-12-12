@@ -1,12 +1,23 @@
 <div class="text-center">
-    @if( type == 'link')
-        <a class="pointer" href="{{route}}">
-            {{ content }}
-        </a>
+    @if(type == 'link')
+        @!component('components/link', {
+            route: route,
+            label: content
+        })
+    @elseif(type == 'icon')
+        <form
+            method="POST"
+            action="{{ route }}">
+            <input type="hidden" name="{{ input_name }}" value="{{ input_value }}">
+
+            <button type="{{ icon_button_type }}" class="{{ classe }}">
+                {{icon}}
+            </button>
+        </form>
     @else
         <button
-            type="{{ type }}">
-            {{ content }}
-        </button>
-    @end
+            type="{{type}}">
+            {{content}}
+        </button>       
+    @endif
 </div>

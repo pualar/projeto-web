@@ -50,7 +50,6 @@
             </form>
         @end
 
-
         @slot('actions')
             @!component('components/button', {
                 type: 'submit',
@@ -58,7 +57,7 @@
             })
 
             @!component('components/button', {
-                route: '/',
+                route: route('/'),
                 type: 'link',
                 content: 'Voltar'
             })

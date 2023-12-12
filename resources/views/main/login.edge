@@ -21,7 +21,7 @@
                 autocomplete:'current-password'
             })
         
-            @!component('components/button', {
+            @!component('components/button',{
                 type: 'submit',
                 content: 'Entrar'
             })
@@ -29,7 +29,9 @@
     @end
 
     @slot('actions')
-        <span> Não possui uma conta? <a href=" {{ route('web.user.register') }}"> Cadastre-se </a></span>
+        <span> Não possui uma conta?
+            @!component('components/link', { route: route('web.user.register'), label:'Cadastre-se'})
+        </span>
     @end
 @end
 @endsection

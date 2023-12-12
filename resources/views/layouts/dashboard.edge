@@ -20,7 +20,10 @@
             @include('partials/sidebar')
         @else
             <div class="fixed p-35">
-                <a href="{{ route('web.auth.login') }}"> Faça login para começar! </a>
+                @!component('components/link', {
+                    route: route('web.auth.login'),
+                    label: 'Faça login para começar!'
+                })
             </div>
         @endif 
 
@@ -28,7 +31,10 @@
         <main>
             <div class="mt-20 main-container">
                 @if(caminho)
-                    <a href="{{ caminho }}">Voltar</a>
+                    @!component('components/link', {
+                        route: route(caminho),
+                        label: 'Voltar'
+                    })
                 @endif
                 <h2 class="mb-5"> {{title}} </h2>
                 
