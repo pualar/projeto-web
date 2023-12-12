@@ -6,6 +6,15 @@ import FavoriteService from './FavoriteService';
 export default class PostService {
     constructor() { }
 
+    public async paginate(init): Promise<Post[] | null> {
+        const query = await Post.query()
+        .preload('author')
+        .orderBy('id', 'desc')
+        .paginate(init, 10)
+
+        return query;
+    }
+
     private async querySingle(where, value): Promise<Post | null> {
         const query = await Post.query()
             .preload('author')

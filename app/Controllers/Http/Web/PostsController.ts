@@ -22,10 +22,10 @@ export default class PostsController {
     }
 
     public async list({ view }: HttpContextContract) {
-        const posts = await Post.query()
-            .preload('author')
-
-        return view.render('posts/list', {posts: posts});
+        const page = await this.postService.paginate(1);//Post.query().paginate(1, this.limit)
+        return view.render('posts/list', { page })
+        
+        //return view.render('posts/list', {posts: posts});
     }
 
     public async favorites({ view, auth }: HttpContextContract) {

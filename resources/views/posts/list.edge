@@ -2,7 +2,7 @@
 @set('title', '')
 @section('content')
     <div class="block">
-    @if(posts.length == 0)
+    @if(page.rows.length == 0)
     <div> 
         Ainda não há nada por aqui :(
         <br>
@@ -12,8 +12,8 @@
     </div>    
     @endif
 
-    <div class="container">
-        @each(post in posts)
+    <div class="container" id="scroller">
+        @each(post in page.rows)
             @include('partials/post')
         @end
     </div>

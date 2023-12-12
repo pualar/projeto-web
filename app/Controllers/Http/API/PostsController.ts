@@ -5,12 +5,15 @@ import FavoriteService from 'App/Services/FavoriteService';
 import PostService from 'App/Services/PostService';
 
 export default class PostsController {
+    private limit = 10;
     private postService = new PostService()
 
-    public async list({}: HttpContextContract) {
-        const posts = await Post.all()
+    public async list({ view }: HttpContextContract) {
+       /*  const posts = await Post.all()
 
-        return posts;
+        return posts; */
+        const page = await this.postService.paginate(1);//Post.query().paginate(1, this.limit)
+        return view.render('posts/list', { page })
     }
 
     public async destroy({ params, response }: HttpContextContract) {
@@ -129,4 +132,15 @@ export default class PostsController {
 
         return view.render('posts/list', {posts: posts} )
     }
+
+    /**
+   * Displays home page for posts
+   * This is our initial list of 10 posts
+   * @param param0 
+   * @returns 
+   */
+  public async index ({ view }: HttpContextContract) {
+    const page = await this.postService.paginate(1);//Post.query().paginate(1, this.limit)
+    return view.render('posts/list', { page })
+  }
 }
