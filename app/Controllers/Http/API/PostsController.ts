@@ -143,4 +143,16 @@ export default class PostsController {
     const page = await this.postService.paginate(1);//Post.query().paginate(1, this.limit)
     return view.render('posts/list', { page })
   }
+
+  /**
+   * Renders and returns html and page info for a specific page worth of posts
+   * This is what we use to incrementally continue our initial list
+   * @param param0 
+   * @returns 
+   */
+  public async paginate({ response, params, view }: HttpContextContract) {
+    const page = await Post.query().preload('author').paginate(params.page, this.limit)
+    const html = await view.render('partials/post', { posts: page })
+    return response.json({ html, page })
+  }
 }
