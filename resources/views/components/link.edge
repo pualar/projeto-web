@@ -1,7 +1,5 @@
-<div class="tooltip pointer">
-    @if(type == 'button')
-    
-    @elseif(type && type == 'action')
+<div class="tooltip pointer {{custom}}">
+    @if(type && type == 'action')
         <form
             method="POST"
             action="{{route}}?_method={{method}}">
