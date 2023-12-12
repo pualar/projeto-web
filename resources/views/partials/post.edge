@@ -1,16 +1,18 @@
 <head>
     @entryPointScripts('posts')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <div class="content">   
     <label class="title">
-        {{ post.title }} </label>
+        {{ post.title }}     
+    </label>
+    
     <label class="preview">
         {{ post.preview }} </label>
     
     <label class="author">
-       Autor:
+       Autor: 
        @!component('components/link', {
             route: route('web.user.posts', { id: post.author_id }),
             label: post.author.name,
@@ -29,21 +31,60 @@
     </div>
 
     <div class="d-inline">
-      @!component('components/link', {
+        @!component('components/button', {
+            type: 'icon',
+            method: 'post',
+            icon: 'star',
+            route: route('api.post.add_favorite'),
+            input_name: 'post_id',
+            input_value: post.id,
+            classe: post.fav ? 'favorite material-symbols-rounded' : 'not-favorite material-symbols-rounded',
+            tooltip: post.fav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'
+        })
+
+        @!component('components/button', {
+            type: 'icon',
+            icon: 'visibility',
+            method: 'get',
+            route: route('web.post.show', { id: post.id }),
+            classe: 'material-symbols-rounded',
+            tooltip: 'Ler post completo'
+        })
+
+       {{--   @!component('components/link', {
             route: route('web.post.show', {id: post.id}),
             label: 'Ver mais...',
             tooltip: 'Ler post completo'
-       })
+        })  --}}
     
         @if(auth.user)
             @if(auth.user.id == post.author_id)
+                @!component('components/button', {
+                    type: 'icon',
+                    icon: 'edit',
+                    method: 'get',
+                    route: route('web.post.update', {id: post.id}),
+                    classe: 'material-symbols-rounded',
+                    tooltip: 'Editar postagem'
+                })
+
+                @!component('components/button', {
+                    type: 'icon',
+                    icon: 'delete_forever',
+                    method: 'post',
+                    route: route('api.post.delete', {id: post.id}),
+                    classe: 'material-symbols-rounded',
+                    tooltip: 'Apagar'
+                })
+            {{--  | 
+
                 @!component('components/link', {
                     type: 'href',
                     route: route('web.post.update', {id: post.id}),
                     label: 'Editar'
-                })
+                })  --}}
                
-                |
+               {{--   |
 
                 @!component('components/link', {
                     label: 'Apagar',
@@ -52,20 +93,9 @@
                     method: 'delete',
                     input_name: 'id',
                     input_value: post.id,
-                    link_class: 'ver_mais m-5',
                     tooltip: 'Apagar esse post'
-                })
+                })  --}}
             @endif
-
-            @!component('components/button', {
-                type: 'icon',
-                icon: 'star',
-                route: route('api.post.add_favorite'),
-                input_name: 'post_id',
-                input_value: post.id,
-                classe: post.fav ? 'favorite material-symbols-outlined' : 'not-favorite material-symbols-outlined',
-                tooltip: post.fav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'
-            })
         @endif
     </div>
 </div>

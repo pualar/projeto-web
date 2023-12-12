@@ -1,4 +1,4 @@
-<div class="text-center tooltip">
+<div class="text-center tooltip m-5" style="font-size: 24px">
     @if(type == 'link')
         @!component('components/link', {
             route: route,
@@ -6,7 +6,7 @@
         })
     @elseif(type == 'icon')
         <form
-            method="POST"
+            method="{{ method }}"
             action="{{ route }}">
             <input type="hidden" name="{{ input_name }}" value="{{ input_value }}">
 

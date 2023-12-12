@@ -1,6 +1,6 @@
 .navbar {
     padding: 10px;
-    background: purple;
+    background: var(--purple);
     color: thistle;
     overflow: hidden;
     font-family: Arial;
@@ -15,7 +15,7 @@
   .navbar a {
     margin: 5px;
     font-size: 16px;
-    color: thistle;
+    color: var(--purple-light);
     text-align: center;
     text-decoration: none;
   }
