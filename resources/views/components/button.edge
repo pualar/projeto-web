@@ -5,7 +5,15 @@
             label: content
         })
     @elseif(type == 'icon')
-        @if(icon_type == 'action')
+        @if(icon_type && icon_type == 'function')
+            <button
+                id="{{ id }}"
+                title="{{ title }}"
+                class="{{ classe }}"
+                onclick="{{ onClick }}">
+                {{ icon }}
+            </button>
+        @elseif(icon_type == 'action')
             <form
                 method="{{ method }}"
                 action="{{ route }}">
@@ -15,15 +23,6 @@
                     {{ icon }}
                 </button>
             </form>
-        @elseif(icon_type == 'function')
-            <button
-                type="{{ type }}"
-                id="{{ id }}"
-                title="{{ title }}"
-                class="{{ classe }}"
-                onclick="{{ onClick }}">
-                {{icon}}
-            </button>
         @endif
     @else
         <button
