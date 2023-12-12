@@ -151,7 +151,7 @@ export default class PostsController {
    * @returns 
    */
   public async paginate({ response, params, view }: HttpContextContract) {
-    const page = await Post.query().preload('author').paginate(params.page, this.limit)
+    const page = await this.postService.paginate(params.page)// Post.query().preload('author').paginate(params.page, this.limit)
     const html = await view.render('partials/post', { posts: page })
     return response.json({ html, page })
   }
