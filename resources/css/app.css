@@ -18,6 +18,7 @@
 }
 
 .form {
+  background: var(--purple-lighter);
   display: flex;
   padding: 20px;
   border-radius: 10px;
@@ -26,6 +27,7 @@
 }
 
 .form button {
+  text-transform: uppercase;
   padding: 8px;
   margin: 15px 0px 10px 0px;
   width: 100%;
@@ -70,10 +72,10 @@ input {
 }
 
 html, body {
-  background-color: var(--purple-lighter);
+  background-color: var(--off-white);
   font-family: 'Poppins', sans-serif;
   height: 100vh;
-  color: #46444c;
+  color: var(--primary);
   position: relative;
 }
 
