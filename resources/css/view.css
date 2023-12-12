@@ -8,10 +8,10 @@ div span {
     padding: 3px;
 }
 
-div {
-    width: fit-content;
+/* div {
+    width: 100%;
 }
-
+ */
 .content {
     line-break: anywhere;
 }

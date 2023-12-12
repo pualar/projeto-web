@@ -1,66 +1,68 @@
 @layout('layouts/main')
 @set('titulo', 'Cadastre-se')
 @section('content')
-    <head>
-        @entryPointScripts('register')
-    </head>
+<head>
+    @entryPointScripts('register')
+</head>
 
-    @component('components/modal')
-        @slot('main')
-            <form action="{{ route('api.auth.login') }}" method="POST">
+@component('components/modal')
+    @slot('main')
+        <form action="{{ route('api.auth.login') }}" method="POST">
+            @!component('components/input', {
+                name: 'name',
+                placeholder: 'name',
+                type: 'text',
+                autocomplete: 'name',
+                span: 'Nome completo'
+            })
+
+            @!component('components/input', {
+                name: 'username',
+                placeholder: 'nome-de-usuario',
+                type: 'text',
+                autocomplete: 'username',
+                span: 'Nome de usuário'
+            })
+
+            @!component('components/input', {
+                name: 'email',
+                placeholder: 'seu-email@exemplo.com',
+                type: 'email',
+                autocomplete: 'enail',
+                span: 'E-mail'
+            })
+
                 @!component('components/input', {
-                    name: 'name',
-                    placeholder: 'name',
-                    type: 'text',
-                    autocomplete: 'name',
-                    span: 'Nome completo'
-                })
+                name: 'password',
+                placeholder: 'Senha',
+                type: 'password',
+                autocomplete: 'current-password',
+                span: 'Senha'
+            })
 
                 @!component('components/input', {
-                    name: 'username',
-                    placeholder: 'nome-de-usuario',
-                    type: 'text',
-                    autocomplete: 'username',
-                    span: 'Nome de usuário'
-                })
+                name: 'password_confirm',
+                placeholder: 'Confirme sua senha',
+                type: 'password',
+                autocomplete: 'current-password',
+                span: 'Confirme sua senha'
+            })
 
-                @!component('components/input', {
-                    name: 'email',
-                    placeholder: 'seu-email@exemplo.com',
-                    type: 'email',
-                    autocomplete: 'enail',
-                    span: 'E-mail'
-                })
-
-                 @!component('components/input', {
-                    name: 'password',
-                    placeholder: 'Senha',
-                    type: 'password',
-                    autocomplete: 'current-password',
-                    span: 'Senha'
-                })
-
-                 @!component('components/input', {
-                    name: 'password_confirm',
-                    placeholder: 'Confirme sua senha',
-                    type: 'password',
-                    autocomplete: 'current-password',
-                    span: 'Confirme sua senha'
-                })
-            </form>
-        @end
-
-        @slot('actions')
             @!component('components/button', {
                 type: 'submit',
                 content: 'Finalizar'
             })
-
-            @!component('components/button', {
-                route: route('/'),
-                type: 'link',
-                content: 'Voltar'
-            })
-        @end
+        </form>
     @end
+
+    @slot('actions')
+    <div class="w-100 text-center">
+        @!component('components/button', {
+            route: route('/'),
+            type: 'link',
+            content: 'Voltar'
+        })
+    </div>
+    @end
+@end
 @endsection
