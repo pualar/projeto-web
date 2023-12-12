@@ -1,0 +1,26 @@
+{{--  <div class="bg-gray-200 rounded px-6 form-g">  --}}
+<div class="form-group">
+    @if(span)
+        <span> {{ span }} </span>
+    @endif
+
+    @if(icon)
+        <span class="{{icon_class}} icon">
+            {{icon}}
+        </span>
+    @endif
+
+    <textarea
+        autocomplete="{{ autocomplete }}"
+        type="{{ type }}"
+        name="{{ name }}"
+        id="{{ name }}"
+        value="{{ flashMessages.get(name) || value || '' }}"
+        placeholder="{{ placeholder }}"
+        class="form-field">
+    </textarea>
+    
+    @if(flashMessages.has(`errors.${name}`))
+        <p class="text-sm">{{ flashMessages.get(`errors.${name}`) }}</p>
+    @endif
+</div>
