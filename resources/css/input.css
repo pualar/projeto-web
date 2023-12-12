@@ -12,7 +12,7 @@
   
     --group-color-focus: #fff;
     --group-border-focus: var(--input-border-focus);
-    --group-background-focus: var(--purple-light);
+    --group-background-focus: var(--purple);
   }
 
 .form-field {
