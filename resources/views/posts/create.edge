@@ -42,16 +42,15 @@
             span: 'Conteúdo'
         })
 
-        <div>
-            <button
-                type="submit">
-                    Enviar
-            </button>  
-        </div>
+        @!component('components/button', {
+            type: 'submit',
+            content: 'Enviar'
+        })
 
         @!component('components/link', {
             route: route("/"),
-            label: 'Voltar'
+            label: 'Voltar',
+            center: true
         })        
     </form>
 </div>    

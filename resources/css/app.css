@@ -61,6 +61,7 @@ input {
 
 .block {
   display: block;
+  width: 100%;
 }
 
 .center {
@@ -127,11 +128,12 @@ main {
   align-items: center;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .main-container {
   position: absolute;
-  top: 0;
+  top: 80px;
   right: 0;
   left: 0;
 }
