@@ -5,15 +5,26 @@
             label: content
         })
     @elseif(type == 'icon')
-        <form
-            method="{{ method }}"
-            action="{{ route }}">
-            <input type="hidden" name="{{ input_name }}" value="{{ input_value }}">
+        @if(icon_type == 'action')
+            <form
+                method="{{ method }}"
+                action="{{ route }}">
+                <input type="hidden" name="{{ input_name }}" value="{{ input_value }}">
 
-            <button type="submit" class="{{ classe }}">
+                <button type="submit" class="{{ classe }}">
+                    {{ icon }}
+                </button>
+            </form>
+        @elseif(icon_type == 'function')
+            <button
+                type="{{ type }}"
+                id="{{ id }}"
+                title="{{ title }}"
+                class="{{ classe }}"
+                onclick="{{ onClick }}">
                 {{icon}}
             </button>
-        </form>
+        @endif
     @else
         <button
             type="{{type}}">
