@@ -1,13 +1,29 @@
 <div class="tooltip">
-    @if(center)
-        <div class="text-center">
-            <a href="{{route}}"> {{label}}</a>
-        </div>  
+    @if(type && type == 'action')
+        <form
+            method="POST"
+            action="{{route}}?_method={{method}}">
+            <input type="hidden" name="{{input_name}}" value="{{ input_value }}">
+            <button type="submit">
+                <a class="{{ link_class }}">{{label}}</a>
+            </button>
+        </form>
+
     @else
-        <a href="{{route}}"> {{label}}</a>
+        @if(center)
+            <div class="text-center">
+                <a href="{{route}}">{{label}}</a>
+            </div>  
+        @else
+            <a href="{{route}}">{{label}}</a>
+        @endif
+
+        @if(tooltip)
+            <span class="tooltiptext">{{tooltip}}</span>
+        @endif
     @endif
 
     @if(tooltip)
-        <span class="tooltiptext"> {{tooltip}}</span>
+        <span class="tooltiptext">{{tooltip}}</span>
     @endif
 </div>

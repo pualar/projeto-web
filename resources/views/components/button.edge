@@ -1,4 +1,4 @@
-<div class="text-center">
+<div class="text-center tooltip">
     @if(type == 'link')
         @!component('components/link', {
             route: route,
@@ -10,7 +10,7 @@
             action="{{ route }}">
             <input type="hidden" name="{{ input_name }}" value="{{ input_value }}">
 
-            <button type="{{ icon_button_type }}" class="{{ classe }}">
+            <button type="submit" class="{{ classe }}">
                 {{icon}}
             </button>
         </form>
@@ -19,5 +19,9 @@
             type="{{type}}">
             {{content}}
         </button>       
+    @endif
+
+    @if(tooltip)
+        <span class="tooltiptext"> {{tooltip}}</span>
     @endif
 </div>
