@@ -118,7 +118,7 @@ export default class PostsController {
     public async postsSearch({ request, view }: HttpContextContract) {        
         const query = request.requestData.query;
     
-        const page = await this.postService.querySearch(
+        const page = await this.postService.paginate(
             1,
             query)
 
@@ -146,12 +146,10 @@ export default class PostsController {
     const _query = request.requestData.query;
     let page: any = null;
 
-    if(_query) {
-        page = await this.postService.querySearch(
-            params.page,
-            _query)
-    } else page = await this.postService.paginate(params.page)// Post.query().preload('author').paginate(params.page, this.limit)
-    const _html = await view.render('partials/post', { posts: page })
-    return response.json({ _html, page })
+    console.log(_query)
+    page = await this.postService.paginate(params.page, _query)// Post.query().preload('author').paginate(params.page, this.limit)
+
+    const html = await view.render('partials/post', { posts: page.rows })
+    return response.json({ html, page })
   }
 }

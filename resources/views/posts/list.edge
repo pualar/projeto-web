@@ -49,7 +49,6 @@
         if(mybutton) {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 mybutton.style.display = "block";
-            } else {
             }
         }
     }
@@ -85,6 +84,8 @@
         
         state = states.WORKING
         const nextPage = ++currentPage;
+
+        const endpoint = `/api/posts/paginate/${nextPage}`
         const { html, page } = await fetch(`/api/posts/paginate/${nextPage}`).then(r => r.json())
         scrollerList.innerHTML += html
         state = states.IDLE
