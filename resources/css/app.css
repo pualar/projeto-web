@@ -7,6 +7,20 @@
 @import './posts-template.css';
 @import './input.css';
 
+mark {
+  border-radius: 4px;
+  background-color: var(--purple-light);
+  color: var(--primary)
+}
+
+mark:hover {
+  border-radius: 12px;
+  background-color: var(--purple-light);
+  color: var(--primary);
+  animation-duration: 4s;
+  animation-name: border-transition;
+}
+
 .input-container {
     display: flex;
     width: 100%;
@@ -280,11 +294,11 @@ ul {
   border-radius: 30px;
   background: var(--primary);
   color: var(--purple-lighter);
-  animation-name: example;
+  animation-name: border-transition;
   animation-duration: 2s;
 }
 
-@keyframes example {
+@keyframes border-transition {
   0%   {border-radius: 21px;}
   25%  {border-radius: 24px;}
   50%  {border-radius: 27px;}

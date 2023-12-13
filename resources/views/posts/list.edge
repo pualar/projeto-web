@@ -29,7 +29,11 @@
 
     <div class="container" id="scroller">
         <div class="scroller_list">
-            @!component('partials/post', { posts: page.rows })
+            @!component('partials/post', 
+                { 
+                    posts: page.rows,
+                    query: search?.query
+                })
         </div>
 
     <div class="scroller_buffer" style="position: absolute; bottom: 0; left:0; width: 100%; height: 50vh; pointer-events: none;"></div>
@@ -37,25 +41,20 @@
 </div>
 
 <script>
-    // Get the button:
-    //let mybutton = document.getElementById("myBtn");
-
-    // When the user scrolls down 20px from the top of the document, show the button
+    const isFav = document.location.href.includes('/fav')
     window.onscroll = function() {scrollFunction()};
 
     function scrollFunction() {
         let mybutton = document.getElementById("myBtn");
 
-console.log('meu botao', mybutton)
         if(mybutton) {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 mybutton.style.display = "block";
-            } else {
             }
         }
     }
 
-    // When the user clicks on the button, scroll to the top of the document
+    // Quando clicar no botãio, scrollar até o topo
     function topFunction() {
         document.body.scrollTop = 0; // Safari
         document.documentElement.scrollTop = 0; // Chrome, Firefox, IE and Opera
@@ -82,10 +81,13 @@ console.log('meu botao', mybutton)
     observer.observe(scrollerBuffer);
 
     async function fetchNextPage() {
+        if(isFav) return
         if (state === states.WORKING) return
         
         state = states.WORKING
         const nextPage = ++currentPage;
+
+        const endpoint = `/api/posts/paginate/${nextPage}`
         const { html, page } = await fetch(`/api/posts/paginate/${nextPage}`).then(r => r.json())
         scrollerList.innerHTML += html
         state = states.IDLE
