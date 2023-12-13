@@ -13,7 +13,7 @@
                 onclick="{{ onClick }}">
                 {{ icon }}
             </button>
-        @elseif(icon_type == 'action')
+        @else
             <form
                 method="{{ method }}"
                 action="{{ route }}">

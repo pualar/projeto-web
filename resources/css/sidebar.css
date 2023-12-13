@@ -1,13 +1,16 @@
 .sidebar {
-    background-color: rgba(0, 0, 0, 0.569);
+    z-index: 20001;
     display: flex;
     flex-flow: column;
     right: 0px;
     position: absolute;
     width: 25%;
     display: flex;
-    border-radius: 8px 0px 8px 8px;
     top: 76px;
+    background: var(--purple-lighter);
+    border-radius: 10px;
+    border: 2px solid var(--purple);
+    box-shadow: 7px 7px var(--purple);
 }
 
 .sidebar a {

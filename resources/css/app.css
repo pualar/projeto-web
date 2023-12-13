@@ -301,5 +301,5 @@ ul {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--prim);
 }

@@ -13,7 +13,7 @@
 
   /* Links inside the navbar */
   .navbar a {
-    margin: 5px;
+    margin: 15px;
     font-size: 16px;
     color: var(--purple-light);
     text-align: center;
@@ -81,3 +81,19 @@
   label {
     margin: 5px;
   }
+ 
+.default {
+  animation-name: fade1;
+}
+
+.default:hover {
+  animation-name: fade1 1s linear;
+}
+
+.hover {
+  animation-name: fade2 1s linear;
+}
+
+#unlock {
+  display: none;
+}

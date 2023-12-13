@@ -4,19 +4,29 @@
             method="POST"
             action="{{route}}?_method={{method}}">
             <input type="hidden" name="{{input_name}}" value="{{ input_value }}">
-            <button type="submit">
-                <a class="{{ link_class }}">{{label}}</a>
-            </button>
+                <button type="submit">
+                    <a class="{{ link_class }}">{{label}}</a>
+                </button>
         </form>
-
     @else
         @if(center)
             <div class="text-center">
                 <a href="{{route}}">{{label}}</a>
             </div>  
         @else
-            <a href="{{route}}">{{label}}</a>
+            <a
+                href="{{ route }}"
+                class="{{ link_class ? link_class : '' }}">
+                    @if(icon)
+                        <i class="material-symbols-outlined">
+                            {{ icon }}
+                        </i>
+                    @else
+                        {{ label }}
+                    @endif
+                </a>
         @endif
+
 
         @if(tooltip)
             <span class="tooltiptext">{{tooltip}}</span>

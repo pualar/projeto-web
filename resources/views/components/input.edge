@@ -1,5 +1,4 @@
-{{--  <div class="bg-gray-200 rounded px-6 form-g">  --}}
-<div class="form-group">
+<div class="{{search ? 'search-group' : 'form-group'}}">
     @if(span)
         <span> {{ span }} </span>
     @endif
@@ -18,7 +17,7 @@
         id="{{ name }}"
         value="{{ flashMessages.get(name) || value || '' }}"
         placeholder="{{ placeholder }}"
-        class="form-field"{{--  bg-transparent w-full outline-none placeholder-gray-600"/  --}}>
+        class="{{ search ? 'search-field' : 'form-field'}}"{{--  bg-transparent w-full outline-none placeholder-gray-600"/  --}}>
     
     @if(flashMessages.has(`errors.${name}`))
         <p class="text-sm">{{ flashMessages.get(`errors.${name}`) }}</p>

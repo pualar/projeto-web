@@ -1,5 +1,4 @@
 
-<link href='https://unpkg.com/css.gg@2.0.0/icons/css/menu-right-alt.css' rel='stylesheet'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -17,6 +16,7 @@
     <div class="float-left ml-10">
         <form action="{{ route('api.post.search')}}" method="GET">
             @!component('components/input', {
+                search: true,
                 name: 'query',
                 placeholder: 'Pesquisar publicação',
                 type: 'text',
@@ -27,19 +27,37 @@
     </div> 
 
     @if(auth.user)
-        <div id="toggle" class="float-right pointer m-10">
-            <i class="gg-menu-right-alt"></i>
+        <div id="toggle" class="float-right pointer m-10 lock">
+            <span id="lock" class="material-symbols-outlined">
+                    menu
+            </span>
+            <span id="unlock" class="material-symbols-outlined">
+                close
+            </span>
         </div>
 
-        <a href="{{ route('web.post.create')}}" class="float-right">
+        @!component('components/link', {
+            icon: 'edit_square',
+            route: route('web.post.create'),
+            custom: 'float-right',
+            link_class: 'float-right'
+        })
+
+      {{--    <a href="{{ route('web.post.create')}}" class="float-right">
             <i class="material-symbols-outlined">
                 edit_square
             </i>
-        </a>
+        </a>  --}}
 
-        <label class="float-right">
+        @!component('components/link', {
+            route: route('web.user.profile'),
+            custom: 'float-right m-15',
+            label: auth.user.name,
+            center: false
+        })
+        {{--  <label class="float-right">
             {{ auth.user.name }}
-        </label>
+        </label>  --}}
     @else
         <a class="float-right" href="{{ route('web.auth.login') }}">Entrar</a>
     @endif
