@@ -81,7 +81,7 @@ html, body {
 
 /* body:before {
   content: '';
-  background: purple;
+  background: var(--purple);
   top: 0;
   left: 0;
   right: 0;
@@ -97,21 +97,30 @@ html, body {
 a, 
 .link {
   background: none;
-  color: purple;
+  color: var(--purple);
   text-decoration: none;
 }
 
+a:hover {
+  color: var(--purple-light)
+}
+
+button:disabled {
+  background-color: var(--grey-darker);
+  color: var(--primary)
+}
+
 button:hover {
-  border: 1px solid purple;
+  border: 1px solid var(--purple);
   background: thistle;
   border-radius: 5px;
-  color: purple;
+  color: var(--purple);
 }
 
 button {
   cursor: pointer;
   border: none;
-  background: purple;
+  background: var(--purple);
   border-radius: 5px;
   color: thistle;
 }

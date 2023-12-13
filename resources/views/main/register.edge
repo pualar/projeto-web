@@ -9,22 +9,25 @@
     @slot('main')
         <form action="{{ route('api.auth.login') }}" method="POST">
             @!component('components/input', {
+                id: 'name',
                 name: 'name',
-                placeholder: 'name',
+                placeholder: 'Seu nome completo',
                 type: 'text',
                 autocomplete: 'name',
                 span: 'Nome completo'
             })
 
             @!component('components/input', {
+                id: 'username',
                 name: 'username',
-                placeholder: 'nome-de-usuario',
+                placeholder: 'Username',
                 type: 'text',
                 autocomplete: 'username',
                 span: 'Nome de usuário'
             })
 
             @!component('components/input', {
+                id: 'email',
                 name: 'email',
                 placeholder: 'seu-email@exemplo.com',
                 type: 'email',
@@ -51,6 +54,7 @@
             })
 
             @!component('components/button', {
+                id: 'sbmt',
                 type: 'submit',
                 content: 'Finalizar'
             })

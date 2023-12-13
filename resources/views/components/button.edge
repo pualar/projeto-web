@@ -19,13 +19,17 @@
                 action="{{ route }}">
                 <input type="hidden" name="{{ input_name }}" value="{{ input_value }}">
 
-                <button type="submit" class="{{ classe }}">
+                <button
+                    id="{{id}}" 
+                    type="submit"
+                    class="{{ classe }}">
                     {{ icon }}
                 </button>
             </form>
         @endif
     @else
         <button
+            id="{{id}}"
             type="{{type}}">
             {{content}}
         </button>       
