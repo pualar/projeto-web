@@ -61,7 +61,7 @@ Route.group(() => {
       Route.patch('/password', 'UsersController.changePassword')
       .as('api.user.change_password')
       Route.get('/list', 'UsersController.list')
-        .as('api.usser.fetchAll')
+        .as('api.user.fetchAll')
       Route.delete('/:id', 'UsersController.destroy')
         .where('id', /^[0-9]+$/).as('api.user.delete')
       Route.put('/:id/update', 'UsersController.update')

@@ -18,18 +18,18 @@
     })
 
     @if(page.rows.length == 0)
-    <div> 
-        Ainda não há nada por aqui :(
-        <br>
-        <a href="{{ route('web.post.create') }}">
-            Que tal começar e escrever sua primeira publicação?
-        </a>
-    </div>    
+        <div> 
+            Ainda não há nada por aqui :(
+            <br>
+            <a href="{{ route('web.post.create') }}">
+                Que tal começar e escrever sua primeira publicação?
+            </a>
+        </div>    
     @endif
 
     <div class="container" id="scroller">
         <div class="scroller_list">
-            @!component('partials/post', {posts: page.rows})
+            @!component('partials/post', { posts: page.rows })
         </div>
 
     <div class="scroller_buffer" style="position: absolute; bottom: 0; left:0; width: 100%; height: 50vh; pointer-events: none;"></div>

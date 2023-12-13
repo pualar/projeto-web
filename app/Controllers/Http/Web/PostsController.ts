@@ -43,7 +43,8 @@ export default class PostsController {
             console.error(err)
         }
 
-        return view.render('posts/list', { posts: user!.favorites });
+        const posts = user!.favorites;
+        return view.render('posts/list', { page: { rows: posts }} );
     }
 
     public async update({ params, view }: HttpContextContract) {

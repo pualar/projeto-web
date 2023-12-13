@@ -16,7 +16,7 @@
         @else
             <form
                 method="{{ method }}"
-                action="{{ route }}">
+                action="{{route}}{{method_spoofing ? method_spoofing : ''}}">
                 <input type="hidden" name="{{ input_name }}" value="{{ input_value }}">
 
                 <button

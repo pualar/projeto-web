@@ -1,10 +1,10 @@
 document.addEventListener(
     'DOMContentLoaded', function() {
-        const el_count_prev = document.getElementById('count_prev');
+      /*   const el_count_prev = document.getElementById('count_prev');
         const el_count_content = document.getElementById('count_content');
 
-        const el_description = document.getElementsByClassName('textarea-mid')[0];
-        const el_content = document.getElementsByClassName('textarea-big')[0];
+        const el_description = document.getElementById('preview')[0];
+        const el_content = document.getElementById('content')[0];
 
         const max_chars = 255;
 
@@ -19,7 +19,7 @@ document.addEventListener(
 
         el_description.addEventListener('input', (val) => {
            el_count_prev.innerText = `${val.target.value.length}/${max_chars}`
-        });
+        }); */
     }
 );
 

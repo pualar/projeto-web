@@ -21,37 +21,39 @@
             span: 'Titulo'
         })
 
-         @!component('components/input', {
-            name: 'title',
-            type: 'text',
-            placeholder: 'Aqui vai um resumo do seu texto',
-            span: 'Resumo'
-        })
-
         @!component('components/input', {
+            id: 'preview',
             name: 'preview',
             type: 'text',
+            char_count: false,
             placeholder: 'Aqui vai um resumo do seu texto',
             span: 'Resumo'
         })
 
         @!component('components/quill', {
+            id: 'content',
             name: 'content',
             type: 'text',
+            word_count: false,
             placeholder: 'Conteúdo',
             span: 'Conteúdo'
         })
 
         @!component('components/button', {
             type: 'submit',
+            custom: 'w-100',
             content: 'Enviar'
         })
 
+          
+    </form>
+
+    <div class="text-center" style="margin-left: 20px">
         @!component('components/link', {
             route: route("/"),
             label: 'Voltar',
             center: true
-        })        
-    </form>
+        })      
+    </div>
 </div>    
 @endsection

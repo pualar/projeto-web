@@ -19,6 +19,10 @@
         placeholder="{{ placeholder }}"
         class="form-field">
     </textarea>
+
+    @if(word_count)
+        <span class="float-right" id="count_content">-</span>
+    @endif
     
     @if(flashMessages.has(`errors.${name}`))
         <p class="text-sm">{{ flashMessages.get(`errors.${name}`) }}</p>
