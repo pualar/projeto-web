@@ -3,8 +3,6 @@ import { BaseModel, BelongsTo, afterFetch, afterFind, belongsTo, column } from '
 import User from './User'
 import PostService from 'App/Services/PostService'
 import { HttpContext } from '@adonisjs/http-server/build/src/HttpContext'
-import FavoriteService from 'App/Services/FavoriteService'
-
 
 export default class Post extends BaseModel {f
   @afterFind()
@@ -14,7 +12,6 @@ export default class Post extends BaseModel {f
     try {
       auth = HttpContext.get()!.auth
     } catch(err) {
-      console.log(err)
     }
 
     const postService = new PostService()    
@@ -35,7 +32,6 @@ export default class Post extends BaseModel {f
 
     for(let post of posts) {
       const fav = await postService.isFavorite(auth.user!.id, post.id)
-     // console.log('favvvvvv', fav)
       post.fav = fav
     }
   }

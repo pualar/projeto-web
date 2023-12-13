@@ -4,7 +4,7 @@
 </head>
 
 @each(post in posts)
-    <div class="content"> 
+    <div class="content" #post_details> 
         <label class="title"> {{ post.title }} </label>
         
         <label class="preview"> {{ post.preview }} </label>
@@ -18,7 +18,7 @@
             })
         </label>
 
-        <div>
+        <div #post_details>
             <label class="created_at"> {{ post.createdAt }} </label>
             |
             <label class="read_time"> {{ post.read_time }} </label>
@@ -69,4 +69,38 @@
             @endif
         </div>
     </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let titles = document.getElementsByClassName('title')
+    let previews = document.getElementsByClassName('preview')
+    let url = document.location.href
+    let _query = url.includes('search?query=') ? url.split('search?query=')[1] : false
+
+    if(_query) {
+        const applymarker = (element) => {
+            if(element.textContent.includes(_query)) {
+                const _split = element.textContent.split(_query)
+                const marked = `${_split[0]}<mark>${_query}</mark>${_split[1]}`
+                element.innerHTML = marked
+            }
+
+            return;
+        }
+
+
+        if(_query) {
+            for(title of titles) {
+                applymarker(title)
+            }
+
+            for(prev of previews) {
+                applymarker(prev)
+            }
+
+            
+        }
+    }
+})
+</script>
 @endeach  

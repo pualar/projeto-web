@@ -54,10 +54,6 @@ export default class PostsController {
         const author_id = auth.user ? auth.user.id : undefined;
 
         if(!title || !content || !author_id) {
-            console.error("DADOS INVALIDOS!!! >> title", title)
-            console.error("DADOS INVALIDOS!!! >> content", content)
-            console.error("DADOS INVALIDOS!!! >> author_id", author_id)
-          
             response.status(400)
             return response
         }
@@ -121,16 +117,12 @@ export default class PostsController {
 
     public async postsSearch({ request, view }: HttpContextContract) {        
         const query = request.requestData.query;
-        let posts: Post[] | null = [];
     
-        console.log('queryyyyyyyyyyy', query)
-        posts = await this.postService.querySearch(
-            query
-        )
+        const page = await this.postService.querySearch(
+            1,
+            query)
 
-        console.log('postsssssssssss', posts)
-
-        return view.render('posts/list', {posts: posts} )
+        return view.render('posts/list', { page, search: query } )
     }
 
     /**
@@ -150,9 +142,16 @@ export default class PostsController {
    * @param param0 
    * @returns 
    */
-  public async paginate({ response, params, view }: HttpContextContract) {
-    const page = await this.postService.paginate(params.page)// Post.query().preload('author').paginate(params.page, this.limit)
-    const html = await view.render('partials/post', { posts: page })
-    return response.json({ html, page })
+  public async paginate({ response, params, view, request }: HttpContextContract) {
+    const _query = request.requestData.query;
+    let page: any = null;
+
+    if(_query) {
+        page = await this.postService.querySearch(
+            params.page,
+            _query)
+    } else page = await this.postService.paginate(params.page)// Post.query().preload('author').paginate(params.page, this.limit)
+    const _html = await view.render('partials/post', { posts: page })
+    return response.json({ _html, page })
   }
 }
