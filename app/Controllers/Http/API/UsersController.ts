@@ -2,8 +2,6 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {  schema, rules } from '@ioc:Adonis/Core/Validator'
 
 import User from 'App/Models/User'
-import UserService from 'App/Services/UserService'
-//import UserService from 'App/Services/UserService'
 
 export default class UsersController {
     private table: string = 'users';
@@ -47,9 +45,8 @@ export default class UsersController {
         const {name, username, email, password } =
             request.only(['name', 'username', 'email', 'password'])
         
-        if(!email || !password || !name) {
-            response.status(400)
-            return response
+        if(!email || !password || !name || !username) {
+            return response.status(400).send("Dados inválidos")
         }
 
         const userSchema = schema.create({
