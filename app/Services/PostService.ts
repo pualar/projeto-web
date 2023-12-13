@@ -7,8 +7,17 @@ export default class PostService {
     private _size: number = 10;
     constructor() { }
 
-    public async paginate(init): Promise<Post[] | null> {
-        const query = await Post.query()
+    public async paginate(init, value?): Promise<Post[] | null> {
+        
+        const query = value ?
+        await this._querySearch(init, value) :
+        await this._paginate(init)
+       
+        return query;
+    }
+
+    private async _paginate(init): Promise<Post[] | null> {
+        const query =  await Post.query()
         .preload('author')
         .orderBy('id', 'desc')
         .paginate(init, 10)
@@ -16,10 +25,9 @@ export default class PostService {
         return query;
     }
     
-    public async querySearch(init, value): Promise<Post[] | null> {
+    private async _querySearch(init, value): Promise<Post[] | null> {
         const query = await Post.query()
             .preload('author')
-            .where('content', 'like', `%${value}%`)
             .orWhere('preview', 'like', `%${value}%`)
             .orWhere('title', 'like', `%${value}%`)
             .orderBy('id', 'desc')
@@ -28,14 +36,14 @@ export default class PostService {
         return query;
     }
 
-    private async _paginate(init, where, values): Promise<Post[] | null> {
+    /* private async _paginate(init, where, values): Promise<Post[] | null> {
         const query = await Post.query()
         .preload('author')
         .orderBy('id', 'desc')
         .paginate(init, 10)
 
         return query;
-    }
+    } */
 
     private async querySingle(where, value): Promise<Post | null> {
         const query = await Post.query()
@@ -66,18 +74,6 @@ export default class PostService {
         return post;
     }
 
-   /*  public async querySearch(init, value): Promise<Post[] | null> {
-        const query = await Post.query()
-            .preload('author')
-            .where('content', 'like', `%${value}%`)
-            .orWhere('preview', 'like', `%${value}%`)
-            .orWhere('title', 'like', `%${value}%`)
-            .orderBy('id', 'desc')
-            .paginate(init, this._size)
-
-        return query;
-    }
- */
     public async isFavorite(user_id, post_id) {
         const favService = new FavoriteService()
         const fav = await favService.fetch(user_id, post_id)
