@@ -1,5 +1,8 @@
 <h2> It's a 403 </h2>
 
 <p> Você precisa estar logado para continuar.
-    <a href="{{ route('web.auth.login') }}"> Entre aqui </a> 
+@!component('components/link', {
+    route: route('web.auth.login'),
+    label: 'Entre aqui'
+})
 </p>

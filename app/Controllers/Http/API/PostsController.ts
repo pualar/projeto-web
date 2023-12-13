@@ -2,19 +2,25 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Favorite from 'App/Models/Favorite';
 import Post from 'App/Models/Post'
 import FavoriteService from 'App/Services/FavoriteService';
+import PostService from 'App/Services/PostService';
 
 export default class PostsController {
-    public async list({}: HttpContextContract) {
-        const posts = await Post.all()
+    private limit = 10;
+    private postService = new PostService()
 
-        return posts;
+    public async list({ view }: HttpContextContract) {
+       /*  const posts = await Post.all()
+
+        return posts; */
+        const page = await this.postService.paginate(1);//Post.query().paginate(1, this.limit)
+        return view.render('posts/list', { page })
     }
 
-    public async destroy({ params }: HttpContextContract) {
+    public async destroy({ params, response }: HttpContextContract) {
         const post = await Post.findOrFail(params.id)
         await post.delete()
 
-        return null;
+        return response.redirect().toRoute('dashboard');
     }
 
     public async update({ request, params, response }: HttpContextContract) {
@@ -112,4 +118,41 @@ export default class PostsController {
  
         return response.redirect().toRoute('dashboard')
     }
+
+    public async postsSearch({ request, view }: HttpContextContract) {        
+        const query = request.requestData.query;
+        let posts: Post[] | null = [];
+    
+        console.log('queryyyyyyyyyyy', query)
+        posts = await this.postService.querySearch(
+            query
+        )
+
+        console.log('postsssssssssss', posts)
+
+        return view.render('posts/list', {posts: posts} )
+    }
+
+    /**
+   * Displays home page for posts
+   * This is our initial list of 10 posts
+   * @param param0 
+   * @returns 
+   */
+  public async index ({ view }: HttpContextContract) {
+    const page = await this.postService.paginate(1);//Post.query().paginate(1, this.limit)
+    return view.render('posts/list', { page })
+  }
+
+  /**
+   * Renders and returns html and page info for a specific page worth of posts
+   * This is what we use to incrementally continue our initial list
+   * @param param0 
+   * @returns 
+   */
+  public async paginate({ response, params, view }: HttpContextContract) {
+    const page = await this.postService.paginate(params.page)// Post.query().preload('author').paginate(params.page, this.limit)
+    const html = await view.render('partials/post', { posts: page })
+    return response.json({ html, page })
+  }
 }

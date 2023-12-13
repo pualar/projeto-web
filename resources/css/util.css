@@ -27,7 +27,7 @@
 }
 
 .w-100 {
-    width: 100%;
+    width: 100% !important;
 }
 
 .ml-25-100 {
@@ -113,4 +113,8 @@
 
 .m-5 {
     margin: 5px;
+}
+
+.m-15 {
+    margin: 15px;;
 }

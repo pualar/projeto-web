@@ -1,16 +1,21 @@
 .navbar {
     padding: 10px;
-    background: purple;
+    background: var(--purple);
     color: thistle;
     overflow: hidden;
     font-family: Arial;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
   }
 
   /* Links inside the navbar */
   .navbar a {
-    float: left;
+    margin: 15px;
     font-size: 16px;
-    color: thistle;
+    color: var(--purple-light);
     text-align: center;
     text-decoration: none;
   }
@@ -72,3 +77,23 @@
   .dropdown:hover .dropdown-content {
     display: block;
   }
+
+  label {
+    margin: 5px;
+  }
+ 
+.default {
+  animation-name: fade1;
+}
+
+.default:hover {
+  animation-name: fade1 1s linear;
+}
+
+.hover {
+  animation-name: fade2 1s linear;
+}
+
+#unlock {
+  display: none;
+}

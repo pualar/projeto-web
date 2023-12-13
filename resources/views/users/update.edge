@@ -7,40 +7,43 @@
         action="{{ 
             route('api.user.update', { id: auth.user.id })
             }}?_method=PUT">
-        <div>
-            <label>Nome: </label>
-            <input
-                name="name"
-                type="text"
-                placeholder="{{ user.name }}">
-            </input>
-        </div>
 
-        <div>
-            <label>Username: </label>
-            <input
-                name="username"
-                type="text"
-                placeholder="{{ user.username }}">
-            </input>
-        </div>
+        @!component('components/input', {
+            name: 'name',
+            type: 'text',
+            placeholder: 'nome',
+            value: user.name,
+            span: 'Nome',
+            autocomplete:'text'
+        })
 
-        <div>
-            <label>Email: </label>
-            <input
-                name="email"
-                type="email"
-                placeholder="{{ user.email }}">
-            </input>
-        </div>
+        @!component('components/input', {
+            name: 'username',
+            type: 'text',
+            placeholder: 'username',
+            value: user.username,
+            span: 'Username',
+            autocomplete:'user'
+        })
 
-        <button type="submit">
-            Salvar
-        </button>
+        @!component('components/input', {
+            name: 'email',
+            type: 'email',
+            placeholder: 'E-mail',
+            value: user.email,
+            span: 'E-mail',
+            autocomplete:'email'
+        })
+
+        @!component('components/button', {
+            custom: 'w-100',
+            type: 'submit',
+            content: 'Salvar'
+        })
     </form>     
 
-    <div class="text-center">
-        <a href="{{ route('web.user.profile') }}">Voltar</a>
+    <div class="text-center" style="margin-start: 20px">
+        @!component('components/link', { route: route('web.user.profile'), label:'Voltar'})
     </div>
 
 </div>

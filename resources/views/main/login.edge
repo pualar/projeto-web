@@ -1,41 +1,43 @@
 @layout('layouts/main')
 @set('titulo', 'Login')
 @section('content')
-    <div class="block form">
+
+@component('components/modal')
+    @slot('main')
         <form action="{{ route('api.auth.login') }}" method="POST">
-            @if(flashMessages.has('form'))
-                <div role="alert">
-                    {{flashMessages.get('form')}}
-                </div>
-            @endif
+            @!component('components/input', {
+                id: 'email',
+                name: 'email',
+                placeholder: 'seu-email@exemplo.com',
+                type: 'email',
+                span: 'E-mail',
+                autocomplete:'email'
+            })
 
-            <div>
-                <span>E-mail: </span>
-                <input
-                    name="email"
-                    autocomplete="email"
-                    type="email"
-                    placeholder="seu-email@exemplo.com">
-            </div>
+            @!component('components/input', {
+                id: 'password',
+                name: 'password',
+                type: 'password',
+                placeholder: 'Senha',
+                span: 'Senha',
+                autocomplete:'current-password'
+            })
+        
+            @!component('components/button', {
+                id: 'submit',
+                custom: 'w-100',
+                type: 'submit',
+                content: 'Entrar'
+            })
+        </form>
+    @end
 
-            <div>
-                <span>Senha:</span>
-                <input
-                    name="password"
-                    autocomplete="current-password"
-                    type="password"
-                    placeholder="Senha">
-            </div>
-
-            <button
-                    type="submit">
-                        Entrar
-            </button>  
-    </form>
-
-    <div>
-        <span> Não possui uma conta? <a href=" {{ route('web.user.register') }}"> Cadastre-se </a></span>
+    @slot('actions')
+    <div class="w-100 texte-center" style="margin-left: 54px">
+        <span> Não possui uma conta? 
+            @!component('components/link', { route: route('web.user.register'), label:'Cadastre-se'})
+        </span>
     </div>
-</block>
-
+    @end
+@end
 @endsection

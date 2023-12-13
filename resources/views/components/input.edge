@@ -1,0 +1,25 @@
+<div class="{{search ? 'search-group' : 'form-group'}}">
+    @if(span)
+        <span> {{ span }} </span>
+    @endif
+
+    @if(icon)
+        <span class="{{icon_class}} icon">
+            {{icon}}
+        </span>
+    @endif
+
+    <input
+        id="{{id}}"
+        autocomplete="{{ autocomplete }}"
+        type="{{ type }}"
+        name="{{ name }}"
+        id="{{ id }}"
+        value="{{ flashMessages.get(name) || value || '' }}"
+        placeholder="{{ placeholder }}"
+        class="{{ search ? 'search-field' : 'form-field'}}"{{--  bg-transparent w-full outline-none placeholder-gray-600"/  --}}>
+    
+    @if(flashMessages.has(`errors.${name}`))
+        <p class="text-sm">{{ flashMessages.get(`errors.${name}`) }}</p>
+    @endif
+</div>

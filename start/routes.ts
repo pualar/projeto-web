@@ -33,7 +33,7 @@ Route.group(() => {
 
   Route.group(() => {
     Route.group(() => {
-      Route.delete('/:id', 'PostsController.destroy')
+      Route.delete('/:id/delete', 'PostsController.destroy')
         .where('id', /^[0-9]+$/).as('api.post.delete')
       Route.patch('/:id/update', 'PostsController.update')
         .where('id', /^[0-9]+$/).as('api.post.update')
@@ -43,7 +43,11 @@ Route.group(() => {
         .where('id', /^[0-9]+$/).as('api.post.remove_favorite')
       Route.post('/favorite', 'PostsController.addFavorite')
         .where('id', /^[0-9]+$/).as('api.post.add_favorite')
+      Route.get('/search', 'PostsController.postsSearch').as('api.post.search')
+      Route.get('/paginate/:page', 'PostsController.paginate').as('api.posts.paginate')
+      
     }).middleware('auth')
+
     
     Route.get('/:id', 'PostsController.show')
       .where('id', /^[0-9]+$/).as('api.post.fetch')

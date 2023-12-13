@@ -1,0 +1,11 @@
+<div class="block form">
+    <main>
+     {{{ await $slots.main() }}}
+    </main>
+
+    @if($slots.actions)
+        <div>
+            {{{ await $slots.actions() }}}
+        </div>
+    @endif
+</div>

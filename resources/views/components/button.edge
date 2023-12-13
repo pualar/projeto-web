@@ -1,0 +1,41 @@
+<div class="text-center tooltip m-10 {{custom}}">
+    @if(type == 'link')
+        @!component('components/link', {
+            route: route,
+            label: content
+        })
+    @elseif(type == 'icon')
+        @if(icon_type && icon_type == 'function')
+            <button
+                id="{{ id }}"
+                title="{{ title }}"
+                class="{{ classe }}"
+                onclick="{{ onClick }}">
+                {{ icon }}
+            </button>
+        @else
+            <form
+                method="{{ method }}"
+                action="{{ route }}">
+                <input type="hidden" name="{{ input_name }}" value="{{ input_value }}">
+
+                <button
+                    id="{{id}}" 
+                    type="submit"
+                    class="{{ classe }}">
+                    {{ icon }}
+                </button>
+            </form>
+        @endif
+    @else
+        <button
+            id="{{id}}"
+            type="{{type}}">
+            {{content}}
+        </button>       
+    @endif
+
+    @if(tooltip)
+        <span class="tooltiptext"> {{tooltip}}</span>
+    @endif
+</div>

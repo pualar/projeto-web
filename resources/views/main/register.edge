@@ -1,70 +1,75 @@
 @layout('layouts/main')
 @set('titulo', 'Cadastre-se')
 @section('content')
-    <head>
-        @entryPointScripts('register')
-    </head>
-    
-    <div class="block form">    
+<head>
+    @entryPointScripts('register')
+</head>
+
+@component('components/modal')
+    @slot('main')
         <form action="{{ route('api.user.create') }}" method="POST">
-            <div>
-                <span>Nome completo: </span>
-                <input
-                    name="name"
-                    autocomplete="name"
-                    type="text"
-                    placeholder="Maria da Silva">
-            </div>
+            @!component('components/input', {
+                id: 'name',
+                name: 'name',
+                placeholder: 'Seu nome completo',
+                type: 'text',
+                autocomplete: 'name',
+                span: 'Nome completo'
+            })
 
-            <div>
-                <span>Username: </span>
-                <input
-                    name="username"
-                    autocomplete="username"
-                    type="text"
-                    placeholder="nome_de_usuario">
-            </div>
+            @!component('components/input', {
+                id: 'username',
+                name: 'username',
+                placeholder: 'Username',
+                type: 'text',
+                autocomplete: 'username',
+                span: 'Nome de usuário'
+            })
 
-            <div>
-                <span>E-mail: </span>
-                <input
-                    name="email"
-                    autocomplete="email"
-                    type="email"
-                    placeholder="seuemail@exemplo.com">
-            </div>
+            @!component('components/input', {
+                id: 'email',
+                name: 'email',
+                placeholder: 'seu-email@exemplo.com',
+                type: 'email',
+                autocomplete: 'enail',
+                span: 'E-mail'
+            })
 
-            <div >
-                <span>Senha: </span>
-                <input 
-                    id="password"
-                    name="password"
-                    autocomplete="new-passwordword"
-                    type="password"
-                    placeholder="Senha">
-            </div>
+            @!component('components/input', {
+                id: 'password',
+                name: 'password',
+                placeholder: 'Senha',
+                type: 'password',
+                autocomplete: 'current-password',
+                span: 'Senha'
+            })
 
-            <div>
-                <span>Confirme sua senha:</span>
-                <input
-                    id="confirm"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="Confirme sua senha">
-            </div> 
+            @!component('components/input', {
+                id: 'confirm',
+                name: 'password_confirm',
+                placeholder: 'Confirme sua senha',
+                type: 'password',
+                autocomplete: 'current-password',
+                span: 'Confirme sua senha'
+            })
 
-            <button
-                disabled
-                id="sbmt" 
-                type="submit">
-                Finalizar
-            </button>
-
-            <div class="w-100 text-center">
-                <a href="/">
-                    Voltar
-                </a>
-            </div>
+            @!component('components/button', {
+                custom: 'w-100',
+                id: 'sbmt',
+                type: 'submit',
+                content: 'Finalizar'
+            })
         </form>
+    @end
+
+    @slot('actions')
+    <div class="w-100 text-center">
+        @!component('components/button', {
+            route: route('/'),
+            type: 'link',
+            content: 'Voltar'
+        })
     </div>
+    @end
+@end
 @endsection

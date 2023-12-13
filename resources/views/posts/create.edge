@@ -6,59 +6,52 @@
 </head>
 
 <div class="block form">
-    <form action="{{ post != null ? route('api.post.update', {id: post.id}) : route('api.post.create') }}{{ post != null ? '?_method=PATCH' : ''}}" method="POST">
+    <form 
+        action="{{ post != null ? route('api.post.update', {id: post.id}) : route('api.post.create') }}{{ post != null ? '?_method=PATCH' : ''}}" method="POST">
         @if(flashMessages.has('form'))
             <div role="alert">
                 {{flashMessages.get('form')}}
             </div>
         @endif
 
-        <div>
-            <span>Título</span>
-            <input
-                name="title"
-                autocomplete="off"
-                type="text"
-                value="{{ post != null ? post.title : "" }}"
-                placeholder="Título">
-                
-        </div>
+        @!component('components/input', {
+            name: 'title',
+            type: 'text',
+            placeholder: 'titulo',
+            span: 'Titulo'
+        })
 
-        <div>
-            <span>Resumo</span>
-            <textarea
-                class="textarea-mid"
-                name="preview"
-                type="text"
-                maxlength="255"
-                placeholder="Aqui vai um resumo do seu texto"
-            >{{ post != null ? post.preview : "" }}</textarea>
+         @!component('components/input', {
+            name: 'title',
+            type: 'text',
+            placeholder: 'Aqui vai um resumo do seu texto',
+            span: 'Resumo'
+        })
 
-            <span class="count float-right" id="count_prev">0/255</span>
-        </div>
+        @!component('components/input', {
+            name: 'preview',
+            type: 'text',
+            placeholder: 'Aqui vai um resumo do seu texto',
+            span: 'Resumo'
+        })
 
-        <div>
-            <span>Descrição</span>
-            <textarea class="textarea-big"
-                name="content"
-                type="text"
-                placeholder="Escreva sua texto"
-            >{{ post != null ? post.content : "" }}</textarea>
+        @!component('components/quill', {
+            name: 'content',
+            type: 'text',
+            placeholder: 'Conteúdo',
+            span: 'Conteúdo'
+        })
 
-            <span class="count float-right" id="count_content">-</span>
-        </div>
+        @!component('components/button', {
+            type: 'submit',
+            content: 'Enviar'
+        })
 
-        <div>
-            <button
-                type="submit">
-                    Enviar
-            </button>  
-        </div>
-
-         <div class="text-center">
-           <a href="{{ route("/") }}">Voltar</a>
-        </div>
-        
+        @!component('components/link', {
+            route: route("/"),
+            label: 'Voltar',
+            center: true
+        })        
     </form>
 </div>    
 @endsection
