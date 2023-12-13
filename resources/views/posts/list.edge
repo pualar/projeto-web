@@ -41,6 +41,7 @@
 </div>
 
 <script>
+    const isFav = document.location.href.includes('/fav')
     window.onscroll = function() {scrollFunction()};
 
     function scrollFunction() {
@@ -80,6 +81,7 @@
     observer.observe(scrollerBuffer);
 
     async function fetchNextPage() {
+        if(isFav) return
         if (state === states.WORKING) return
         
         state = states.WORKING

@@ -8,6 +8,7 @@ export default class UsersController {
         .preload('author')
         .where('author_id', '=', params.id)
         .orderBy('id', 'desc')
+        .paginate(1, 10)
 
         const author = await User.query()
             .where('id', '=', params.id).first()
